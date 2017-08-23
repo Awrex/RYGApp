@@ -9,12 +9,30 @@ import java.util.ArrayList;
 public class Position {
     private String name;
     private String level;
-    private String sportName;
     private String imagePath;
+    private String sportName;
+    private int picked;
     private ArrayList<Skill> skillList;
     public Position(ArrayList<Skill> pulledList) {
         skillList = new ArrayList<Skill>();
 
+    }
+
+    public Position(String name, String level, String imagePath, String sportName, int picked) {
+        this.name = name;
+        this.level = level;
+        this.sportName = sportName;
+        this.imagePath = imagePath;
+        this.picked = picked;
+    }
+
+    public int getPicked() {
+
+        return picked;
+    }
+
+    public void setPicked(int picked) {
+        this.picked = picked;
     }
 
     public String getName() {

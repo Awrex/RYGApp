@@ -1,10 +1,12 @@
 package com.example.alex.raiseyourgameapp;
 
+import java.io.Serializable;
+
 /**
  * Created by Alex on 15/08/2017.
  */
 
-public class Card {
+public class Card implements Serializable{
     public int num;
     private String name;
     private String category;
@@ -42,6 +44,18 @@ public class Card {
     }
 
     public String getName() {
+
+        char[] n = name.toCharArray();
+        String newName = "";
+        newName += n[0];
+        for(int i = 1; i < n.length; i++)
+        {
+            if(Character.isUpperCase(n[i]))
+                newName += " " + n[i];
+            else
+                newName += n[i];
+        }
+        name = newName;
         return name;
     }
 

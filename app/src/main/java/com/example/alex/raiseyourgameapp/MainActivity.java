@@ -1,5 +1,6 @@
 package com.example.alex.raiseyourgameapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private MainController mc = new MainController(this);
+    private ArrayList<Card> cardList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +40,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int skillLev = getIntent().getIntExtra("LEVEL", 0);
                 ArrayList<String> posList = getIntent().getStringArrayListExtra("SKILLLIST");
-                String test = mc.searchAthlete(searchName.getText().toString(), skillLev, posList);
-                testView.setText(test);
             }
         });}
-
+        public void sendCards(ArrayList<Card> cards)
+        {
+            Intent intent = new Intent(this, CardActivity.class);
+            intent.putExtra("CARDLIST", cards);
+            startActivity(intent);
+            finish();
+        }
         public void getCards()
         {
 

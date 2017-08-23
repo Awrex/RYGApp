@@ -15,7 +15,7 @@ public class LevelActivity extends AppCompatActivity {
 
     public void goToSkillsBeginner(View view){
         int num = 0;
-        Intent intent = new Intent(this, SkillsActivity.class);
+        Intent intent = new Intent(this, PositionActivity.class);
         intent.putExtra("LEVEL",num);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         startActivity(intent);
@@ -23,7 +23,7 @@ public class LevelActivity extends AppCompatActivity {
     }
     public void goToSkillsIntermediate(View view){
         int num = 1;
-        Intent intent = new Intent(this, SkillsActivity.class);
+        Intent intent = new Intent(this, PositionActivity.class);
         intent.putExtra("LEVEL",num);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         startActivity(intent);
@@ -31,7 +31,7 @@ public class LevelActivity extends AppCompatActivity {
     }
     public void goToSkillsPro(View view){
         int num = 2;
-        Intent intent = new Intent(this, SkillsActivity.class);
+        Intent intent = new Intent(this, PositionActivity.class);
         intent.putExtra("LEVEL",num);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         startActivity(intent);

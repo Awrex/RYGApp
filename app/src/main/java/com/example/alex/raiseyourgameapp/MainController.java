@@ -34,19 +34,11 @@ public class MainController extends Activity {
         db.createAthlete(lName, name, Gender);
     }
 
-    public String searchAthlete(String name, int skillLevel, ArrayList<String> posList)
+    public ArrayList<Card> getCards(int skillLevel, ArrayList<String> posList)
     {
-        ArrayList<Card> cardList = new ArrayList<>();
-        String cardNames = "";
-        String gender;
-        gender = db.findAthlete(name);
         db.deleteCards();
-        db.createCards(skillLevel, gender, posList);
-        cardList = db.getCards();
-        for(int i = 0; i < cardList.size(); i++)
-        {
-            cardNames += cardList.get(i).getName() + " ";
-        }
-        return cardNames;
+        db.createCards(skillLevel, "MALE", posList);
+        ArrayList<Card> cardList = db.getCards();
+        return cardList;
     }
 }

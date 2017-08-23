@@ -42,6 +42,7 @@ public class DBController extends SQLiteOpenHelper {
         super(con, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    //Left variables uninitialized due to them being intended for preparedStatements which at this stage are not working.
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createSport = "CREATE TABLE " + TABLE_SPORT + "(" + SPORT_name + " TEXT PRIMARY KEY, " + SPORT_imagePath+ " TEXT)";
@@ -86,6 +87,18 @@ public class DBController extends SQLiteOpenHelper {
         */
         stmt = db.compileStatement("CREATE TABLE Card (num INT PRIMARY KEY, cardName TEXT, Category TEXT, Description TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT, Rating INT, Priority INT, Comment TEXT, secondComment TEXT)");
         stmt.execute();
+    }
+    public ArrayList getPositions() {
+        ArrayList<Position> positions = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("Select * FROM Position",null);
+        if(c!= null) {
+            while(c.moveToNext()){
+                Position tempPosition = new Position(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getInt(4));
+                positions.add(tempPosition);
+            }
+        }
+        return positions;
     }
     public ArrayList getCards()
     {
