@@ -100,6 +100,70 @@ public class DBController extends SQLiteOpenHelper {
         }
         return positions;
     }
+    public void addPositions(ArrayList<Position> posList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String pName = "";
+        String level = "";
+        String imagePath = "";
+        String sName = "";
+        int picked = 0;
+            for (int i = 0; i < posList.size(); i++) {
+                pName = posList.get(i).getName();
+                level = posList.get(i).getLevel();
+                imagePath = posList.get(i).getImagePath();
+                sName = posList.get(i).getSportName();
+                picked = posList.get(i).getPicked();
+
+                String sql = "INSERT INTO Position (Name, Level, imagePath, sportName, picked) VALUES ('" + pName + "', '" + level + "', '" + imagePath + "', '" + sName + "'," + picked + ")";
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.executeInsert();
+
+            }
+        }
+    public ArrayList getSkills()
+    {
+        ArrayList<Skill> skills = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("Select * FROM Skill",null);
+        if(c != null)
+        {
+            while(c.moveToNext())
+            {
+                Skill tempSkill = new Skill(c.getString(0),c.getString(1),c.getString(2),c.getInt(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8));
+                skills.add(tempSkill);
+            }
+        }
+        return skills;
+    }
+    public void addSkills(ArrayList<Skill> skillList)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from Card");
+        String name;
+        String category;
+        String description;
+        int levelReq;
+        String genderReq;
+        int moreInfo;
+        String infoPath;
+        String sName;
+        String pName;
+        for (int i = 0; i < skillList.size(); i++) {
+            name = skillList.get(i).getName();
+            category = skillList.get(i).getCategory();
+            description = skillList.get(i).getDescription();
+            levelReq = skillList.get(i).getLevelReq();
+            genderReq = skillList.get(i).getGenderReq();
+            moreInfo = skillList.get(i).getMoreInfo();
+            infoPath = skillList.get(i).getInfoPath();
+            sName = skillList.get(i).getSportName();
+            pName = skillList.get(i).getPositionName();
+            String sql = "INSERT INTO Skill (skillName, Category, Description, levelReq, genderReq, moreInfo, infoPath, sportName, positionName) VALUES ('" + name + "', '" + category + "', '" + description + "', " + levelReq + ",'" + genderReq + "', " + moreInfo + ", '" + infoPath + "', '" +sName + "', '" +pName+ "')";
+            SQLiteStatement statement = db.compileStatement(sql);
+            statement.executeInsert();
+
+        }
+    }
     public ArrayList getCards()
     {
         ArrayList<Card> cards = new ArrayList<>();
@@ -119,6 +183,11 @@ public class DBController extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen())
             db.close();
+    }
+    public void deleteSkills()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from Skill");
     }
     public void deleteCards()
     {

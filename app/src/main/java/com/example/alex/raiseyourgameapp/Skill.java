@@ -9,16 +9,26 @@ public class Skill {
     private String category;
     private String description;
     private int levelReq;
-    private int genderReq;
-    private boolean moreInfo;
-    private String rating;
-    private String priority;
+    private String genderReq;
+    private int moreInfo;
     private String infoPath;
     private String sportName;
     private String positionName;
     Skill()
     {
 
+    }
+
+    public Skill(String name, String category, String description, int levelReq, String genderReq, int moreInfo, String infoPath, String sportName, String positionName) {
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.levelReq = levelReq;
+        this.genderReq = genderReq;
+        this.moreInfo = moreInfo;
+        this.infoPath = infoPath;
+        this.sportName = sportName;
+        this.positionName = positionName;
     }
 
     public String getName() {
@@ -37,6 +47,14 @@ public class Skill {
         this.category = category;
     }
 
+    public int getMoreInfo() {
+        return moreInfo;
+    }
+
+    public void setMoreInfo(int moreInfo) {
+        this.moreInfo = moreInfo;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -53,36 +71,12 @@ public class Skill {
         this.levelReq = levelReq;
     }
 
-    public int getGenderReq() {
+    public String getGenderReq() {
         return genderReq;
     }
 
-    public void setGenderReq(int genderReq) {
+    public void setGenderReq(String genderReq) {
         this.genderReq = genderReq;
-    }
-
-    public boolean isMoreInfo() {
-        return moreInfo;
-    }
-
-    public void setMoreInfo(boolean moreInfo) {
-        this.moreInfo = moreInfo;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
     }
 
     public String getInfoPath() {
