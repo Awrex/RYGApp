@@ -98,6 +98,7 @@ public class DBController extends SQLiteOpenHelper {
                 positions.add(tempPosition);
             }
         }
+        c.close();
         return positions;
     }
     public void addPositions(ArrayList<Position> posList) {

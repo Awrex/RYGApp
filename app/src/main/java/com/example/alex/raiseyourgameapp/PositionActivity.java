@@ -57,6 +57,11 @@ public class PositionActivity extends AppCompatActivity {
 
          });
         }
+    public void goToLevels(View view){
+        Intent intent = new Intent(this, LevelActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+        startActivity(intent);
+    }
         public void goMain(View view)
         {
             String text = "";

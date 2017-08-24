@@ -22,6 +22,17 @@ public class Card implements Serializable{
 
     public Card(int num, String name, String category, String description, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment) {
         this.num = num;
+        char[] n = name.toCharArray();
+        String newName = "";
+        newName += n[0];
+        for(int i = 1; i < n.length; i++)
+        {
+            if(Character.isUpperCase(n[i]))
+                newName += " " + n[i];
+            else
+                newName += n[i];
+        }
+        name = newName;
         this.name = name;
         this.category = category;
         this.description = description;
@@ -44,18 +55,6 @@ public class Card implements Serializable{
     }
 
     public String getName() {
-
-        char[] n = name.toCharArray();
-        String newName = "";
-        newName += n[0];
-        for(int i = 1; i < n.length; i++)
-        {
-            if(Character.isUpperCase(n[i]))
-                newName += " " + n[i];
-            else
-                newName += n[i];
-        }
-        name = newName;
         return name;
     }
 
