@@ -33,6 +33,7 @@ public class MainController extends Activity {
         posList.add(new Position("Bowler", "0", "", "Cricket", 0));
         posList.add(new Position("Catcher", "0", "", "Cricket", 0));
         posList.add(new Position("Keeper", "0", "", "Cricket", 0));
+        posList.add(new Position("Batter", "0", "", "Cricket", 0));
         posList.add(new Position("Captaincy", "0", "", "Cricket", 0));
         db.addPositions(posList);
     }
@@ -68,10 +69,19 @@ public class MainController extends Activity {
                 "Utilises different techniques for throwing to bowlers end vs keepers end (shoulder throw, cross-over throw, back hand flick, underarm).\n\n" +
                 "Ability to accurately throw the stumps down.\n\n" +
                 "Makes good decisions about which end to throw to in pressure situations.",0,"ALL",0,"","Cricket","Fielder"));
-        skillList.add(new Skill("Strategy","Bowling","Understanding game situation, and adjusting bowling strategy to suit the conditions.\n\n" +
-                "Following pre-set plan provided by the coach, with any changes suggested by the captain.\n\n" +
-                "Bowling to the field.\n\n" +
-                "Makes good decisions about which end to throw to in pressure situations.",1,"ALL",0,"","Cricket","Bowler"));
+        skillList.add(new Skill("Strategy","Captaincy","•Strong working relationship with the coach. \n\n  Strong tactical knowledge and experience.\n\n Makes sound strategic decisions under pressure.\n\n Uses scouting to inform strategy.\n\n  Can think on feet.\n  Composed.\n  Sees opportunities.\n  Reads situations and conditions well.\n  Knows rules inside out."
+                ,1,"ALL",0,"","Cricket","Captaincy"));
+        skillList.add(new Skill("Recovery","Physical","24 hours post game repair is very important.  The athlete follows recovery protocols consistently with discipline e.g.:\n" +
+                "•\tRepair damaged muscles through immediate intake of protein*\n\n" +
+                "•\tReplenish energy stores with carbohydrate*\n\n" +
+                "•\tActivities to remove waste products from the body (through increasing blood circulation to get rid of lactate and adrenaline), which may include some or all of the following:\n\n" +
+                "•\tBetter/deeper and longer sleep\n" +
+                "•\tPool recovery\n" +
+                "•\tIce baths (e.g. 5 mins at 10-13 degrees followed by a hot shower to increase blood circulation again).\n" +
+                "* see nutritional guidelines for how much, and how soon after exercise.\n\n"
+                ,0,"ALL",0,"","Cricket","Global"));
+
+
         db.addSkills(skillList);
 
     }

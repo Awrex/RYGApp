@@ -2,6 +2,7 @@ package com.example.alex.raiseyourgameapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -34,6 +34,8 @@ public class PositionActivity extends AppCompatActivity {
         posList = db.getPositions();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         selectionList = (ListView) findViewById(R.id.posListView);
+        selectionList.setBackgroundColor(Color.LTGRAY);
+        selectionList.setAlpha((float)0.5);
         for (int i = 0; i < posList.size(); i++) {
             adapter.add(posList.get(i).getName());
         }
@@ -43,16 +45,14 @@ public class PositionActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) parent.getItemAtPosition(position);
                 String text = "";
-                TextView textList = (TextView) findViewById(R.id.listText);
-
-                if (!selectedPositions.contains(item))
+                if (!selectedPositions.contains(item)) {
                     selectedPositions.add(item);
-                else if (selectedPositions.contains(item))
+                    parent.getChildAt(position).setBackgroundColor(Color.GREEN);
+                }
+                else if (selectedPositions.contains(item)) {
                     selectedPositions.remove(item);
-                for (int i = 0; i < selectedPositions.size(); i++)
-                    text += selectedPositions.get(i);
-
-                textList.setText(text);
+                    parent.getChildAt(position).setBackgroundColor(Color.LTGRAY);
+                }
             }
 
          });
@@ -77,7 +77,7 @@ public class PositionActivity extends AppCompatActivity {
           public void onClick(DialogInterface dialog, int button) {
               int skillLev = getIntent().getIntExtra("LEVEL", 0);
               cardList = mc.getCards(skillLev, selectedPositions);
-              Intent intent = new Intent(getBaseContext(), CardActivity.class);
+              Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
               intent.putExtra("CARDLIST", cardList);
               startActivity(intent);
               finish();

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.alex.raiseyourgameapp.R;
+import com.example.alex.raiseyourgameapp.SelectPosActivity;
 
 public class LevelActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class LevelActivity extends AppCompatActivity {
 
     public void goToPosition(View view){
 
-        Intent intent = new Intent(this, PositionActivity.class);
+        Intent intent = new Intent(this, SelectPosActivity.class);
         startActivity(intent);
     }
 

@@ -22,6 +22,9 @@
             android:name=".LevelActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".SelectPosActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -32,7 +35,8 @@
             android:name=".PositionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         />
-        <activity android:name=".cardActivity"></activity>
+        <activity android:name=".ReviewSortActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

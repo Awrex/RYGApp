@@ -1,5 +1,6 @@
 package com.example.alex.raiseyourgameapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -185,6 +186,11 @@ public class DBController extends SQLiteOpenHelper {
         if (db != null && db.isOpen())
             db.close();
     }
+    public void deletePositions()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from Position");
+    }
     public void deleteSkills()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -194,6 +200,18 @@ public class DBController extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from Card");
+    }
+    public void updateRating(Card card)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put("Rating", card.getRating());
+        String where = "cardName='" + card.getName() + "'";
+        try{
+            db.update("Card",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
     }
     public void createCards(int sLev, String gender, ArrayList<String> posList)
     {

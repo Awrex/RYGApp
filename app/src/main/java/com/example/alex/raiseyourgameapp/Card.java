@@ -1,6 +1,9 @@
 package com.example.alex.raiseyourgameapp;
 
+import android.graphics.Color;
+
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * Created by Alex on 15/08/2017.
@@ -19,20 +22,12 @@ public class Card implements Serializable{
     private int priority;
     private String comment;
     private String secondComment;
+    private HashMap<String,Integer> colour = new HashMap<>();
 
     public Card(int num, String name, String category, String description, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment) {
         this.num = num;
-        char[] n = name.toCharArray();
-        String newName = "";
-        newName += n[0];
-        for(int i = 1; i < n.length; i++)
-        {
-            if(Character.isUpperCase(n[i]))
-                newName += " " + n[i];
-            else
-                newName += n[i];
-        }
-        name = newName;
+
+
         this.name = name;
         this.category = category;
         this.description = description;
@@ -44,12 +39,21 @@ public class Card implements Serializable{
         this.priority = priority;
         this.comment = comment;
         this.secondComment = secondComment;
+        //references position
+        colour.put("Wellbeing",Color.YELLOW);
+        colour.put("Character/Team",Color.RED);
+        colour.put("Fielding",Color.DKGRAY);
+        colour.put("Bowling",Color.MAGENTA);
+        colour.put("Captaincy",Color.CYAN);
+        colour.put("Physical",Color.parseColor("#FF9933"));
     }
-
+    public int getColour()
+    {
+        return colour.get(category);
+    }
     public int getNum() {
         return num;
     }
-
     public void setNum(int num) {
         this.num = num;
     }
@@ -109,7 +113,17 @@ public class Card implements Serializable{
     public void setPositionName(String positionName) {
         this.positionName = positionName;
     }
-
+    public String getBigName(){
+        char[] n = name.toCharArray();
+        String newName = "";
+        newName += n[0];
+        for (int j = 1; j < n.length; j++) {
+            if (Character.isUpperCase(n[j]))
+                newName += " " + n[j];
+            else
+                newName += n[j];
+        }
+        return newName;}
     public int getRating() {
         return rating;
     }
