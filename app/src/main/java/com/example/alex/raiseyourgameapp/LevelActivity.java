@@ -16,6 +16,9 @@ public class LevelActivity extends AppCompatActivity {
     public void goToSkillsBeginner(View view){
         int num = 0;
         Intent intent = new Intent(this, PositionActivity.class);
+//        Intent activityChosen = new Intent(this, StartScreen.class);
+//        View b1 = findViewById(R.id.button7);
+//        b1.setVisibility(View.VISIBLE);
         intent.putExtra("LEVEL",num);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         startActivity(intent);

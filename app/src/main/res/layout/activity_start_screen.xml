@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.alex.raiseyourgameapp.StartScreen"
+    android:background="@drawable/background_cricket">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="368dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:onClick="goToLevelScreen"
+        android:text="Level          >"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="368dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:onClick="goToPositionScreen"
+        android:text="Position       >"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="368dp"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:onClick="goToSortScreen"
+        android:text="Sort Cards     >"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="368dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="0dp"
+        android:background="@null"
+        android:text="View Results   >"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+</android.support.constraint.ConstraintLayout>

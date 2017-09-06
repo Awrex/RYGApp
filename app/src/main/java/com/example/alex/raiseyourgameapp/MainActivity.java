@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     private MainController mc = new MainController(this);
     private ArrayList<Card> cardList = new ArrayList<>();
     @Override

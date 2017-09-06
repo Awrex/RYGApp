@@ -14,7 +14,7 @@ import static com.example.alex.raiseyourgameapp.R.layout.activity_title_screen;
 public class TitleScreen extends AppCompatActivity implements View.OnClickListener {
     DBController db;
     MainController mc;
-    private static int SPLASH_TIMEOUT = 4000; // screen timeout before loading getSkills
+    private static int SPLASH_TIMEOUT = 3500; // screen timeout before loading getSkills
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +27,15 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent levelIntent = new Intent(TitleScreen.this, LevelActivity.class);
-                startActivity(levelIntent);
+                Intent startScreen = new Intent(TitleScreen.this, StartScreen.class);
+                startActivity(startScreen);
                 finish();
             }
         },SPLASH_TIMEOUT);
 
     }
     public void onClick(View v) {
-        Intent intent = new Intent(TitleScreen.this, LevelActivity.class);
+        Intent intent = new Intent(TitleScreen.this, StartScreen.class);
         db = new DBController(this);
         mc = new MainController(this);
         mc.createDB();
