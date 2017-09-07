@@ -67,18 +67,24 @@ public class CardActivity extends AppCompatActivity{
             cards.remove(pos);
             setupViewPager(viewPager, cards);
             viewPager.setCurrentItem(pos);
+            if (cards.size()==0)
+            {
+                toSelect();
+            }
         }
     }
     public void undoSort(View v)
     {
             int currentPos = 0;
+        if(undoCards!=null && undoCards.size() == 0) {
             Card tempCard = undoCards.get(undoCards.size() - 1);
             currentPos = tempCard.getNum();
             cards.add(currentPos, tempCard);
-            rawCards.add(currentPos,tempCard);
+            rawCards.add(currentPos, tempCard);
             undoCards.remove(undoCards.size() - 1);
             setupViewPager(viewPager, cards);
             viewPager.setCurrentItem(currentPos);
+        }
     }
     private void setupViewPager(ViewPager viewPager, ArrayList<Card> cList){
         cardAdapter = new StatePagerAdapter(getSupportFragmentManager());
@@ -105,5 +111,14 @@ public class CardActivity extends AppCompatActivity{
         sortedCards.clear();
         Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
+    }
+    public void toSelect()
+    {
+        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        intent.putExtra("CARDLIST", rawCards);
+        for(int i = 0; i<sortedCards.size(); i++) {
+            db.updateRating(sortedCards.get(i)); }
+        startActivity(intent);
+        finish();
     }
 }

@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skill>
+    <card id="1">
+        <title>Composure</title>
+        <category>Mental</category>
+        <description>Under stress or pressure, following unexpected or unsettling events, or when things simply aren’t going to plan, you:
+            •Stay calm and unflappable.
+            •Do not become angry, irritated, or lose your focus.
+            •Lead by example with both words and actions.
+            •Continue to communicate positively and effectively with team mates and the captain.
+            •Maintain confidence in others.
+            •Often have a settling effect on your team mates.
+            •Has processes to deal with things that happen.</description>
+        <shortDescription>Calm and unflappable under stress or pressure.  Leads through tough times with positivity; maintains confidence in others.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="2">
+        <title>Motivation, Passion for Cricket</title>
+        <category>Mental</category>
+        <description>•Intrinsically motivated to play cricket for the love of the game.
+            •Enjoy the game, have fun.
+            •Motivated by internal rather than external rewards.
+            •Often stay at the end of the training to do something extra.
+            •Love to learn more, talk more, and watch more cricket.</description>
+        <shortDescription>Intrinsically motivated to play cricket for the love of the game. Stays for extras, wants to learn more, talk more watch more Cricket.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="3">
+        <title>Resilience/Dealing with Challenges</title>
+        <category>Mental</category>
+        <description>•Have the ability to adapt well in the face of adversity, trauma, disappointment, threats, or other significant sources of stress.
+            •Stay pretty calm and balanced the majority of the time, don’t get overly anxious if things go wrong.
+            •Confidence in your ability to emerge positively from difficult experiences, e.g. losses in big matches, non-selection, rough feedback, etc.
+            •Stay positive in the face of challenges.
+            •Enjoy being challenged.</description>
+        <shortDescription>Confidence in ability to bounce back, stay positive and adapt to disappointment, challenge or adversity. </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="4">
+        <title>Self-Belief/Self-Confidence</title>
+        <category>Mental</category>
+        <description>•High self-worth.  Confident in the belief you can succeed. Low fear of failure.
+            •Trust in your own ability - no matter what setbacks you encounter (e.g. poor form, non-selection), or what others say (family, friends, media).
+            •Growth mind-set – believes intelligence (or ability) can be developed by various means e.g. through effort and instruction.  Is optimistic.
+            •Focus on the positives (things that you are good at, and the things that are good about you), more than the negatives.
+            •Will speak up in team situations.
+            •Communicate clearly and effectively on the field, fulfilling your role within the team.
+            •Confident to make changes on the field and organise other players if needed.
+            •Not afraid to question or challenge.</description>
+        <shortDescription>High self-worth.  Trust own ability. Believe you can succeed/Low fear of failure. Growth mindset. Brave communicator.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="5">
+        <title>Performance Readiness</title>
+        <category>Mental</category>
+        <description>•Consistently prepares mentally and is ready to play and train at a high level.
+            •Uses processes, tools to assist mental preparation, e.g. goal setting, visualisation, imagery.
+            •Completes scouting diligently</description>
+        <shortDescription>Consistently uses tried and true mental preparation process (e.g. visualisation, imagery, goal setting, scouting).</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="6">
+        <title>Performance Focus</title>
+        <category>Mental</category>
+        <description>•Can remain focussed during games and trainings and is able to perform at a consistently high level.
+            •Stays focused following set-backs (e.g. being struck by the ball, missing a number of balls in row)
+            •When batting or keeping is able to switch on and off between balls effectively.
+            •Able to block out outside distractions e.g. crowd, sledging
+            •Uses processes, tools to maintain performance focus, e.g. self talk, imagery, affirmations.
+            •Focus on the process not the outcome.
+            •Consistently realises potential through strong performance focus (performance consistently has a positive impact on the result of the game, game-after-game).</description>
+        <shortDescription>Can focus on the few things that are important, blocking out distractions. Can switch on/off to maintain mental freshness.  Performs consistently.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="7">
+        <title>Performance Review</title>
+        <category>Mental</category>
+        <description>•Can learn from games and take these learnings to the next training or game.
+            •Uses processes, tools to assist with systematic performance review.</description>
+        <shortDescription>Always uses thorough review processes and tools. Learns quickly and implements learnings.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="8">
+        <title>Coachability/Learning Agility</title>
+        <category>Character/Team</category>
+        <description>•Willing /able to learn
+            •Committed to their own improvement. Persistent.
+            •Open to advice/feedback, views it positively without getting defensive able to evaluate it.
+            •A creative problem solver
+            •Learns from successes and failures.  Progresses quickly.
+            •Uses questioning to engage in self-analysis and increase self-knowledge, and assist decision making.
+            •Is willing to try new things.
+            •Is flexible - can adapt to demands in different situations.
+            •Practices attentive and active listening/ has the patience to hear people out.
+            •Accepting that you won’t always agree with every decision or directive a coach gives and understanding that sometimes for the good of the team you will sometimes have to accept it and get on with the job. </description>
+        <shortDescription>Keen to learn. Views advice/feedback positively.  Seeks learning opportunities.  Shows flexibility and adaptability.  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="9">
+        <title>Protects Team Culture</title>
+        <category>Character/Team</category>
+        <description>•Adheres to the appropriate (for the setting) and effective team values, during both good and bad times.
+            •Aware of self and impact on others.
+            •Acts in line with those values and encourages others to do the same.
+            •Is widely trusted. Is seen as direct, truthful and humble individual.
+            •Respects the leadership/ shows leadership.
+            •Is self-less and willing to support the development of others in the team.
+            •Doesn’t misrepresent him/herself for personal gain.
+            •Can quickly sense what will help or hinder the team to accomplish a goal.
+            •Can see the bigger picture.</description>
+        <shortDescription>Is a role-model and leader on team expectations. Places team before individual.</shortDescription>
+        <levelReq>3</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="10">
+        <title>Leadership</title>
+        <category>Character/Team</category>
+        <description>•Is skilled at getting individuals and/or the team motivated to perform at a higher level.  Communicates well, inspires through actions and words.
+            •Is a guardian of team values. Willing to challenge behaviours that are outside of what is acceptable.
+            •Is a role-model in all things.
+            •Is committed to what need to be done.
+            •Understands what motivates different people.
+            •Encourages a strong sense of commitment to the team goals.
+            •Builds a strong team spirit.</description>
+        <shortDescription>Motivates, inspires, role-models and connects with others.  Strong communicator. Widely respected and followed. </shortDescription>
+        <levelReq>3</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="11">
+        <title>Team Person</title>
+        <category>Character/Team</category>
+        <description>•At ease, relaxed, warm, friendly, easy to talk to and get to know.
+            •An open book.
+            •Relate well to all kinds of people
+            •Have a positive sense of humour.
+            •Make a pleasant first impression.
+            •Build solid relationships.
+            •Enjoy social interactions.
+            •Deal calmly with issues that arise within the team, positively supporting leaders.
+            •Puts the team before personal goals or targets.
+            •Supports and celebrates the success of team mates or the team, even if you have a bad day.</description>
+        <shortDescription>Fits well within a team socially, builds solid relationships.  Puts team first.  Supports leaders.   </shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="12">
+        <title>Self reliance, programme ownership</title>
+        <category>Character/Team</category>
+        <description>•	Sets goals.  Is well organised, resourceful and well planned.  Is almost always on time and prepared for everything.
+            •	Will consistently and wisely choose to do the ‘right thing’ for sporting goals; not easily distracted/lead astray by what friends are doing.
+            •	Keeps a daily training diary (or other tool for monitoring progress) with understanding of and commitment to the review and planning processes.
+            •	Actively manages personal wellbeing, health and injuries. Is thorough with recovery processes (e.g. ice baths, nutrition, sleep).
+            •	Seeks feedback and is keen to have input into their training programme.
+            •	Communicates clearly and at the appropriate time with coaches and other support staff.
+            •	Is diligent on following through.
+            •	Doesn’t rely on others, can problem solve for themselves. May have to be creative or brave in seeking support.</description>
+        <shortDescription>Owns and drives programme.  Manages self well (organised, resourceful, well planned, punctual, pro-active, good communicator).  Makes good decisions around priorities.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="13">
+        <title>Drive, Ambition</title>
+        <category>Character/Team</category>
+        <description>•Is clear on their goals.
+            •Is ambitious and has a strong desire to improve.
+            •Is committed.
+            •Attacks everything with drive and energy.
+            •Seeks out opportunities to improve through questioning, challenging and self-analysis.
+            •Takes ownership of their programme.</description>
+        <shortDescription>Has clear goals and ambitions.  Fully committed.  Has drive and energy. Relentlessly seeks improvement.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="14">
+        <title>Competitiveness</title>
+        <category>Character/Team</category>
+        <description>•Sets goals.  Is well organised, resourceful and well planned.  Is almost always on time and prepared for everything.
+            •Will consistently and wisely choose to do the ‘right thing’ for sporting goals; not easily distracted/lead astray by what friends are doing.
+            •Keeps a daily training diary (or other tool for monitoring progress) with understanding of and commitment to the review and planning processes.
+            •Actively manages personal wellbeing, health and injuries. Is thorough with recovery processes (e.g. ice baths, nutrition, sleep).
+            •Seeks feedback and is keen to have input into their training programme.
+            •Communicates clearly and at the appropriate time with coaches and other support staff.
+            •Is diligent on following through.
+            •Doesn’t rely on others, can problem solve for themselves. May have to be creative or brave in seeking support.</description>
+        <shortDescription>Owns and drives programme.  Manages self well (organised, resourceful, well planned, punctual, pro-active, good communicator).  Makes good decisions around priorities.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="15">
+        <title>Life balance</title>
+        <category>Wellbeing</category>
+        <description>•Actively consider the balance between personal/professional life and cricket.
+            •Have review processes and practices in place that allow you to identify and make small or bold adjustments that ensure that your purpose, goals and/or aspirations are achieved.
+            •Have interests outside of cricket that allow some variety, challenge and stimulation.</description>
+        <shortDescription>Has life outside of cricket (e.g. learning/development/interests/goals/friends) that offers variety, challenge and stimulation and/or career plan B.  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="16">
+        <title>Support Networks</title>
+        <category>Wellbeing</category>
+        <description>•Has a number of positive, knowledgeable people supporting their development.
+            •Has a stable, safe, supportive home environment that is conducive to high performance.
+            •Has access to the resources needed, e.g. transport, equipment, recovery, nutrition.
+            •Is able to create the time necessary to train.</description>
+        <shortDescription>Have positive, knowledgeable people supporting your development. A stable, safe, supportive home environment.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="17">
+        <title>Injury Management</title>
+        <category>Wellbeing</category>
+        <description>•All basic movement patterns should be pain free, free of dysfunction and ready to be loaded safely to maximise athletic potential in all planes and landing positions.
+            •Have not had a major injury (or a series of minor injuries) in the past year.
+            •Manages workload for repetitive actions (especially bowlers and keepers) proactively and sensibly.
+            •Does not have a history of being ‘injury prone’.
+            •Has identified areas of potential weakness (muscle balance assessment?) and incorporated strengthening into training.
+            •Is proactive in dealing with any niggles or injuries, seeing a physio quickly and communicating well with the coach.
+            •When recovering from an injury, follows the physiotherapist’s advice and is diligent with the rehab programme set.</description>
+        <shortDescription>No history of major injuries.  Moves pain free.  Can manage current workload.  Deals with niggles quickly.  Pro-active strength/flexibility work. Diligent on rehab.  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="18">
+        <title>Finances, Facilities, Equipment</title>
+        <category>Wellbeing</category>
+        <description>•Access to the facilities you need (e.g. training ground, gym, pool).
+            •Have an income and/or savings plan and/or support from parents/others that allows you to pay for subs, trips, equipment, memberships or any other financial commitments for your Cricket.
+            •Lack of finances does not cause stress or compromises to your Cricket development (e.g. poor nutrition, inability to attend camps).
+            •Has an income source that allows time and flexibility to complete Cricket training without serious compromise of your training programme.
+            •Have enough income to pay for the essentials in life – accommodation, food, Cricket expenses, without causing stress/worry etc.</description>
+        <shortDescription>Access to the facilities, finance, equipment needed without causing stress or compromise.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="19">
+        <title>Nutrition</title>
+        <category>Wellbeing</category>
+        <description>•Eats a balanced diet to adequately replace the energy burned during training and matches (fruits and vegetables every day, breads and cereals, low fat dairy products, lean protein, healthy fats).
+            •Have established routines and good practices around the timing and content of pre-game meals (3-4 hrs prior) and pre-game snacks (60-90mins prior).
+            •Follows good hydration either with water or a carbohydrate sports mix/drink during and following efforts.
+            •Follows good re-hydration and initial protein intake within 30 mins following training or matches.
+            •Eats a balanced meal 1-2 hrs after a match or hard training session.</description>
+        <shortDescription>•	Balanced diet, adequately to replace the energy burned.  Consistently good pre- and post- food and hydration practices.  </shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="20">
+        <title>Work Ethic</title>
+        <category>Character/Team</category>
+        <description>•You have the work ethic and discipline to do whatever it takes to reach your true potential.
+            •You will almost always complete training sessions scheduled/planned whether they are individual or team, no excuses.
+            •You show discipline in every way - preparation, nutrition, work ethic, mental skills etc.
+            •You can push yourself to the limit in training and even when there is no one watching over your shoulder.</description>
+        <shortDescription>Work ethic/effort is same for team/supervised vs individual sessions.  Limit is beyond others. Disciplined, consistent, don’t give in to excuses.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="21">
+        <title>Mastery</title>
+        <category>Character/Team</category>
+        <description>•You are always determined to keep practicing a new or weaker skill until you get good at it.
+            •You are persistent.
+            •You can cope with monotonous, boring repetition, day-in, day-out.
+            •You’re ok with practicing weaknesses (instead of always wanting to look good by practicing strengths).
+            •You can ‘self-coach’ (i.e. figure out what is going wrong and correct it) without always needing external input.
+            •When you fail that inspires you to try harder.
+            •When you’ve mastered a skill you’ll move on to something harder to practice.
+            •You enjoy and feel motivated by learning/developing new or difficult skills.  </description>
+        <shortDescription>Ok with monotonous, boring repetition required to get good.  Focus on weaknesses, not strengths or more enjoyable aspects.  Persistent and disciplined.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="22">
+        <title>Self-awareness</title>
+        <category>Character/Team</category>
+        <description>•You can clearly describe strengths and ‘work-ons’.
+            •You understand your most critical development needs in the short, medium and long term (including strengths)
+            •You have a realistic understanding of what it will take to succeed.
+            •You see a review as an opportunity to have a balanced discussion.  You are not overly sensitive to criticism.  You don’t get defensive too easily.
+            •You see the big picture. You don’t focus too much on your weaknesses (i.e. you’re not too hard on yourself!).</description>
+        <shortDescription>Know own strengths and ‘work-ons’.  Know what’s required to succeed.  Open to review discussions/feedback.  See the big picture (not too negative).</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="23">
+        <title>Communication</title>
+        <category>Character/Team</category>
+        <description>•You take ownership and responsibility for communicating effectively with the captain and the coach regarding field settings.
+            •You work to clarify your role when you are not sure.
+            •You communicate effectively with batting partners (including running between the wickets).
+            •Your communication is clear, direct and decisive.
+            •You take responsibility for raising questions, and issues at the appropriate time, with the appropriate people (e.g. selection decisions).
+            •You communicate well with coaches and other support staff.</description>
+        <shortDescription>Your communication is clear, decisive and effective in different scenarios, e.g. field settings, running and calling, understanding strategy, knowing your role, resolving issues.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="24">
+        <title>Aerobic fitness and Speed Endurance - Men</title>
+        <category>Physical</category>
+        <description>•Able to stay focused and sharp during a long batting, fielding or bowling spell.
+            •Fitness does not affect the execution of skills during matches or throughout a tournament.
+            •Ability to cope with repeated bouts of moderate to high efforts without drop off in performance – running between the wickets, bowling spells, chase balls in the field.
+            •Able to cope with high demands of training and match loads and intensity with effective recovery and withstanding injury.</description>
+        <shortDescription>Has aerobic fitness required for a long batting, fielding or bowling spell. Fitness appropriate for training and match demands without skill drop-off or risk of injury </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="25">
+        <title>Aerobic fitness and Speed Endurance - Women</title>
+        <category>Physical</category>
+        <description>•Able to stay focused and sharp during a long batting, fielding or bowling spell.
+            •Fitness does not affect the execution of skills during matches or throughout a tournament.
+            •Ability to cope with repeated bouts of moderate to high efforts without drop off in performance – running between the wickets, bowling spells, chase balls in the field.
+            •Able to cope with high demands of training and match loads and intensity with effective recovery and withstanding injury.</description>
+        <shortDescription>Has aerobic fitness required for a long batting, fielding or bowling spell. Fitness appropriate for training and match demands without skill drop-off or risk of injury </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="26">
+        <title>Speed - Men</title>
+        <category>Physical</category>
+        <description>•Fast bowlers – can use speed to enhance pace of delivery.
+            •Batting- has sufficient top-end speed to get between the wickets effectively.
+            •Fielding – has sufficient speed to make boundary saves.</description>
+        <shortDescription>Has speed required for role in the team (e.g. fast bowlers can use speed to enhance pace of delivery, running between wickets, making boundary saves).</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="27">
+        <title>Agility</title>
+        <category>Physical</category>
+        <description>•Good movement technique in all angles of movement.
+            •Agility for fielding…has the agility to reach ground balls, get to catches, reactions etc.</description>
+        <shortDescription>Quick movement in all directions. Strong fielding agility e.g. ground balls, catches, reactions.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="28">
+        <title>Strength (Men)</title>
+        <category>Physical</category>
+        <description>•Has functional core strength to avoid injury.
+            •Has functional upper and lower body strength to generate power and speed.
+            As measured against the following standards:
+            SINGLE LEG HORIZONTAL JUMP (left and right): Excellent: 7.70+, Good: 7.11-7.69, Needs Work: 7.10 and below.
+            3 DOUBLE FOOT BOUNDS FOR DISTANCE: Excellent: 8.50+, Good: 8-8.49, Needs Work: 7.99 and below or 1.59 and below P2W.
+            DEADLIFT: Excellent 160kg+ or 1.8 + P2W, Good 145kg-159kg or 1.6-1.78 P2W, Needs Work: 144kg and below).
+            SUMO DEADLIFT: Excellent: 150kg+ or 1.75+ P2W, Good 135kg-149kg or 1.55-1.74 P2W, Needs Work 134kg and below or 1.54 and below P2W).
+            SQUAT: Excellent 160+ or 1.8 + P2W, Good 145kg-159kg or 1.6-1.78 P2W, Needs Work 144 and below or 1.59 and below P2W.
+            BENCH PRESS: Excellent 100kg+ or 1.2+ P2W, Good: 90kg-99kg or 1-1.9 P2W, Needs Work 89kg and below or .99 and below P2W.
+            BENCH PULL: Excellent 90kg+ or 1.05 P2W, Good: 80kg-89kg .9-1.04 P2W, Needs Work 89kg and below or .89 and below P2W.
+            P2W = Power to Weight Ratio</description>
+        <shortDescription>Has functional core, upper and lower body strength to avoid injury and generate power and speed.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="29">
+        <title>Strength (Women)</title>
+        <category>Physical</category>
+        <description>•Has functional core strength to avoid injury.
+            •Has functional upper and lower body strength to generate power and speed.
+            As measured against the following standards:
+            PARALLEL SQUAT: Excellent: 105kg+ or 1.5 P2W, Good: 91-104kg or 1.3 P2W, Needs Work: &lt;91kg or 1.29 and below P2W.
+            DEADLIFT: Excellent 126kg+ or 1.8+ P2W, Good 105kg-125kg or 1.5 P2W, Needs Work: &lt;105kg or 1.49 P2W and below).
+            BENCH PRESS: Excellent 63kg+ or 0.9+ P2W, Good: 52kg-62kg or 0.75 P2W, Needs Work &lt;52kg and below or 0.74 and below P2W.
+            BENCH PULL: Excellent 56kg+ or 0.8 P2W, Good: 45kg-55kg 0.65 P2W, Needs Work &lt;45kg and below or 0.64 and below P2W.
+            CONBINED TRIPLE HOP (single): Excellent: 12m Good: 11m, Needs Work: &lt;11m.
+            COMBINED TRIPLE HOP (double): Excellent: 13.2m Good: 12.2m, Needs Work: &lt;12.2m.
+            BARBELL SQUAT JUMP &amp; BENCH PRESS THROW: TBC
+            *P2W = Power to Weight Ratio</description>
+        <shortDescription>Has functional core, upper and lower body strength to avoid injury and generate power and speed. </shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="30">
+        <title>Recovery Practices</title>
+        <category>Physical</category>
+        <description>24 hours post game repair is very important.  The athlete follows recovery protocols consistently with discipline e.g.:
+            •Repair damaged muscles through immediate intake of protein*
+            •Replenish energy stores with carbohydrate*
+            •Activities to remove waste products from the body (through increasing blood circulation to get rid of lactate and adrenaline), which may include some or all of the following:
+            o	 better/deeper and longer sleep
+            o	Pool recovery
+            o	Ice baths (e.g. 5 mins at 10-13 degrees followed by a hot shower to increase blood circulation again).</description>
+        <shortDescription>Completes recovery after every training/match regardless of the level, including protein and carbohydrate intake, waste removal (sleep, pool session, ice baths).</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="31">
+        <title>Speed - Women</title>
+        <category>Physical</category>
+        <description>•Fast bowlers – can use speed to enhance pace of delivery.
+            •Batting- has sufficient top-end speed to get between the wickets effectively.
+            •Fielding – has sufficient speed to make boundary saves.</description>
+        <shortDescription>Has speed required for role in the team (e.g. fast bowlers can use speed to enhance pace of delivery, running between wickets, making boundary saves).</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Global</positionName>
+    </card>
+    <card id="32">
+        <title>Catching</title>
+        <category>Fielding</category>
+        <description>•Makes good decisions and utilises the correct technique for the type of catch (reverse cup or orthodox catching).
+            •Strong at flat catching (flat hard ball) and high catching in the outfield.
+            •Strong at reflex catching, anticipation, e.g. in the slips.  Good reactions, technique.
+            •Ability to get the feet into the right position quickly.
+            •Ability to judge the flight of the ball correctly.
+            •Ability to block out external distractions and stay focused on the ball.
+            •Early communication when there is another catcher in the vicinity.
+            •Has athleticism, can dive in any direction.
+            •Brave, especially fielding close to the bat.</description>
+        <shortDescription>Consistently good technique, decision-making and success rate with all types of catches (reverse cup, orthodox, flat hard, high, reflex). Good footwork, judge of flight, focus, communication, athleticism, and courage. </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Fielder</positionName>
+    </card>
+    <card id="33">
+        <title>Fielding Ground Balls and Retrieving</title>
+        <category>Fielding</category>
+        <description>•Gets feet in the right position quickly, hands in position to be able to funnel the ball in order to throw.
+            •Can slide to retrieve the ball.
+            •Can dive to retrieve the ball.
+            •Anticipation, athleticism, flexibility and speed to get to the ball quickly (incl. backing up).
+            •Brave, will not shy away from the ball when fielding.
+            •For bowlers, ability to move to left or right immediately following delivery to field off their own bowling.
+            •Utilises the split step in order to improve reaction time.</description>
+        <shortDescription>Good footwork, hand position (funnel), anticipation, athleticism, flexibility, courage and speed to get to the ball and position to throw quickly. Can slide, dive, use split step.  Bowlers – can move left or right following own delivery.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Fielder</positionName>
+    </card>
+    <card id="34">
+        <title>Throwing</title>
+        <category>Fielding</category>
+        <description>•Able to throw the ball on the full from the boundary accurately, with good safe technique
+            •Utilises different techniques for throwing to bowlers end vs keepers end (shoulder throw, cross-over throw, back hand flick, underarm)
+            •Ability to accurately throw the stumps down.
+            •Makes good decisions about which end to throw to in pressure situations.</description>
+        <shortDescription>Can throw accurately and safely from the boundary. Varies technique for bowlers vs keepers end (shoulder throw, cross-over throw, back hand flick, underarm).  Can accurately throw the stumps down.  Good decision-making under pressure to cause run-outs.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Fielder</positionName>
+    </card>
+    <card id="35">
+        <title>Fielding Knowledge </title>
+        <category>Fielding</category>
+        <description>•Able to throw the ball on the full from the boundary accurately, with good safe technique
+            •Utilises different techniques for throwing to bowlers end vs keepers end (shoulder throw, cross-over throw, back hand flick, underarm)
+            •Ability to accurately throw the stumps down.
+            •Makes good decisions about which end to throw to in pressure situations.</description>
+        <shortDescription>Innate understanding of fielding concepts and settings for all formats of the game (T20, One-day and Tests) and each bowler in your team.  Takes into account situational factors (change of bowler or batsman, fielding restrictions, stage of the game, wear on the ball, final overs, pace of the pitch, likely play for your fielding position).  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Fielder</positionName>
+    </card>
+    <card id="36">
+        <title>Fielding Attitude </title>
+        <category>Fielding</category>
+        <description>•Helps create an enjoyable, enthusiastic fielding environment during fielding.
+            •Encourages and reinforces team mates.
+            •Always keeps the chin up.
+            •Is brave and fights courageously for the bowlers.
+            •Takes pride in every fielding performance.
+            •Versatility (can field in a number of different positions).</description>
+        <shortDescription>Contributes to team fielding efforts with enthusiasm, pride and courage.  Encourages others and fosters a positive, upbeat mood. Is willing and able to be versatile and puts the team first. </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Fielder</positionName>
+    </card>
+    <card id="37">
+        <title>Accuracy </title>
+        <category>Bowling</category>
+        <description>•Helps create an enjoyable, enthusiastic fielding environment during fielding.
+            •Encourages and reinforces team mates.
+            •Always keeps the chin up.
+            •Is brave and fights courageously for the bowlers.
+            •Takes pride in every fielding performance.
+            •Versatility (can field in a number of different positions).</description>
+        <shortDescription>Consistently hits line and length.  Can make adjustments according to batsman, stage, direction from team leaders, intuition, scouting info., etc.).  Appropriate length for swing or seam.  Bowls into the wicket.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Bowler</positionName>
+    </card>
+    <card id="38">
+        <title>Speed</title>
+        <category>Bowling</category>
+        <description>•Can bowl above 130km/hr (men) / 110km/h (women)
+            •Can use variation in speed effectively (intuitively and at the stage of the game, marked speed variation).
+            •Bowls with aggression.
+            •Uses momentum in the run up effectively to generate pace.</description>
+        <shortDescription>Can bowl above 130km/hr (men) / 110km/h (women).  Uses speed variation (marked difference) effectively. Aggressive. </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Bowler</positionName>
+    </card>
+    <card id="39">
+        <title>Movement</title>
+        <category>Bowling</category>
+        <description>•Can get good movement due to ball rotations (spin).
+            •Can consistently present the seam in such a way as to swing the ball.
+            •Bowl an appropriate length as dictated by ability to swing, seam or spin the ball.
+            •Can disguise the ball bowled through changing the release.
+            •Can use change ups effectively to surprise the batsman.
+            •Uses the condition of the pitch to effect movement.
+            •Spinners: can spin the ball ‘hard’(drift, dip and turn).
+            •Maintains the shine on the ball effectively.</description>
+        <shortDescription>Good movement due to ball rotations (spin).  Seam presentation creates swing. Length appropriate for swing, seam or spin. Disguise created through release.  Can use change-ups to surprise.  Can spin hard (drift, dip, turn).  Uses pitch condition to effect movement.  Maintains ball shine.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Bowler</positionName>
+    </card>
+    <card id="40">
+        <title>Batting Technique</title>
+        <category>Batting</category>
+        <description>•Hits the ball with the full face of the bat every time.
+            •Utilises the correct technique for the ball delivered (e.g. spin vs pace may have a different technique).
+            •Has the range of shots required to access all parts of the ground.
+            •Utilises the appropriate footwork for the ball delivered.
+            •Shows positive ‘forward’ intent when defending and attacking off both feet.
+        </description>
+        <shortDescription>Hits with the full face of the bat using correct technique and footwork for the ball delivered (e.g. spin vs pace).  Have wide range of shots to access all parts of the ground. Positive ‘forward’ intent.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Batter</positionName>
+    </card>
+    <card id="41">
+        <title>Placement</title>
+        <category>Batting</category>
+        <description>•Fielder awareness – able to identify and hit the gaps.
+            •Hitting at different speeds (with control).
+            •Ability to innovate (ie. use unorthodox shots to hit field gaps) when the situation requires it.</description>
+        <shortDescription>Has awareness of fielder positions and is able to identify and hit the gaps.  Can control speed purposefully.  Can innovate when required (e.g. use of unorthodox shots).  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Batter</positionName>
+    </card>
+    <card id="42">
+        <title>Shot Selection</title>
+        <category>Batting</category>
+        <description>•Choose the right shot for the ball bowled.</description>
+        <shortDescription>Choose the right shot for the ball bowled.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Batter</positionName>
+    </card>
+    <card id="43">
+        <title>Versatility and Adaptability</title>
+        <category>Batting</category>
+        <description>•Handling variation.
+            •Handling pace/seam vs spin.
+            •Handling change of pace.
+            •Handling different pitches (elaborate).
+            •Able to play different roles in different formats (e.g. ability to hit the ball over the ring in T20 cricket, ability to survive in test/longer version cricket).</description>
+        <shortDescription>Can adapt to variation in pace, spin (seam vs spin), pitch, weather, etc.  Versatility to play different roles in different formats (e.g. hit over the ring in T20, survive in test matches).</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Batter</positionName>
+    </card>
+    <card id="44">
+        <title>Game Awareness</title>
+        <category>Batting</category>
+        <description>•Being able to play the role pre-set by the coach or directed by the captain.
+            •Reading the game situation (e.g. changes in momentum, need to consolidate vs up the strike rate).
+            •Values their wicket, however is willing to take acceptable risk-taking, decision-making.
+            •Scouting – bowlers technique, weapons, strengths and weaknesses.
+            •Ability to identify cues.
+            •Ability to identify and exploit weaker fielders.
+            •Can develop batting partnerships.</description>
+        <shortDescription>High awareness and intelligence for the situation. Considers coach/captain direction, game momentum, opposition cues, need to consolidate vs up the strike rate, role in batting or bowling partnership, opposition weaknesses (e.g. poor fielders).  Uses preparation (e.g. scouting) to get advantage.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Batter</positionName>
+    </card>
+    <card id="45">
+        <title>Running and Calling</title>
+        <category>Batting</category>
+        <description>•Understands team running and calling protocols (who is calling, what is said).
+            •Trusts the other batsman (no second guessing).
+            •Adequate speed and agility (turning) to get between the wickets quickly.
+            •Good ability to judge whether a quick single/extra run is on or not.
+            •Doesn’t ball watch after the shot is played.
+            •Confident, loud, clear calling.
+            •Confident to overcall and make the right calls consistently.</description>
+        <shortDescription>Sticks to team running and calling protocols. Calls are loud and clear. Demonstrates trust and/or good judgement.  Gets it right when over-calling. Reacts quickly, has adequate speed and agility to get maximum runs.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Batter</positionName>
+    </card>
+    <card id="46">
+        <title>Glovework</title>
+        <category>Wicket Keeping</category>
+        <description>•Catches the ball cleanly every time (high, low, left right, spin, pace, from the outfield, on the bounce).
+            •Uses the correct catching technique for the situation (fingers down, fingers up, fingers sideways).
+            •Utilises quick hands to perform effective stumping.
+            •Ability to accurately throw the stumps down (at least at the keepers end) with gloves on.</description>
+        <shortDescription>Makes clean catches with correct technique every time (high, low, left right, spin, pace, from the outfield, on the bounce).  Quick hands for stumping.  Can throw down the stumps with gloves on. Claims catches when in best position.  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Keeper</positionName>
+    </card>
+    <card id="47">
+        <title>Positioning and Movement</title>
+        <category>Wicket Keeping</category>
+        <description>•Strong anticipation and reaction speed.
+            •Strong footwork to the offside and the leg side.
+            •Strong agility: can dive to both sides or jump to high balls.
+            •Good speed and agility to get underneath high balls.
+            •Correct head positioning.
+            •Can position the slips in the correct place(s).
+            •Quickly gets into a good position to execute run-outs.</description>
+        <shortDescription>Strong anticipation, reaction speed, footwork (offside and leg side), agility (high or diving to the side) and head positioning.  Good positioning for run-outs.  Positions slips well.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Keeper</positionName>
+    </card>
+    <card id="48">
+        <title>Scouting</title>
+        <category>Wicket Keeping</category>
+        <description>•Understands bowlers’ variations.
+            •Understands batters weaknesses (opportunities for stumpings).
+            •Understands bowlers’ fields and the implications of those fields.
+            •Understands batters grip variations and the implications of those.
+            •Has processes to keep, maintain and share information collected.</description>
+        <shortDescription>Knows bowlers’ variations, field settings (and implications of these fields).  Understands batters’ weaknesses (e.g. opportunities for stumpings) and picks up on any cues (e.g. change in grip). Keeps and uses insights over time.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Keeper</positionName>
+    </card>
+    <card id="49">
+        <title>Understanding Cricket Rules</title>
+        <category>Wicket Keeping</category>
+        <description>•Clear understanding and appreciation of the LBW rule (appeals at the right time for LBW’s).
+            •Clearly understands the fielding restrictions for all forms of the game.
+            •Understands the rules for referrals and makes good recommendations to the captain (TV games).
+            •Ability to read the umpire.</description>
+        <shortDescription>Understands the LBW rule and appeals at the right time. Understands fielding restrictions and referral rules (makes good recommendations to the captain).  Reads the umpire well.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Keeper</positionName>
+    </card>
+    <card id="50">
+        <title>Glove-off Throwing</title>
+        <category>Wicket Keeping</category>
+        <description>•Utilises safe technique (elbow above the shoulder, wrist wider than the elbow).
+            •Can quickly and effectively get a glove off.
+            •Ability to accurately throw the stumps down.
+            •Makes good decisions about which end to throw to in pressure situations.</description>
+        <shortDescription>Can get the glove(s) off quickly. Can throw the stumps down.  Chooses the correct end.  Uses safe throwing technique (elbow above the shoulder, wrist wider than the elbow).</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Keeper</positionName>
+    </card>
+    <card id="51">
+        <title>Leadership and Strategy</title>
+        <category>Wicket Keeping</category>
+        <description>•Makes good decisions on when to stand up to the stumps.
+            •Has a strong presence behind the stumps:
+            	Strong and constant communicator to unsettle the batsmen.
+            	Shows leadership in demanding the best performance from the fielding unit
+            	Maintains pressure.
+            	Strong contributor to creating a positive mood.
+            •Works with the captain and bowlers effectively.
+            •Confident and decisive in taking catches.</description>
+        <shortDescription>Strong presence behind the stumps (e.g. use of communication to unsettle the batsmen, managing and motivating the fielding unit, maintaining pressure and creating a positive mood). Works well with the captain and bowlers.  Makes good decisions on when to stand up to the stumps.</shortDescription>
+        <levelReq>2</levelReq>
+        <positionName>Keeper</positionName>
+    </card>
+    <card id="52">
+        <title>Captaincy - Strategy</title>
+        <category>Captaincy</category>
+        <description>•Has a strong working relationship with the coach and well established decision-making practices that hold up under pressure or when things aren’t going to plan.
+            •Has strong tactical knowledge and experience to develop an appropriate bowling, batting and fielding strategy in partnership with the coach (and senior players where applicable).
+            •Strong work ethic to complete scouting required to make informed choices and decisions in forming the game plan(s).
+            •Flexibility to think on their feet, stay composed and make the right decisions for the situation at hand. Can identifying in-game opportunities (e.g. batsman want to sweep all the time so bowl a leg spinner wide outside off or left arm orthodox).
+            •Can read how conditions (pitch, wind, weather) will/are affecting the tactical approach.
+            •Knows the rules inside out and can use them effectively to assist in achieving a positive outcome.  </description>
+        <shortDescription>Strong working relationship with the coach.  Strong tactical knowledge and experience. Makes sound strategic decisions under pressure. Uses scouting to inform strategy.  Can think on feet.  Composed.  Sees opportunities.  Reads situations and conditions well.  Knows rules inside out.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Captaincy</positionName>
+    </card>
+    <card id="53">
+        <title>On-field Decision-Making</title>
+        <category>Captaincy</category>
+        <description>•Effective field placement for the bowler, conditions and stage of the game.
+            •Bowler choices and timing.
+            •Makes good decisions on placements of fielders based on their strengths and weaknesses.
+            •Referrals.
+            •Makes instinctive decisions to create opportunities for wickets, restrict the run-rate and build pressure.
+            •Makes good decisions at the toss.
+            •Listens and considers team members advice and makes good choices most of the time.</description>
+        <shortDescription>Gets toss decisions mostly right. Makes sound on-field decisions around field placement, use of bowlers, referrals, etc. to create opportunities for wickets, restrict the run-rate and build pressure.  Open to others’ advice/input.  </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Captaincy</positionName>
+    </card>
+    <card id="54">
+        <title>Leadership On Field</title>
+        <category>Captaincy</category>
+        <description>•Acts confident, in control and decisive at all times.
+            •Works hard to make sure the team stays positive and upbeat.
+            •Knows how to build pressure.
+            •Uses gamesmanship to your advantage effectively.
+            •Strong knowledge of the rules
+            •Positive umpire interactions.
+            •Always puts the team before the individual.
+            •Believes in the team, gives them confidence and licence to be their best.
+            •Willing to make the tough calls based on what is best of the team.</description>
+        <shortDescription>Is confident, in control and decisive at all times. Leads a positive and upbeat team attitude. Knows how to build pressure and use gamesmanship. Knows rules and interacts well with umpire.  Always puts team first.  Gives team members belief and self-confidence.  Can make tough calls when necessary. </shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Captaincy</positionName>
+    </card>
+    <card id="55">
+        <title>Leadership Off Field</title>
+        <category>Captaincy</category>
+        <description>•Builds positive values based culture.
+            •Supports the coach in resolving disputes and addressing issues that arise.
+            •Believes in and can build and sell the vision.
+            •Leads by example and inspires team mates.
+            •Is able to build resilience in the group to ride through the ups and downs (e.g. poor results, upsets, change and tough challenges).
+            •Is willing to make a tough call if it is best for the team.
+            •Is a guardian of team values.  Willing to challenge behaviours that are outside of what is acceptable.</description>
+        <shortDescription>Leads a strong team culture, selling the vision, leading by example, inspiring, building group resilience, solving disputes/issues, making tough call and always putting the team first. Works well with other leaders.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Captaincy</positionName>
+    </card>
+    <card id="56">
+        <title>Managing Selection</title>
+        <category>Captaincy</category>
+        <description>•Working with the coach (and selectors) to make strong unbiased calls on selection.
+            •Uses facts, data and selection criteria effectively to support selection decisions.
+            •Fair and ethical.
+            •Balanced.
+            •Will support and honour selection decisions once they are made and work to build confidence in that decision within the team.
+            •Will work with the coach to communicate selection decisions effectively.</description>
+        <shortDescription>Strong partnership with the coach (and selectors) to make strong unbiased selection calls using facts, data and selection criteria to support decisions.  Seen as balanced, fair, ethical.  Builds confidence in decisions regardless of whether you agreed 100% behind closed doors.</shortDescription>
+        <levelReq>1</levelReq>
+        <positionName>Captaincy</positionName>
+    </card>
+</skill>

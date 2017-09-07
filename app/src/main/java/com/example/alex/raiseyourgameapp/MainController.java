@@ -3,7 +3,19 @@ package com.example.alex.raiseyourgameapp;
 import android.app.Activity;
 import android.content.Context;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Alex on 14/08/2017.
@@ -12,17 +24,57 @@ import java.util.ArrayList;
 public class MainController extends Activity {
     private MainController mc;
     private DBController db;
-
-    MainController(Context con) {
-        db = new DBController(con);
+    private ArrayList<Skill> sk;
+    DocumentBuilderFactory dbFactory;
+    DocumentBuilder dBuilder;
+    Document doc;
+   MainController(Context con) {
+   db = new DBController(con);
     }
 
     MainController() {
 
     }
-    public void createCards(int SkillLevel, ArrayList<String> PosList)
+    public void createSkills(Context c)
     {
+        dbFactory = DocumentBuilderFactory.newInstance();
 
+        sk = new ArrayList<>();
+        try{
+            InputStream is = c.getResources().openRawResource(R.raw.cards);
+            dBuilder = dbFactory.newDocumentBuilder();
+            doc = dBuilder.parse(is);
+            Element e = doc.getDocumentElement();
+            e.normalize();
+            NodeList list = doc.getElementsByTagName("card");
+            for(int i = 0; i< list.getLength(); i++)
+            {
+                Node n = list.item(i);
+                if(n.getNodeType() == Node.ELEMENT_NODE){
+                    Element el = (Element)n;
+                    Skill s = new Skill();
+                    s.setName(el.getElementsByTagName("title").item(0).getTextContent());
+                    s.setCategory(el.getElementsByTagName("category").item(0).getTextContent());
+                    s.setDescription(el.getElementsByTagName("description").item(0).getTextContent());
+                    s.setShortDesc(el.getElementsByTagName("shortDescription").item(0).getTextContent());
+                    s.setLevelReq(Integer .parseInt(el.getElementsByTagName("levelReq").item(0).getTextContent()));
+                    s.setPositionName(el.getElementsByTagName("positionName").item(0).getTextContent());
+                    s.setMoreInfo(0);
+                    s.setInfoPath("");
+                    s.setGenderReq("ALL");
+                    s.setSportName("Cricket");
+                    sk.add(s);
+
+                }
+            }
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        db.addSkills(sk);
     }
     public void createDB() {
         db.getWritableDatabase();
@@ -43,6 +95,7 @@ public class MainController extends Activity {
         String Gender = "MALE";
         db.createAthlete(lName, name, Gender);
     }
+    /*
     public void createSkills() {
         ArrayList<Skill> skillList = new ArrayList<>();
         skillList.add(new Skill("LifeBalance","Wellbeing","Actively consider the balance between personal/professional life and cricket.\n\n" +
@@ -85,6 +138,7 @@ public class MainController extends Activity {
         db.addSkills(skillList);
 
     }
+    */
     public ArrayList<Card> getCards(int skillLevel, ArrayList<String> posList)
     {
         db.deleteCards();

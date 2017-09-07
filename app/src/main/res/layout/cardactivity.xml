@@ -83,7 +83,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/darker_gray"
                 android:onClick="sortLater"
-                android:text="N/A"
+                android:text="SKIP"
                 android:textSize="12sp" />
 
         </LinearLayout>

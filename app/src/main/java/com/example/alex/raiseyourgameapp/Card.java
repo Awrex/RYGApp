@@ -21,6 +21,7 @@ public class Card implements Serializable{
     private int rating;
     private int priority;
     private String comment;
+    private String shortDesc;
     private String secondComment;
     private HashMap<String,Integer> colour = new HashMap<>();
 
@@ -46,6 +47,7 @@ public class Card implements Serializable{
         colour.put("Bowling",Color.MAGENTA);
         colour.put("Captaincy",Color.CYAN);
         colour.put("Physical",Color.parseColor("#FF9933"));
+        colour.put("Mental", Color.GREEN);
     }
     public int getColour()
     {
@@ -57,7 +59,8 @@ public class Card implements Serializable{
     public void setNum(int num) {
         this.num = num;
     }
-
+    public String getShortDesc() { return shortDesc;}
+    public void setShortDesc() {this.shortDesc = shortDesc;}
     public String getName() {
         return name;
     }

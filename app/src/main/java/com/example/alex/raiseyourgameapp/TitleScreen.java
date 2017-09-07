@@ -23,18 +23,18 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
 
         Button button = (Button) findViewById(R.id.changeScreen);
         button.setOnClickListener(this);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent startScreen = new Intent(TitleScreen.this, StartScreen.class);
-                startActivity(startScreen);
-                finish();
+                switchScreen();
             }
         },SPLASH_TIMEOUT);
 
     }
     public void onClick(View v) {
+        switchScreen();
+    }
+    public void switchScreen() {
         Intent intent = new Intent(TitleScreen.this, StartScreen.class);
         db = new DBController(this);
         mc = new MainController(this);
@@ -45,7 +45,7 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
             mc.createPositions();
         ArrayList<Skill> skills = db.getSkills();
         if(skills.size() == 0)
-            mc.createSkills();
+            mc.createSkills(getBaseContext());
         startActivity(intent);
         finish();
     }

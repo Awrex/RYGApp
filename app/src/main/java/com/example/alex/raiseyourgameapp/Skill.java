@@ -13,6 +13,7 @@ public class Skill {
     private int moreInfo;
     private String infoPath;
     private String sportName;
+    private String shortDesc;
     private String positionName;
     Skill()
     {
@@ -30,7 +31,8 @@ public class Skill {
         this.sportName = sportName;
         this.positionName = positionName;
     }
-
+    public String getShortDesc() { return shortDesc; }
+    public void setShortDesc(String shortDesc) { this.shortDesc = shortDesc;}
     public String getName() {
         return name;
     }
