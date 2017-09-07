@@ -10,28 +10,28 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
-        android:orientation="vertical"
-        android:padding="2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/border"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.0"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp">
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border"
             android:orientation="horizontal"
             android:padding="2dp"
-            android:background="@drawable/border"
+            android:weightSum="4"
             app:layout_constraintBottom_toTopOf="@+id/cardScroll"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -39,8 +39,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1"
-            android:weightSum="4">
+            tools:layout_constraintTop_creator="1">
 
             <Button
                 android:id="@+id/lowButton"
@@ -93,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/border"
             android:orientation="vertical"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -103,8 +103,7 @@
             tools:layout_constraintBottom_creator="1"
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1"
-            android:background="@drawable/border">
+            tools:layout_constraintTop_creator="1">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/cardPager"
@@ -115,13 +114,14 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border"
             android:orientation="horizontal"
             android:padding="2dp"
-            android:background="@drawable/border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -135,15 +135,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="toSelection"
-                android:text="Position List" />
-
-            <Button
-                android:id="@+id/reviewSort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="toSort"
-                android:text="Review Sort" />
+                android:text="Back to list"
+                android:textSize="12sp" />
 
             <ImageButton
                 android:id="@+id/undoButton"
@@ -152,6 +145,24 @@
                 android:layout_weight="1"
                 android:onClick="undoSort"
                 app:srcCompat="@drawable/undobutton" />
+
+            <Button
+                android:id="@+id/commentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="leaveComment"
+                android:text="Comment"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/reviewSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="toSort"
+                android:text="Review Sort"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

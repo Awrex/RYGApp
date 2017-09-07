@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,15 +30,79 @@ public class ReviewSortActivity extends AppCompatActivity {
     private ListView strengthList;
     private DBController db;
     private String name;
+    private Button toSecond;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviewsort);
         db = new DBController(this);
         cardList = db.getCards();
-        workOnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        mediumAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        strengthAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        toSecond = (Button) findViewById(R.id.toPick);
+        toSecond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(),PickSecondActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        workOnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                String s = "";
+                if(workOnAdapter.getCount() != 0) {
+                    s = workOnAdapter.getItem(position);
+                }
+                for(int i = 0; i < cardList.size(); i++)
+                {
+                    if(s.equals(cardList.get(i).getName()))
+                    {
+                        view.setBackgroundColor(cardList.get(i).getColour());
+                    }
+                }
+                return view;
+            }
+
+        };
+        mediumAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                String s = "";
+                if(mediumAdapter.getCount() != 0) {
+                    s = mediumAdapter.getItem(position);
+                }
+                for(int i = 0; i < cardList.size(); i++)
+                {
+                    if(s.equals(cardList.get(i).getName()))
+                    {
+                        view.setBackgroundColor(cardList.get(i).getColour());
+                    }
+                }
+                return view;
+            }
+
+        };
+        strengthAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                String s = "";
+                if(strengthAdapter.getCount() != 0) {
+                    s = strengthAdapter.getItem(position);
+                }
+                for(int i = 0; i < cardList.size(); i++)
+                {
+                    if(s.equals(cardList.get(i).getName()))
+                    {
+                        view.setBackgroundColor(cardList.get(i).getColour());
+                    }
+                }
+                return view;
+            }
+
+        };
         workonList = (ListView) findViewById(R.id.workOnList);
         mediumList = (ListView) findViewById(R.id.mediumList);
         strengthList = (ListView) findViewById(R.id.strengthList);
@@ -44,7 +110,7 @@ public class ReviewSortActivity extends AppCompatActivity {
         for (int i = 0; i < cardList.size(); i++) {
             if (cardList.get(i).getRating() == 1) {
                 name = cardList.get(i).getName();
-                char[] n = name.toCharArray();
+                /*char[] n = name.toCharArray();
                 String newName = "";
                 newName += n[0];
                 for (int j = 1; j < n.length; j++) {
@@ -53,13 +119,13 @@ public class ReviewSortActivity extends AppCompatActivity {
                     else
                         newName += n[j];
                 }
-                name = newName;
+                name = newName;*/
                 workOnAdapter.add(name);
             }
 
             if (cardList.get(i).getRating() == 2) {
                 name = cardList.get(i).getName();
-                char[] n = name.toCharArray();
+                /*char[] n = name.toCharArray();
                 String newName = "";
                 newName += n[0];
                 for (int j = 1; j < n.length; j++) {
@@ -68,12 +134,12 @@ public class ReviewSortActivity extends AppCompatActivity {
                     else
                         newName += n[j];
                 }
-                name = newName;
+                name = newName;*/
                 mediumAdapter.add(name);
             }
             if (cardList.get(i).getRating() == 3) {
                 name = cardList.get(i).getName();
-                char[] n = name.toCharArray();
+                /*char[] n = name.toCharArray();
                 String newName = "";
                 newName += n[0];
                 for (int j = 1; j < n.length; j++) {
@@ -82,7 +148,7 @@ public class ReviewSortActivity extends AppCompatActivity {
                     else
                         newName += n[j];
                 }
-                name = newName;
+                name = newName;*/
                 strengthAdapter.add(name);
             }
         }
@@ -95,7 +161,28 @@ public class ReviewSortActivity extends AppCompatActivity {
                 selected = (String) parent.getItemAtPosition(position);
                 num = 1;
                 selectedItem.setText(selected);
+                Intent intent = new Intent(getBaseContext(), cardDesc.class);
+                startActivity(intent);
                 itemSelected = true;
+
+            }
+        });
+        workonList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getBaseContext(), cardDesc.class);
+                intent.putExtra("TITLE",selected);
+                for(int i = 0; i<cardList.size();i++)
+                {
+                    if(cardList.get(i).getName().equals(selected))
+                    {
+                        intent.putExtra("SHORT",cardList.get(i).getShortDesc());
+                        intent.putExtra("COMMENT",cardList.get(i).getComment());
+                    }
+                }
+                startActivity(intent);
+                return true;
             }
         });
         mediumList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,6 +194,24 @@ public class ReviewSortActivity extends AppCompatActivity {
                 itemSelected = true;
             }
         });
+        mediumList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getBaseContext(), cardDesc.class);
+                intent.putExtra("TITLE",selected);
+                for(int i = 0; i<cardList.size();i++)
+                {
+                    if(cardList.get(i).getName().equals(selected))
+                    {
+                        intent.putExtra("SHORT",cardList.get(i).getShortDesc());
+                        intent.putExtra("COMMENT",cardList.get(i).getComment());
+                    }
+                }
+                startActivity(intent);
+                return true;
+            }
+        });
         strengthList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -114,6 +219,24 @@ public class ReviewSortActivity extends AppCompatActivity {
                 num = 3;
                 selectedItem.setText(selected);
                 itemSelected = true;
+            }
+        });
+        strengthList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getBaseContext(), cardDesc.class);
+                intent.putExtra("TITLE",selected);
+                for(int i = 0; i<cardList.size();i++)
+                {
+                    if(cardList.get(i).getName().equals(selected))
+                    {
+                        intent.putExtra("SHORT",cardList.get(i).getShortDesc());
+                        intent.putExtra("COMMENT",cardList.get(i).getComment());
+                    }
+                }
+                startActivity(intent);
+                return true;
             }
         });
     }

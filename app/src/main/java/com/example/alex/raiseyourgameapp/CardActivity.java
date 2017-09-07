@@ -1,11 +1,15 @@
 package com.example.alex.raiseyourgameapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -19,10 +23,26 @@ public class CardActivity extends AppCompatActivity{
     private ArrayList<Card> sortedCards = new ArrayList<>();
     private ArrayList<Card> undoCards = new ArrayList<>();
     private String category;
+    private Boolean firstTime;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cardactivity);
         Log.d(TAG, "onCreate: Started.");
+        firstTime = getIntent().getBooleanExtra("FIRSTTIME",true);
+        if(firstTime)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("The cards will appear in front of you in the middle of the screen.\nYou can sort them by using the buttons at the top, and can undo with the arrow button on the bottom.\nYou can also leave comments and swipe left to go to the next card at any time.")
+                    .setCancelable(false)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            firstTime = Boolean.FALSE;
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
         category = getIntent().getStringExtra("CATEGORY");
         cardAdapter = new StatePagerAdapter(getSupportFragmentManager());
         rawCards = (ArrayList<Card>)getIntent().getSerializableExtra("CARDLIST");
@@ -40,6 +60,7 @@ public class CardActivity extends AppCompatActivity{
     public void onBackPressed() {
         Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
         intent.putExtra("CARDLIST", rawCards);
+        intent.putExtra("FIRSTTIME", firstTime);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);
@@ -76,7 +97,7 @@ public class CardActivity extends AppCompatActivity{
     public void undoSort(View v)
     {
             int currentPos = 0;
-        if(undoCards!=null && undoCards.size() == 0) {
+        if(undoCards!=null && undoCards.size() != 0) {
             Card tempCard = undoCards.get(undoCards.size() - 1);
             currentPos = tempCard.getNum();
             cards.add(currentPos, tempCard);
@@ -95,10 +116,41 @@ public class CardActivity extends AppCompatActivity{
         }
         viewPager.setAdapter(cardAdapter);
     }
+    public void leaveComment(View v)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Title");
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setTitle("Enter your comment");
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Card c;
+                c = cards.get(viewPager.getCurrentItem());
+                c.setComment(input.getText().toString());
+                db.updateComment(c);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
     public void toSelection(View v)
     {
         Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
         intent.putExtra("CARDLIST", rawCards);
+        intent.putExtra("FIRSTTIME", firstTime);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);
@@ -116,6 +168,7 @@ public class CardActivity extends AppCompatActivity{
     {
         Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
         intent.putExtra("CARDLIST", rawCards);
+        intent.putExtra("FIRSTTIME", firstTime);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);

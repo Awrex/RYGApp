@@ -38,13 +38,32 @@
         <activity
             android:name=".ReviewSortActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".StartScreen">
+        <activity
+            android:name=".StartScreen"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".cardDesc"
+            android:theme="@style/AppTheme.CustomPopup" />
+        <activity android:name=".SecondSort">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OutputActivity" android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity android:name=".PickSecondActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

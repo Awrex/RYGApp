@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-
 import static com.example.alex.raiseyourgameapp.R.layout.activity_title_screen;
 
 public class TitleScreen extends AppCompatActivity implements View.OnClickListener {
@@ -36,16 +34,6 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
     }
     public void switchScreen() {
         Intent intent = new Intent(TitleScreen.this, StartScreen.class);
-        db = new DBController(this);
-        mc = new MainController(this);
-        mc.createDB();
-        db.deleteSkills();
-        ArrayList<Position> positions = db.getPositions();
-        if (positions.size() == 0)
-            mc.createPositions();
-        ArrayList<Skill> skills = db.getSkills();
-        if(skills.size() == 0)
-            mc.createSkills(getBaseContext());
         startActivity(intent);
         finish();
     }

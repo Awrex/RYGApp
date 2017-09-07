@@ -1,6 +1,7 @@
 package com.example.alex.raiseyourgameapp;
 
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,20 +37,12 @@ public class CardFragment extends Fragment {
         title = (TextView) view.findViewById(R.id.titleView);
         content = (TextView) view.findViewById(R.id.descriptionView);
         String name = card.getName();
-        char[] n = name.toCharArray();
-        String newName = "";
-        newName += n[0];
-        for(int i = 1; i < n.length; i++)
-        {
-            if(Character.isUpperCase(n[i]))
-                newName += " " + n[i];
-            else
-                newName += n[i];
-        }
-        name = newName;
         title.setText(name);
         content.setText(card.getDescription());
-        title.setBackgroundColor(card.getColour());
+        GradientDrawable border = new GradientDrawable();
+        border.setColor(card.getColour());
+        border.setStroke(2, 0xFF000000);
+        title.setBackgroundDrawable(border);
         return view;
     }
 

@@ -36,7 +36,16 @@ public class Skill {
     public String getName() {
         return name;
     }
-
+    public void breakName(){
+            description = description.replace(":", ":\n\n");
+            description = description.replace(".", ".\n\n");
+            description = description.replace("*", "*\n\n");
+            description = description.replace("e.\n\ng.\n\n", "e.g.");
+            description = description.replace("i.\n\ne.\n\n", "i.e.");
+            description = description.replace(">", "\n>");
+        description = description.replace("may include some of the following:\n\n","may include some of the following:\n");
+        description = description.replace("incl.\n\n" , "incl.");
+    }
     public void setName(String name) {
         this.name = name;
     }

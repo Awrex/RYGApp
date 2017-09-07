@@ -8,45 +8,46 @@
     android:background="@drawable/background_cricket">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/beginnerBtn"
         android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="50dp"
         android:alpha="0.75"
         android:onClick="goToSkillsBeginner"
-        android:text="Beginner"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="0dp"
+        android:text="Emerging Talent"
+
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/intermediateBtn"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="53dp"
         android:alpha="0.75"
         android:onClick="goToSkillsIntermediate"
         android:text="Intermediate"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/beginnerBtn"
         android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="0dp"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/proBtn"
         android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:layout_marginTop="56dp"
         android:alpha="0.75"
         android:onClick="goToSkillsPro"
         android:text="Professional"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        android:layout_marginLeft="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/intermediateBtn" />
 
 </android.support.constraint.ConstraintLayout>

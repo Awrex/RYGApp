@@ -71,7 +71,7 @@ public class DBController extends SQLiteOpenHelper {
         String SKILL_sportName = "sportName";
         String SKILL_positionName = "positionName";
         */
-        stmt = db.compileStatement("CREATE TABLE Skill ( skillName TEXT PRIMARY KEY, Category TEXT, Description TEXT, levelReq INT, genderReq TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT)");
+        stmt = db.compileStatement("CREATE TABLE Skill ( skillName TEXT PRIMARY KEY, Category TEXT, Description TEXT, shortDescription TEXT, levelReq INT, genderReq TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT)");
         stmt.execute();
         /*
         private static final String CARD_name = "Card";
@@ -86,7 +86,7 @@ public class DBController extends SQLiteOpenHelper {
         private static final String CARD_comment = "Comment";
         private static final String CARD_secondComment = "secondComment";
         */
-        stmt = db.compileStatement("CREATE TABLE Card (num INT PRIMARY KEY, cardName TEXT, Category TEXT, Description TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT, Rating INT, Priority INT, Comment TEXT, secondComment TEXT)");
+        stmt = db.compileStatement("CREATE TABLE Card (num INT PRIMARY KEY, cardName TEXT, Category TEXT, Description TEXT, shortDescription TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT, Rating INT, Priority INT, Comment TEXT, secondComment TEXT)");
         stmt.execute();
     }
     public ArrayList getPositions() {
@@ -150,6 +150,7 @@ public class DBController extends SQLiteOpenHelper {
         String infoPath;
         String sName;
         String pName;
+        String sDesc;
         for (int i = 0; i < skillList.size(); i++) {
             name = skillList.get(i).getName();
             category = skillList.get(i).getCategory();
@@ -160,7 +161,8 @@ public class DBController extends SQLiteOpenHelper {
             infoPath = skillList.get(i).getInfoPath();
             sName = skillList.get(i).getSportName();
             pName = skillList.get(i).getPositionName();
-            String sql = "INSERT INTO Skill (skillName, Category, Description, levelReq, genderReq, moreInfo, infoPath, sportName, positionName) VALUES ('" + name + "', '" + category + "', '" + description + "', " + levelReq + ",'" + genderReq + "', " + moreInfo + ", '" + infoPath + "', '" +sName + "', '" +pName+ "')";
+            sDesc = skillList.get(i).getShortDesc();
+            String sql = "INSERT INTO Skill (skillName, Category, Description, shortDescription, levelReq, genderReq, moreInfo, infoPath, sportName, positionName) VALUES ('" + name + "', '" + category + "', '" + description + "', '" + sDesc + "', " + levelReq + ",'" + genderReq + "', " + moreInfo + ", '" + infoPath + "', '" +sName + "', '" +pName+ "')";
             SQLiteStatement statement = db.compileStatement(sql);
             statement.executeInsert();
 
@@ -175,11 +177,23 @@ public class DBController extends SQLiteOpenHelper {
         {
             while(c.moveToNext())
             {
-                Card tempCard = new Card(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4),c.getString(5),c.getString(6),c.getString(7),c.getInt(8),c.getInt(9),c.getString(10),c.getString(11));
+                Card tempCard = new Card(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8),c.getInt(9),c.getInt(10),c.getString(11),c.getString(12));
                 cards.add(tempCard);
             }
         }
         return cards;
+    }
+    public int getCard(String s)
+    {
+        ArrayList<Card> cards = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("Select * FROM Card Where category = '" + s +"'",null);
+        if(c != null)
+        {
+            return c.getCount();
+        }
+        else
+            return 0;
     }
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -213,6 +227,18 @@ public class DBController extends SQLiteOpenHelper {
             String error =  e.getMessage().toString();
         }
     }
+    public void updateComment(Card card)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put("Comment", card.getComment());
+        String where = "cardName='" + card.getName() + "'";
+        try{
+            db.update("Card",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
+    }
     public void createCards(int sLev, String gender, ArrayList<String> posList)
     {
         int num = 0;
@@ -226,6 +252,7 @@ public class DBController extends SQLiteOpenHelper {
         String infoPath = "";
         String sportName = "";
         String positionName = "";
+        String sDesc = "";
         Cursor cur = db.rawQuery("Select * FROM Skill Where positionName = 'Global'",null);
         if(cur != null)
         {
@@ -235,11 +262,12 @@ public class DBController extends SQLiteOpenHelper {
                 sName = cur.getString(0);
                 category = cur.getString(1);
                 desc = cur.getString(2);
-                moreInfo = cur.getInt(5);
-                infoPath = cur.getString(6);
-                sportName = cur.getString(7);
-                positionName = cur.getString(8);
-                String sql = "INSERT INTO Card (num, cardName, Category, Description, moreInfo, infoPath, sportName, positionName) VALUES ("+num+", '" + sName + "', '" + category + "', '"+ desc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
+                sDesc = cur.getString(3);
+                moreInfo = cur.getInt(6);
+                infoPath = cur.getString(7);
+                sportName = cur.getString(8);
+                positionName = cur.getString(9);
+                String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES ("+num+", '" + sName + "', '" + category + "', '"+ desc + "', '"+sDesc+"', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
                 SQLiteStatement statement = db.compileStatement(sql);
                 statement.executeInsert();
             }
@@ -255,19 +283,20 @@ public class DBController extends SQLiteOpenHelper {
                     sName = c.getString(0);
                     category = c.getString(1);
                     desc = c.getString(2);
-                    levelReq = c.getInt(3);
-                    genderReq = c.getString(4);
-                    moreInfo = c.getInt(5);
-                    infoPath = c.getString(6);
-                    sportName = c.getString(7);
-                    positionName = c.getString(8);
+                    sDesc = c.getString(3);
+                    levelReq = c.getInt(4);
+                    genderReq = c.getString(5);
+                    moreInfo = c.getInt(6);
+                    infoPath = c.getString(7);
+                    sportName = c.getString(8);
+                    positionName = c.getString(9);
                     if (sLev >= levelReq) {
-                        if(gender.equals(genderReq) || genderReq.contains("ALL")) {
-                            String sql = "INSERT INTO Card (num, cardName, Category, Description, moreInfo, infoPath, sportName, positionName) VALUES ("+num+", '" + sName + "', '" + category + "', '"+ desc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
-                            SQLiteStatement statement = db.compileStatement(sql);
-                            statement.executeInsert();
+                            if (!sName.contains("Women") && genderReq.contains("ALL")) {
+                                String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES (" + num + ", '" + sName + "', '" + category + "', '" + desc + "', '" + sDesc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
+                                SQLiteStatement statement = db.compileStatement(sql);
+                                statement.executeInsert();
+                            }
                         }
-                    }
                 } while (c.moveToNext());
             }
         }

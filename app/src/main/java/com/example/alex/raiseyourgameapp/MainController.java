@@ -42,10 +42,13 @@ public class MainController extends Activity {
         sk = new ArrayList<>();
         try{
             InputStream is = c.getResources().openRawResource(R.raw.cards);
+            dbFactory.setNamespaceAware(true);
+            dbFactory.setIgnoringElementContentWhitespace(true);
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(is);
+            doc.normalize();
+            doc.normalizeDocument();
             Element e = doc.getDocumentElement();
-            e.normalize();
             NodeList list = doc.getElementsByTagName("card");
             for(int i = 0; i< list.getLength(); i++)
             {
@@ -63,6 +66,7 @@ public class MainController extends Activity {
                     s.setInfoPath("");
                     s.setGenderReq("ALL");
                     s.setSportName("Cricket");
+                    s.breakName();
                     sk.add(s);
 
                 }
@@ -75,6 +79,9 @@ public class MainController extends Activity {
             e.printStackTrace();
         }
         db.addSkills(sk);
+    }
+    public ArrayList getCards() {
+        return db.getCards();
     }
     public void createDB() {
         db.getWritableDatabase();

@@ -20,18 +20,29 @@ public class Card implements Serializable{
     private String positionName;
     private int rating;
     private int priority;
-    private String comment;
+    private String comment = "";
     private String shortDesc;
     private String secondComment;
+    private Boolean selected;
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
     private HashMap<String,Integer> colour = new HashMap<>();
 
-    public Card(int num, String name, String category, String description, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment) {
+    public Card(int num, String name, String category, String description, String shortDesc, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment) {
         this.num = num;
 
 
         this.name = name;
         this.category = category;
         this.description = description;
+        this.shortDesc = shortDesc;
         this.moreInfo = moreInfo;
         this.infoPath = infoPath;
         this.sportName = sportName;
@@ -48,6 +59,8 @@ public class Card implements Serializable{
         colour.put("Captaincy",Color.CYAN);
         colour.put("Physical",Color.parseColor("#FF9933"));
         colour.put("Mental", Color.GREEN);
+        colour.put("Wicket Keeping", Color.LTGRAY);
+        colour.put("Batting", Color.BLUE);
     }
     public int getColour()
     {
@@ -144,7 +157,7 @@ public class Card implements Serializable{
     }
 
     public String getComment() {
-        return comment;
+            return comment;
     }
 
     public void setComment(String comment) {
