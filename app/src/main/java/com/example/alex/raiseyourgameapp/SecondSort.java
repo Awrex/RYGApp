@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class SecondSort extends AppCompatActivity {
-    private ArrayList<Button> buttonList = new ArrayList<>();
     private ArrayList<Card> cardList = new ArrayList<>();
     private ArrayList<Card> otherList = new ArrayList<>();
     private ArrayAdapter<String> arrayAdapter;
@@ -96,9 +94,10 @@ public class SecondSort extends AppCompatActivity {
         cardList = new ArrayList<>();
         for(int i = 0; i<otherList.size(); i++)
         {
-            if (otherList.get(i).getSelected() && otherList.get(i).getSelected() != null)
-            {
-                cardList.add(otherList.get(i));
+            if(otherList.get(i).getRating() != 4) {
+                if (otherList.get(i).getSelected()) {
+                    cardList.add(otherList.get(i));
+                }
             }
         }
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);

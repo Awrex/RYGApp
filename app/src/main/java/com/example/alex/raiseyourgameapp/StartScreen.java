@@ -15,6 +15,12 @@ public class StartScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
+        db = new DBController(this);
+        mc = new MainController(this);
+        mc.createDB();
+        mc.createPositions();
+        db.deleteSkills();
+        mc.createSkills(getBaseContext());
     }
 
     public void goToLevelScreen(View view) {

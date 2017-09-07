@@ -62,6 +62,7 @@
         android:layout_marginBottom="3dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
+        android:onClick="reset"
         android:text="RESET"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
