@@ -93,7 +93,6 @@ public class MainController extends Activity {
             ArrayList<Position> posList = new ArrayList<>();
             posList.add(new Position("Fielder", "0", "", "Cricket", 0));
             posList.add(new Position("Bowler", "0", "", "Cricket", 0));
-            posList.add(new Position("Catcher", "0", "", "Cricket", 0));
             posList.add(new Position("Keeper", "0", "", "Cricket", 0));
             posList.add(new Position("Batter", "0", "", "Cricket", 0));
             posList.add(new Position("Captaincy", "0", "", "Cricket", 0));

@@ -161,8 +161,6 @@ public class ReviewSortActivity extends AppCompatActivity {
                 selected = (String) parent.getItemAtPosition(position);
                 num = 1;
                 selectedItem.setText(selected);
-                Intent intent = new Intent(getBaseContext(), cardDesc.class);
-                startActivity(intent);
                 itemSelected = true;
 
             }
@@ -241,7 +239,7 @@ public class ReviewSortActivity extends AppCompatActivity {
         });
     }
         public void addWorkOn(View v) {
-            if (itemSelected == true && num != 1) {
+            if (itemSelected && num != 1) {
                 workOnAdapter.add(selected);
                 workOnAdapter.notifyDataSetChanged();
                 itemSelected = false;
@@ -267,7 +265,7 @@ public class ReviewSortActivity extends AppCompatActivity {
 
         }
         public void medWorkOn(View v) {
-            if (itemSelected == true && num != 2) {
+            if (itemSelected && num != 2) {
             mediumAdapter.add(selected);
             mediumAdapter.notifyDataSetChanged();
             itemSelected = false;
@@ -310,7 +308,7 @@ public class ReviewSortActivity extends AppCompatActivity {
             finish();
         }
         public void strWorkOn(View v) {
-            if (itemSelected == true && num != 3) {
+            if (itemSelected && num != 3) {
             strengthAdapter.add(selected);
             strengthAdapter.notifyDataSetChanged();
             itemSelected = false;

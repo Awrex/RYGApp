@@ -15,17 +15,17 @@ public class StartScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
+    }
+
+    public void goToLevelScreen(View view) {
+        Intent intent = new Intent(StartScreen.this, LevelActivity.class);
+        startActivity(intent);
         db = new DBController(this);
         mc = new MainController(this);
         mc.createDB();
         mc.createPositions();
         db.deleteSkills();
         mc.createSkills(getBaseContext());
-    }
-
-    public void goToLevelScreen(View view) {
-        Intent intent = new Intent(StartScreen.this, LevelActivity.class);
-        startActivity(intent);
     }
 
     public void goToPositionScreen(View view) {

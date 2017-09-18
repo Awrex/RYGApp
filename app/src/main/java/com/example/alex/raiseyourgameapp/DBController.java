@@ -6,8 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
+import java.sql.Blob;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import static android.content.ContentValues.TAG;
+
 
 /**
  * Created by Alex on 14/08/2017.
@@ -58,7 +67,7 @@ public class DBController extends SQLiteOpenHelper {
         stmt = db.compileStatement(createPos);
         stmt.execute();
 
-        stmt = db.compileStatement("Create Table Athlete (LastName TEXT PRIMARY KEY, FirstName TEXT, Gender TEXT)");
+        stmt = db.compileStatement("Create Table Athlete (LastName TEXT PRIMARY KEY, FirstName TEXT, Gender TEXT, Email TEXT, DOB date, Picture blob)");
         stmt.execute();
         /*
         String SKILL_name = "Skill";
@@ -101,6 +110,21 @@ public class DBController extends SQLiteOpenHelper {
         }
         c.close();
         return positions;
+    }
+    public void addAthlete(Athlete a)
+    {
+        deleteAthlete();
+        SQLiteDatabase db = this.getWritableDatabase();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date(a.getDob().getTimeInMillis()));
+        Log.d(TAG, "onDateSet: date: " + date);
+        ContentValues values = new ContentValues();
+        values.put("LastName", a.getLastName());
+        values.put("FirstName", a.getFirstName());
+        values.put("Gender", a.getGender());
+        values.put("Email", a.getEmail());
+        values.put("DOB", date);
+        db.insert("Athlete",null,values);
     }
     public void addPositions(ArrayList<Position> posList) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -210,6 +234,11 @@ public class DBController extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from Skill");
     }
+    public void deleteAthlete()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from Athlete");
+    }
     public void deleteCards()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -302,26 +331,40 @@ public class DBController extends SQLiteOpenHelper {
         }
         cur.close();
     }
-    public String findAthlete(String fName)
+    public Athlete getAthlete()
     {
-        String c1 = "Failed";
-        String c2 = "";
-        String c3 = "";
+        ArrayList<Athlete> aList = new ArrayList<>();
+        String lName = "", fName = "", gender = "", email = "", DOB = "";
+        Blob image = null;
         SQLiteDatabase db = this.getReadableDatabase();
-            Cursor c = db.rawQuery("Select * FROM Athlete Where FirstName = '"+ fName +"'", null);
-            if(c.getCount() != 0)
+        Cursor c = db.rawQuery("Select * FROM Athlete", null);
+            if(c != null)
             {
                 c.moveToFirst();
-                c1 = c.getString(0);
-                c2 = c.getString(1);
-                c3 = c.getString(2);
+                lName = c.getString(0);
+                fName = c.getString(1);
+                gender = c.getString(2);
+                email = c.getString(3);
+                DOB = c.getString(4);
             }
             c.close();
-        return c3;
+        //LastName TEXT PRIMARY KEY, FirstName TEXT, Gender TEXT, Email TEXT, DOB date, Picture BLOB)
+        try {
+            java.util.Date date = new SimpleDateFormat("yyyy-mm-dd").parse(DOB);
+            Calendar cal = Calendar.getInstance();
+            cal.set(date.getYear(),date.getMonth(),date.getDay());
+            aList.add(new Athlete(lName,fName,email,cal,gender));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(aList.size() != 0)
+            return  aList.get(0);
+        else
+            return null;
     }
     public void createAthlete(String lName, String fName, String Gender) {
             SQLiteDatabase db = this.getWritableDatabase();
-            String sql = "INSERT INTO Athlete (LastName, FirstName, Gender) VALUES ('"+lName+"', '"+fName+"', '"+Gender+"')";
+            String sql = "INSERT INTO Athlete (LastName, FirstName, Gender, Email, DOB, Image) VALUES ('"+lName+"', '"+fName+"', '"+Gender+"')";
             SQLiteStatement statement = db.compileStatement(sql);
             statement.executeInsert();
     }

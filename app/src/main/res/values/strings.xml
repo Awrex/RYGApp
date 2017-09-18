@@ -2,7 +2,11 @@
     <string name="app_name">Cricket Sort</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
-
+    <string-array name="levels_array">
+        <item>Emerging talent/New Team member</item>
+        <item>Team member/Gaining experience</item>
+        <item>Senior Player/Leader</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textview">TextView</string>
