@@ -44,7 +44,7 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
             db = new DBController(this);
             Athlete athlete = db.getAthlete();
             if(athlete != null){
-                Intent intent = new Intent(TitleScreen.this, PositionActivity.class);
+                Intent intent = new Intent(TitleScreen.this, SelectPositions.class);
                 startActivity(intent);
                 finish();
             }

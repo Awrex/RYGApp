@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -51,22 +52,18 @@ public class DateFrag extends Activity {
         cal = Calendar.getInstance();
         dateOf = (TextView) findViewById(R.id.dateText);
         freqWeeks = (EditText) findViewById(R.id.weeksEdit);
+        RelativeLayout r = (RelativeLayout) findViewById(R.id.shortConstraint);
+        r.setBackgroundDrawable(getResources().getDrawable(R.drawable.popup_bg));
         setWeek = (Button) findViewById(R.id.weekSet);
         calClick = (Button) findViewById(R.id.calendarButton);
         a = db.getAthlete();
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getWindow().setLayout(width,(int)(height*.5));
+        Calendar c = Calendar.getInstance();
+        dateOf.setText(c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR));
         try{
             dateOf.setText(a.getDateOf());
             freqWeeks.setText(Integer.toString(a.getWeeks()));
         }catch(Exception e)
         {
-            Calendar c = Calendar.getInstance();
             dateOf.setText(c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR));
             e.printStackTrace();
         }
@@ -92,8 +89,9 @@ public class DateFrag extends Activity {
             public void onClick(View v) {
                 try {
                     Calendar c = Calendar.getInstance();
-                    int num = a.getWeeks();
+                    int num = 0;
                     num = Integer.parseInt(freqWeeks.getText().toString());
+                    a.setWeeks(num);
                     num = num * 7;
                     c.add(Calendar.DAY_OF_YEAR, num);
                     Date d = c.getTime();
@@ -130,6 +128,12 @@ public class DateFrag extends Activity {
                 dialog.show();
             }
         });
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        getWindow().setLayout(width,(int)(height*.5));
+        getWindow().setBackgroundDrawable(null);
     }
     public void close(View v) {
         finish();

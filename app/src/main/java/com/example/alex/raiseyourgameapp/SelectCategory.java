@@ -24,7 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class SelectPosActivity extends AppCompatActivity {
+public class SelectCategory extends AppCompatActivity {
     private DBController db;
     private int strategycount = 0, mentalcount = 0, physicalcount = 0, wellbeingcount = 0, skillscount = 0, charactercount = 0, tacticalcount = 0;
     private MainController mc = new MainController(this);
@@ -207,6 +207,7 @@ public class SelectPosActivity extends AppCompatActivity {
         }
         if(mentalcount == 0) {
             mental.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_button));
+            mental.setText("");
             mental.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -215,6 +216,7 @@ public class SelectPosActivity extends AppCompatActivity {
         }
         if(physicalcount == 0) {
             physical.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_button));
+            physical.setText("");
             physical.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -223,6 +225,7 @@ public class SelectPosActivity extends AppCompatActivity {
         }
         if(wellbeingcount == 0) {
             wellbeing.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_button));
+            wellbeing.setText("");
             wellbeing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -231,6 +234,7 @@ public class SelectPosActivity extends AppCompatActivity {
         }
         if(skillscount == 0) {
             skills.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_button));
+            skills.setText("");
             skills.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -239,6 +243,7 @@ public class SelectPosActivity extends AppCompatActivity {
         }
         if(charactercount == 0) {
             character.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_button));
+            character.setText("");
             character.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -247,6 +252,7 @@ public class SelectPosActivity extends AppCompatActivity {
         }
         if(tacticalcount == 0) {
             strategy.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_button));
+            strategy.setText("");
             strategy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -304,7 +310,7 @@ public class SelectPosActivity extends AppCompatActivity {
         finish();
     }
     public void selectPos(View v){
-        Intent intent = new Intent(getBaseContext(), PositionActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectPositions.class);
         startActivity(intent);
         finish();
     }

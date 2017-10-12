@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * Created by Alex on 24/08/2017.
  */
 
-public class PositionActivity extends AppCompatActivity {
+public class SelectPositions extends AppCompatActivity {
     private ArrayList<Position> posList;
     private MainController mc = new MainController(this);
     private ArrayList<Card> cardList = new ArrayList<>();
@@ -213,7 +213,7 @@ public class PositionActivity extends AppCompatActivity {
               else
                   db.updatePositions(selectedPositions);
 
-              Intent intent = new Intent(getBaseContext(),SelectPosActivity.class);
+              Intent intent = new Intent(getBaseContext(),SelectCategory.class);
               startActivity(intent);
               finish();
           }

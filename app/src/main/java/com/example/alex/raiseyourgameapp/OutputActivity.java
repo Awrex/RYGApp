@@ -119,7 +119,7 @@ public class OutputActivity extends AppCompatActivity {
 
     public void toSelection(View v)
     {
-        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
         startActivity(intent);
         finish();
     }

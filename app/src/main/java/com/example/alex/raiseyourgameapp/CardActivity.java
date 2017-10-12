@@ -110,7 +110,7 @@ public class CardActivity extends AppCompatActivity{
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
         intent.putExtra("CARDLIST", rawCards);
         intent.putExtra("FIRSTTIME", firstTime);
         for(int i = 0; i<sortedCards.size(); i++) {
@@ -201,7 +201,7 @@ public class CardActivity extends AppCompatActivity{
     }
     public void toSelection(View v)
     {
-        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);
@@ -218,7 +218,7 @@ public class CardActivity extends AppCompatActivity{
     }
     public void toSelect()
     {
-        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);

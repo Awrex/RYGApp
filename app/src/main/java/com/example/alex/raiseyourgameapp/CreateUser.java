@@ -292,7 +292,7 @@ public class CreateUser extends AppCompatActivity implements View.OnClickListene
                         setResult(RESULT_OK, null);
                         if(firstTime)
                         {
-                            Intent intent = new Intent(this,PositionActivity.class);
+                            Intent intent = new Intent(this,SelectPositions.class);
                             MainController mc = new MainController(this);
                             mc.createPositions();
                             startActivity(intent);

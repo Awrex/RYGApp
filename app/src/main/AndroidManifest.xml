@@ -24,19 +24,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SelectPosActivity"
+            android:name=".SelectCategory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         />
         <activity
-            android:name=".PositionActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".SelectPositions"
+            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         />
-        <activity
-            android:name=".ObsoletedReviewSort"
-            android:theme="@style/AppTheme.NoActionBar" />
+        ]]>
         <activity
             android:name=".cardDesc"
             android:theme="@style/AppTheme.CustomPopup" />

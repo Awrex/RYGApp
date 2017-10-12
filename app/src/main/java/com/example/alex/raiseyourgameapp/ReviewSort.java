@@ -413,7 +413,7 @@ public class ReviewSort extends AppCompatActivity {
     }
         @Override
         public void onBackPressed() {
-            Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+            Intent intent = new Intent(getBaseContext(), SelectCategory.class);
                 startActivity(intent);
                 finish();
         }
@@ -430,7 +430,7 @@ public class ReviewSort extends AppCompatActivity {
                     }).setNegativeButton(android.R.string.no, null).show();;
         }
         public void back(){
-            Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+            Intent intent = new Intent(getBaseContext(), SelectCategory.class);
                 startActivity(intent);
                 finish();
         }

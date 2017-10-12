@@ -404,7 +404,7 @@ public class SecondSort extends AppCompatActivity {
         }
     }
     public void toSelection(View v){
-        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
         startActivity(intent);
         finish();
     }
@@ -415,7 +415,7 @@ public class SecondSort extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), SelectPosActivity.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
         startActivity(intent);
         finish();
     }
