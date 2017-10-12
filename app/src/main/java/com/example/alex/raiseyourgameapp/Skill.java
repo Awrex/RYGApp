@@ -1,5 +1,7 @@
 package com.example.alex.raiseyourgameapp;
 
+import android.util.Log;
+
 /**
  * Created by Alex on 15/08/2017.
  */
@@ -37,14 +39,49 @@ public class Skill {
         return name;
     }
     public void breakName(){
-            description = description.replace(":", ":\n\n");
+        char[] n = description.toCharArray();
+        String newName = "";
+        newName += n[0];
+        int errnum = 0;
+        if(newName.length() != 0) {
+            for (int j = 1; j < n.length; j++) {
+                if (n[j] == '\n') {
+                    try {
+                        newName += n[j];
+                        newName += '\n';
+                        if (j < n.length)
+                        {
+                            j++;
+                            errnum = 1;
+                            n[j] = '\n';
+                            if(j < n.length)
+                                j++;
+                        }
+
+                        while (n[j] == ' ' && j < n.length) {
+                            errnum = 2;
+                            j++;
+                        }
+                            j--;
+                    }
+                    catch(ArrayIndexOutOfBoundsException e)
+                    {
+                        Log.d(e.getMessage(),name + j + ", ERRNUM = " + errnum);
+                    }
+                } else
+                    newName += n[j];
+                errnum = 0;
+            }
+        }
+        description = newName;
+        /*    description = description.replace(":", ":\n\n");
             description = description.replace(".", ".\n\n");
             description = description.replace("*", "*\n\n");
             description = description.replace("e.\n\ng.\n\n", "e.g.");
             description = description.replace("i.\n\ne.\n\n", "i.e.");
             description = description.replace(">", "\n>");
         description = description.replace("may include some of the following:\n\n","may include some of the following:\n");
-        description = description.replace("incl.\n\n" , "incl.");
+        description = description.replace("incl.\n\n" , "incl.");*/
     }
     public void setName(String name) {
         this.name = name;

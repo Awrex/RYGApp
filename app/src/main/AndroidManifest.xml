@@ -24,13 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LevelActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".SelectPosActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CardActivity"
@@ -41,25 +35,23 @@
             android:theme="@style/AppTheme.NoActionBar" />
         />
         <activity
-            android:name=".ReviewSortActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".StartScreen"
+            android:name=".ObsoletedReviewSort"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".cardDesc"
             android:theme="@style/AppTheme.CustomPopup" />
         <activity android:name=".SecondSort" />
-        <activity android:name=".CreateUser">
-        </activity>
-        <activity android:name=".introduction"/>
+        <activity android:name=".CreateUser" />
+        <activity android:name=".introduction" />
         <activity
             android:name=".OutputActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PickSecondActivity"
+            android:name=".ReviewSort"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".loadprofile" />
+        <activity
+            android:name=".DateFrag"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

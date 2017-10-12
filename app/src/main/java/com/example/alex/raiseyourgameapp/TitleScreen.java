@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 import static com.example.alex.raiseyourgameapp.R.layout.activity_title_screen;
 
 public class TitleScreen extends AppCompatActivity implements View.OnClickListener {
@@ -36,9 +38,55 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
         if(v.getId() == R.id.nextButton)
             switchScreen();
     }
+
     public void switchScreen() {
-        Intent intent = new Intent(TitleScreen.this, introduction.class);
-        startActivity(intent);
-        finish();
+        try {
+            db = new DBController(this);
+            Athlete athlete = db.getAthlete();
+            if(athlete != null){
+                Intent intent = new Intent(TitleScreen.this, PositionActivity.class);
+                startActivity(intent);
+                finish();
+            }
+                else
+                {
+                    firstTime();
+                    Intent intent = new Intent(TitleScreen.this, introduction.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+            catch(RuntimeException e)
+            {
+                Intent intent = new Intent(TitleScreen.this, introduction.class);
+                startActivity(intent);
+                finish();
+            }
+    }
+    public void reset(View v){
+        db = new DBController(this);
+        mc = new MainController(this);
+        getBaseContext().deleteDatabase("RYG.db");
+        mc.createDB();
+        db.deleteSkills();
+        ArrayList<Position> positions = db.getPositions();
+        if (positions.size() == 0)
+            mc.createPositions();
+        ArrayList<Skill> skills = db.getSkills();
+        if(skills.size() == 0)
+            mc.createSkills(getBaseContext());
+    }
+    public void firstTime(){
+        db = new DBController(this);
+        mc = new MainController(this);
+        getBaseContext().deleteDatabase("RYG.db");
+        mc.createDB();
+        db.deleteSkills();
+        ArrayList<Position> positions = db.getPositions();
+        if (positions.size() == 0)
+            mc.createPositions();
+        ArrayList<Skill> skills = db.getSkills();
+        if(skills.size() == 0)
+            mc.createSkills(getBaseContext());
     }
 }

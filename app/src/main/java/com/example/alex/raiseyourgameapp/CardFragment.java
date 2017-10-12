@@ -43,6 +43,7 @@ public class CardFragment extends Fragment {
         border.setColor(card.getColour());
         border.setStroke(2, 0xFF000000);
         title.setBackgroundDrawable(border);
+        title.getBackground().setAlpha(170);
         return view;
     }
 

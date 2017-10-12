@@ -6,16 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
 
 import java.sql.Blob;
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-
-import static android.content.ContentValues.TAG;
 
 
 /**
@@ -67,7 +61,7 @@ public class DBController extends SQLiteOpenHelper {
         stmt = db.compileStatement(createPos);
         stmt.execute();
 
-        stmt = db.compileStatement("Create Table Athlete (LastName TEXT PRIMARY KEY, FirstName TEXT, Gender TEXT, Email TEXT, DOB date, Picture blob)");
+        stmt = db.compileStatement("Create Table Athlete (Name TEXT PRIMARY KEY, Gender TEXT, Email TEXT, DOB TEXT, LEVEL int, Teams TEXT, Country TEXT, Zipcode TEXT, Terms1 int, Terms2 int, Terms3 int, sortTime TEXT, weeksFreq int)");
         stmt.execute();
         /*
         String SKILL_name = "Skill";
@@ -95,7 +89,7 @@ public class DBController extends SQLiteOpenHelper {
         private static final String CARD_comment = "Comment";
         private static final String CARD_secondComment = "secondComment";
         */
-        stmt = db.compileStatement("CREATE TABLE Card (num INT PRIMARY KEY, cardName TEXT, Category TEXT, Description TEXT, shortDescription TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT, Rating INT, Priority INT, Comment TEXT, secondComment TEXT)");
+        stmt = db.compileStatement("CREATE TABLE Card (num INT PRIMARY KEY, cardName TEXT, Category TEXT, Description TEXT, shortDescription TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT, Rating INT, Priority INT, Comment TEXT, secondComment TEXT, Selected INT)");
         stmt.execute();
     }
     public ArrayList getPositions() {
@@ -111,20 +105,73 @@ public class DBController extends SQLiteOpenHelper {
         c.close();
         return positions;
     }
+    public void updatePosition(Position pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues dataToInsert = new ContentValues();
+            dataToInsert.put("picked", pos.getPicked());
+            String where = "Name='" + pos.getName() + "'";
+            try {
+                db.update("Position", dataToInsert, where, null);
+            } catch (Exception e) {
+                String error = e.getMessage();
+            }
+        }
+    public void updatePositions(ArrayList<String> positions) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        for(int i = 0; i<positions.size(); i++) {
+            ContentValues dataToInsert = new ContentValues();
+            dataToInsert.put("picked", 1);
+            String where = "Name='" + positions.get(i) + "'";
+            try {
+                db.update("Position", dataToInsert, where, null);
+            } catch (Exception e) {
+                String error = e.getMessage();
+            }
+        }
+    }
     public void addAthlete(Athlete a)
     {
         deleteAthlete();
         SQLiteDatabase db = this.getWritableDatabase();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(new Date(a.getDob().getTimeInMillis()));
-        Log.d(TAG, "onDateSet: date: " + date);
         ContentValues values = new ContentValues();
-        values.put("LastName", a.getLastName());
-        values.put("FirstName", a.getFirstName());
+        values.put("Name", a.getName());
         values.put("Gender", a.getGender());
         values.put("Email", a.getEmail());
-        values.put("DOB", date);
+        values.put("DOB", a.getDob());
+        values.put("LEVEL", a.getSkillLevel());
+        values.put("Teams", a.getTeams());
+        values.put("Country", a.getLocation());
+        values.put("Zipcode", a.getZipCode());
+        values.put("Terms1", a.isTerms1());
+        values.put("Terms2", a.isTerms2());
+        values.put("Terms3", a.isTerms3());
         db.insert("Athlete",null,values);
+        db.close();
+    }
+    public void addWeeks(Athlete a)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put("weeksFreq", a.getWeeks());
+        String where = "Name='" + a.getName() + "'";
+        try{
+            db.update("Athlete",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
+    }
+    public void addDate(Athlete a)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put("sortTime", a.getDateOf());
+        String where = "Name='" + a.getName() + "'";
+        try{
+            db.update("Athlete",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
     }
     public void addPositions(ArrayList<Position> posList) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -201,7 +248,7 @@ public class DBController extends SQLiteOpenHelper {
         {
             while(c.moveToNext())
             {
-                Card tempCard = new Card(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8),c.getInt(9),c.getInt(10),c.getString(11),c.getString(12));
+                Card tempCard = new Card(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8),c.getInt(9),c.getInt(10),c.getString(11),c.getString(12),c.getInt(13));
                 cards.add(tempCard);
             }
         }
@@ -268,6 +315,43 @@ public class DBController extends SQLiteOpenHelper {
             String error =  e.getMessage().toString();
         }
     }
+    public void createCards(){
+        int num = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sName = "";
+        String category = "";
+        String desc = "";
+        int levelReq = 0;
+        String genderReq = "";
+        int moreInfo = 0;
+        String infoPath = "";
+        String sportName = "";
+        String positionName = "";
+        String sDesc = "";
+        Athlete a = getAthlete();
+        Cursor c = db.rawQuery("Select * FROM Skill", null);
+            if(!(c.getCount() < 1)) {
+                c.moveToFirst();
+                do {
+                    num++;
+                    sName = c.getString(0);
+                    category = c.getString(1);
+                    desc = c.getString(2);
+                    sDesc = c.getString(3);
+                    levelReq = c.getInt(4);
+                    genderReq = c.getString(5);
+                    moreInfo = c.getInt(6);
+                    infoPath = c.getString(7);
+                    sportName = c.getString(8);
+                    positionName = c.getString(9);
+                    if (a.getSkillLevel() >= levelReq) {
+                        String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES (" + num + ", '" + sName + "', '" + category + "', '" + desc + "', '" + sDesc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
+                        SQLiteStatement statement = db.compileStatement(sql);
+                        statement.executeInsert();
+                    }
+                } while (c.moveToNext());
+            }
+        }
     public void createCards(int sLev, String gender, ArrayList<String> posList)
     {
         int num = 0;
@@ -320,11 +404,9 @@ public class DBController extends SQLiteOpenHelper {
                     sportName = c.getString(8);
                     positionName = c.getString(9);
                     if (sLev >= levelReq) {
-                            if (!sName.contains("Women") && genderReq.contains("ALL")) {
                                 String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES (" + num + ", '" + sName + "', '" + category + "', '" + desc + "', '" + sDesc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
                                 SQLiteStatement statement = db.compileStatement(sql);
                                 statement.executeInsert();
-                            }
                         }
                 } while (c.moveToNext());
             }
@@ -334,39 +416,40 @@ public class DBController extends SQLiteOpenHelper {
     public Athlete getAthlete()
     {
         ArrayList<Athlete> aList = new ArrayList<>();
-        String lName = "", fName = "", gender = "", email = "", DOB = "";
+        String name = "", gender = "", email = "", DOB = "", teams = "", loc = "", zip = "", dateOf = "";
+        int sLevel = 0, terms1 = 0, terms2 = 0, terms3 = 0, weeks = 0;
         Blob image = null;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("Select * FROM Athlete", null);
             if(c != null)
             {
                 c.moveToFirst();
-                lName = c.getString(0);
-                fName = c.getString(1);
-                gender = c.getString(2);
-                email = c.getString(3);
-                DOB = c.getString(4);
+                name = c.getString(0);
+                gender = c.getString(1);
+                email = c.getString(2);
+                DOB = c.getString(3);
+                sLevel = c.getInt(4);
+                teams = c.getString(5);
+                loc = c.getString(6);
+                zip = c.getString(7);
+                terms1 = c.getInt(8);
+                terms2 = c.getInt(9);
+                terms3 = c.getInt(10);
+                try {
+                    dateOf = c.getString(11);
+                    weeks = c.getInt(12);
+                } catch (Exception e)
+                {
+                    dateOf = "20/10/2017";
+                    weeks = 0;
+                }
             }
             c.close();
-        //LastName TEXT PRIMARY KEY, FirstName TEXT, Gender TEXT, Email TEXT, DOB date, Picture BLOB)
-        try {
-            java.util.Date date = new SimpleDateFormat("yyyy-mm-dd").parse(DOB);
-            Calendar cal = Calendar.getInstance();
-            cal.set(date.getYear(),date.getMonth(),date.getDay());
-            aList.add(new Athlete(lName,fName,email,cal,gender));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            aList.add(new Athlete(name,email,DOB,gender,sLevel,teams,loc,zip,terms1,terms2,terms3,dateOf,weeks));
         if(aList.size() != 0)
             return  aList.get(0);
         else
             return null;
-    }
-    public void createAthlete(String lName, String fName, String Gender) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            String sql = "INSERT INTO Athlete (LastName, FirstName, Gender, Email, DOB, Image) VALUES ('"+lName+"', '"+fName+"', '"+Gender+"')";
-            SQLiteStatement statement = db.compileStatement(sql);
-            statement.executeInsert();
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -377,5 +460,48 @@ public class DBController extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Card");
 
         onCreate(db);
+    }
+
+    public void updatePriority(Card card) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put("Priority", card.getPriority());
+        String where = "cardName='" + card.getName() + "'";
+        try{
+            db.update("Card",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
+    }
+
+    public void updateAll(ArrayList<Card> cards)
+    {
+        for(int i = 0; i < cards.size(); i++)
+        {
+            cards.get(i).setRating(0);
+            cards.get(i).setSelected(Boolean.FALSE);
+            cards.get(i).setPriority(0);
+            cards.get(i).setComment("");
+            updateRating(cards.get(i));
+            updatePriority(cards.get(i));
+            updateComment(cards.get(i));
+            updateSelected(cards.get(i));
+        }
+    }
+    public void updateSelected(Card card) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        int num;
+        if(card.getSelected())
+            num = 1;
+        else
+            num = 0;
+        dataToInsert.put("Selected", num);
+        String where = "cardName='" + card.getName() + "'";
+        try{
+            db.update("Card",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
     }
 }

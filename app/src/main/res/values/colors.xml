@@ -2,6 +2,18 @@
 <resources>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#444444</color>
     <color name="colorOrange">#FFA500</color>
+    <color name="colorLtGray">#aaaaaa</color>
+    <color name="colorGold">#80FFA500</color>
+    <color name="colorBlack">#000000</color>
+    <color name ="colorDkGray">#222222</color>
+    <color name ="colorWhite">#FFFFFF</color>
+    <color name = "colorMental">#40FF00</color>
+    <color name = "colorGreen">#8040AA00</color>
+    <color name = "colorPhysical">#FF8000</color>
+    <color name = "colorStrategy">#8000FF</color>
+    <color name = "colorCharacter">#DF0101</color>
+    <color name = "colorWellbeing">#FFFF00</color>
+    <color name = "colorSkills">#013ADF</color>
 </resources>

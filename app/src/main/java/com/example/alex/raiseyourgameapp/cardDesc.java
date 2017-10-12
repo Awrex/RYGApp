@@ -1,6 +1,8 @@
 package com.example.alex.raiseyourgameapp;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
@@ -19,7 +21,7 @@ public class cardDesc extends Activity {
         String t = getIntent().getStringExtra("TITLE");
         String s = getIntent().getStringExtra("SHORT");
         String c = getIntent().getStringExtra("COMMENT");
-        setContentView(R.layout.fragment_card_desc);
+        setContentView(R.layout.popup_card_desc);
         title = (TextView) findViewById(R.id.shortTitleView);
         shortDesc = (TextView) findViewById(R.id.shortDescView);
         comment = (TextView) findViewById(R.id.commentView);
@@ -31,7 +33,8 @@ public class cardDesc extends Activity {
 
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*.8),(int)(height*.3));
+        getWindow().setLayout((int)(width*.8),(int)(height*.4));
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 }
 

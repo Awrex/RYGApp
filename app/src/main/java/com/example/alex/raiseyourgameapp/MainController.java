@@ -99,12 +99,6 @@ public class MainController extends Activity {
             db.addPositions(posList);
         }
     }
-
-    public void createAthlete(String name) {
-        String lName = "Boris";
-        String Gender = "MALE";
-        db.createAthlete(lName, name, Gender);
-    }
     /*
     public void createSkills() {
         ArrayList<Skill> skillList = new ArrayList<>();
@@ -153,6 +147,7 @@ public class MainController extends Activity {
     {
         db.deleteCards();
         db.createCards(skillLevel, "MALE", posList);
+
         ArrayList<Card> cardList = db.getCards();
         return cardList;
     }

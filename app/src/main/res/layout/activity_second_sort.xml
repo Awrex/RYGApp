@@ -2,73 +2,206 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.alex.raiseyourgameapp.SecondSort">
 
     <RelativeLayout
-        android:id="@+id/colourRelativeLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/linearLayout4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1">
-
-        <ImageView
-            android:id="@+id/priorityPicture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:adjustViewBounds="true"
-            android:scaleType="fitStart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/colourcheck"
-            tools:layout_constraintLeft_creator="1" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="154dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:orientation="vertical"
+        android:background="@drawable/cardborder"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1">
 
-        <ListView
-            android:id="@+id/list2"
-            android:layout_width="142dp"
-            android:layout_height="439dp"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
-
-        <Button
-            android:id="@+id/outputButton"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/underMenu"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="21dp"
-            android:layout_marginStart="21dp"
-            android:onClick="toOutput"
-            android:text="TO OUTPUT" />
-    </LinearLayout>
+            android:layout_weight="1"
+            android:background="@color/colorBlack"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            android:weightSum="3"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/listButton"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/backback"
+                    android:onClick="toSelection"
+                    android:textSize="12sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/reviewSort"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/reviews"
+                    android:onClick="toSort"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/actionPlan"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/output"
+                    android:onClick="toOutput" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/highmedlowlist"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/underMenu"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/menuToolbar"
+            android:layout_toRightOf="@+id/mainList"
+            android:background="@drawable/cardborder"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/listLinear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="3">
+
+                <ListView
+                    android:id="@+id/highList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ListView
+                    android:id="@+id/medList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ListView
+                    android:id="@+id/lowList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@id/underMenu"
+            android:layout_below="@id/menuToolbar"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_weight="3"
+            android:background="@drawable/cardborder"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/highPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/highborder"
+                android:cropToPadding="true"
+                app:srcCompat="@drawable/highhalf" />
+
+            <ImageView
+                android:id="@+id/mediumPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/highborder"
+                android:cropToPadding="true"
+                app:srcCompat="@drawable/middlehalf" />
+
+            <ImageView
+                android:id="@+id/lowPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@drawable/lowborder"
+                android:cropToPadding="true"
+                app:srcCompat="@drawable/lowhalf" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mainList"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/underMenu"
+            android:layout_below="@id/menuToolbar"
+            android:layout_weight="0.5"
+            android:background="@drawable/cardborder"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ListView
+                android:id="@+id/list2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.80"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/menuToolbar"
+            layout="@layout/customtoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

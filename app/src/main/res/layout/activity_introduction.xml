@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/introLayout"
     android:layout_width="match_parent"
+    android:background="@color/colorBlack"
     android:layout_height="match_parent"
     tools:context="com.example.alex.raiseyourgameapp.introduction">
 
@@ -11,28 +12,30 @@
         android:id="@+id/nextArrow"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_toRightOf="@+id/textView4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/nextarrow"
+        app:srcCompat="@drawable/whitenextarrow"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintRight_creator="1" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_width="150dp"
+        android:layout_height="300dp"
         android:adjustViewBounds="true"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cricket_batter" />
+        app:srcCompat="@drawable/redhat"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView4"
@@ -42,6 +45,7 @@
         android:layout_marginTop="20dp"
         android:text="Welcome to CricketSort"
         android:textSize="24sp"
+        android:textColor="@color/colorWhite"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -49,14 +53,16 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="12dp"
         android:padding="8dp"
-        android:text="You'll be able to sort out what’s going to make the biggest difference for your Cricket development. The sorting process can be a powerful tool to create a conversation with your coach, trainer, parents or training peers. Aim to sort the cards roughly into three even piles. Tap to start now."
+        android:text="You'll be able to sort out what’s going to make the biggest difference for your Cricket development. \n\nThe sorting process can be a powerful tool to create a conversation with your coach, trainer, parents or training peers. \n\nAim to sort the cards roughly into three even piles. \n\nTap to start now."
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:layout_editor_absoluteY="298dp" />
-</android.support.constraint.ConstraintLayout>
+        tools:layout_editor_absoluteY="298dp"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

@@ -1,81 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SelectPosActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#000000"
-        android:gravity="center"
-        android:text="Select my roles"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
+        app:srcCompat="@drawable/bowler" />
+
+    <include
+        android:id="@+id/menuToolbar"
+        layout="@layout/customtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
+
+    <LinearLayout
+        android:id="@+id/underMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        tools:layout_editor_absoluteX="-24dp"
+        tools:layout_editor_absoluteY="510dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/listButton"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/backback"
+                android:layout_centerInParent="true"
+                android:onClick="goMain"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/reviewMenu"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/reviews"
+                android:onClick="toReview" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/secondMenu"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/secondsort"
+                android:onClick="toSecond" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/outputMenu"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/output"
+                android:onClick="toOutput" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/posListView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/underMenu"
+        android:layout_below="@id/menuToolbar"
+        android:textColor="@android:color/white"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuToolbar"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"></ListView>
-
-    <ImageView
-        android:id="@+id/beginnerBtn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="0.41"
-        android:background="@null"
-        android:onClick="goMain"
-        android:src="@drawable/nextarrow"
-        android:text="Next"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout5" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:background="#000000"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@+id/textView3">
-
-        <ImageView
-            android:id="@+id/profilePic"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/noavatar" />
-
-        <TextView
-            android:id="@+id/personName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="left"
-            android:text="TextView"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
+        tools:layout_constraintTop_creator="1"></ListView>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

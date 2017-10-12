@@ -25,6 +25,10 @@ public class Card implements Serializable{
     private String secondComment;
     private Boolean selected;
 
+    public Card() {
+
+    }
+
     public Boolean getSelected() {
         return selected;
     }
@@ -35,7 +39,7 @@ public class Card implements Serializable{
 
     private HashMap<String,Integer> colour = new HashMap<>();
 
-    public Card(int num, String name, String category, String description, String shortDesc, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment) {
+    public Card(int num, String name, String category, String description, String shortDesc, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment, int selected) {
         this.num = num;
 
 
@@ -51,20 +55,27 @@ public class Card implements Serializable{
         this.priority = priority;
         this.comment = comment;
         this.secondComment = secondComment;
+        if (selected == 1)
+            this.selected = Boolean.TRUE;
+        else
+            this.selected = Boolean.FALSE;
         //references position
         colour.put("Wellbeing",Color.YELLOW);
         colour.put("Character/Team",Color.RED);
-        colour.put("Fielding",Color.DKGRAY);
-        colour.put("Bowling",Color.MAGENTA);
+        colour.put("Fielder",Color.DKGRAY);
+        colour.put("Bowler",Color.MAGENTA);
         colour.put("Captaincy",Color.CYAN);
         colour.put("Physical",Color.parseColor("#FF9933"));
         colour.put("Mental", Color.GREEN);
-        colour.put("Wicket Keeping", Color.LTGRAY);
-        colour.put("Batting", Color.BLUE);
+        colour.put("Keeper", Color.LTGRAY);
+        colour.put("Batter", Color.BLUE);
     }
     public int getColour()
     {
-        return colour.get(category);
+        if(category.equals("Skills")|| category.equals("Tactical"))
+            return colour.get(positionName);
+        else
+            return colour.get(category);
     }
     public int getNum() {
         return num;
