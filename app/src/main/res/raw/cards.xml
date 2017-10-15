@@ -754,7 +754,7 @@
             Knows the rules inside out and can use them effectively to assist in achieving a positive outcome.  </description>
         <shortDescription>Strong working relationship with the coach.  Strong tactical knowledge and experience. Makes sound strategic decisions under pressure. Uses scouting to inform strategy.  Can think on feet.  Composed.  Sees opportunities.  Reads situations and conditions well.  Knows rules inside out.</shortDescription>
         <levelReq>1</levelReq>
-        <positionName>Bowler</positionName>
+        <positionName>Captaincy</positionName>
         <infoPath>no</infoPath>
         <gender>All</gender>
     </card>
@@ -770,7 +770,7 @@
             Listens and considers team members advice and makes good choices most of the time.</description>
         <shortDescription>Gets toss decisions mostly right. Makes sound on-field decisions around field placement, use of bowlers, referrals, etc. to create opportunities for wickets, restrict the run-rate and build pressure.  Open to others’ advice/input.  </shortDescription>
         <levelReq>1</levelReq>
-        <positionName>Wicket Keeping</positionName>
+        <positionName>Captaincy</positionName>
         <infoPath>no</infoPath>
         <gender>All</gender>
     </card>
@@ -788,7 +788,7 @@
             Willing to make the tough calls based on what is best of the team.</description>
         <shortDescription>Is confident, in control and decisive at all times. Leads a positive and upbeat team attitude. Knows how to build pressure and use gamesmanship. Knows rules and interacts well with umpire.  Always puts team first.  Gives team members belief and self-confidence.  Can make tough calls when necessary. </shortDescription>
         <levelReq>1</levelReq>
-        <positionName>Wicket Keeping</positionName>
+        <positionName>Captaincy</positionName>
         <infoPath>no</infoPath>
         <gender>All</gender>
     </card>
@@ -804,7 +804,7 @@
             Is a guardian of team values.  Willing to challenge behaviours that are outside of what is acceptable.</description>
         <shortDescription>Leads a strong team culture, selling the vision, leading by example, inspiring, building group resilience, solving disputes/issues, making tough call and always putting the team first. Works well with other leaders.</shortDescription>
         <levelReq>1</levelReq>
-        <positionName>Wicket Keeping</positionName>
+        <positionName>Captaincy</positionName>
         <infoPath>no</infoPath>
         <gender>All</gender>
     </card>
@@ -819,7 +819,7 @@
             Will work with the coach to communicate selection decisions effectively.</description>
         <shortDescription>Strong partnership with the coach (and selectors) to make strong unbiased selection calls using facts, data and selection criteria to support decisions.  Seen as balanced, fair, ethical.  Builds confidence in decisions regardless of whether you agreed 100% behind closed doors.</shortDescription>
         <levelReq>1</levelReq>
-        <positionName>Wicket Keeping</positionName>
+        <positionName>Captaincy</positionName>
         <infoPath>no</infoPath>
         <gender>All</gender>
     </card>
