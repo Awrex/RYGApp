@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".cardDesc">
+    tools:context="com.ryg.cardDesc">
         <Button
             android:id="@+id/okButton"
             style="@style/Widget.AppCompat.Button"

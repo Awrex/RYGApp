@@ -5,7 +5,7 @@
     android:id="@+id/constraintparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alex.raiseyourgameapp.SecondSort">
+    tools:context="com.ryg.SecondSort">
 
     <RelativeLayout
         android:layout_width="0dp"

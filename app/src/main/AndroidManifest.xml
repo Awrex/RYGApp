@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.alex.raiseyourgameapp">
+    package="com.ryg">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".TitleScreen"
+            android:name="com.ryg.TitleScreen"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,31 +24,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SelectCategory"
+            android:name="com.ryg.SelectCategory"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CardActivity"
+            android:name="com.ryg.CardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         />
         <activity
-            android:name=".SelectPositions"
+            android:name="com.ryg.SelectPositions"
             android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         />
         ]]>
         <activity
-            android:name=".cardDesc"
+            android:name="com.ryg.cardDesc"
             android:theme="@style/AppTheme.CustomPopup" />
-        <activity android:name=".SecondSort" />
-        <activity android:name=".CreateUser" />
-        <activity android:name=".introduction" />
+        <activity android:name="com.ryg.SecondSort" />
+        <activity android:name="com.ryg.CreateUser" />
+        <activity android:name="com.ryg.introduction" />
         <activity
-            android:name=".OutputActivity"
+            android:name="com.ryg.OutputActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ReviewSort"
+            android:name="com.ryg.ReviewSort"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DateFrag"
+            android:name="com.ryg.DateFrag"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDkGray"
-    tools:context=".CreateUser">
+    tools:context="com.ryg.CreateUser">
 
-    <com.example.alex.raiseyourgameapp.VerticalScrollView
+    <com.ryg.VerticalScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,281 +27,244 @@
             android:orientation="vertical"
             android:weightSum="0">
 
-            <android.support.constraint.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/scrollLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
 
                 <EditText
                     android:id="@+id/fName"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="1dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/constraintLayout"
+                    android:layout_toRightOf="@+id/constraintLayout"
                     android:ems="10"
+                    android:hint="name"
                     android:inputType="textPersonName"
                     android:selectAllOnFocus="true"
-                    android:text="Insert Name Here"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-                    android:textColor="@android:color/background_light"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    android:text="Name:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="178dp" />
 
                 <TextView
                     android:id="@+id/dob"
                     android:layout_width="168dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/constraintLayout"
+                    android:layout_alignLeft="@+id/email"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignStart="@+id/email"
+                    android:layout_below="@+id/textView"
                     android:ems="10"
                     android:inputType="date"
-                    android:text="Date Of Birth:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/email" />
-
-                <ToggleButton
-                    android:id="@+id/genderSelect"
-                    android:layout_width="218dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
-                    android:text="ToggleButton"
-                    android:textOff="Male"
-                    android:textOn="Female"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="316dp" />
 
                 <EditText
                     android:id="@+id/email"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/fName"
+                    android:layout_toEndOf="@+id/constraintLayout"
+                    android:layout_toRightOf="@+id/constraintLayout"
                     android:ems="10"
+                    android:hint="email"
                     android:inputType="textEmailAddress"
                     android:selectAllOnFocus="true"
-                    android:text="Insert Email Here"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-                    android:textColor="@android:color/background_light"
-                    app:layout_constraintHorizontal_bias="0.467"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                    android:text="Email:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="262dp" />
+
+                <TextView
+                    android:id="@+id/skillText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:text="Skill Level:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:layout_below="@+id/constraintLayout"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
                 <Spinner
                     android:id="@+id/levelSpinner"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_alignRight="@id/skillText"
+                    android:layout_alignTop="@+id/skillText"
+                    android:layout_toEndOf="@+id/skillText"
+                    android:layout_alignParentRight="true"
                     android:background="@android:drawable/btn_dropdown"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                <LinearLayout
-                    android:id="@+id/linearCountry"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/genderSelect">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="8dp">
-
-                        <TextView
-                            android:id="@+id/countryText"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_weight="0.8"
-                            android:text="Country:"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/genderSelect" />
-
-                        <TextView
-                            android:id="@+id/zipCodeText"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_weight="1.2"
-                            android:text="Zip code:"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/genderSelect" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/countryText"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="8dp">
-
-                        <Spinner
-                            android:id="@+id/countrySpinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:background="@android:drawable/btn_dropdown"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            tools:layout_editor_absoluteY="491dp" />
-
-                        <EditText
-                            android:id="@+id/zipEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.2"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:selectAllOnFocus="true"
-                            android:text="Enter Zip Code Here:"
-                            android:textColor="@android:color/background_light" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="569dp"
+                    android:layout_toRightOf="@+id/genderText" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/genderText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Gender"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dob" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/levelSpinner"
+                    android:text="Gender:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="361dp" />
+
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Name:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profileText" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Email:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fName" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="Skill Level"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/linearCountry" />
-
-                <Button
-                    android:id="@+id/dateButton"
-                    android:layout_width="88dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginStart="7dp"
-                    android:text="Set DOB"
-                    app:layout_constraintLeft_toRightOf="@+id/dob"
-                    app:layout_constraintTop_toTopOf="@+id/dob" />
-
-                <TextView
-                    android:id="@+id/profileText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="ADD PROFILE PICTURE"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintHorizontal_bias="0.502"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                    android:text="Date of Birth:"
+                    android:layout_alignLeft="@id/dob"
+                    tools:layout_editor_absoluteX="167dp"
+                    tools:layout_editor_absoluteY="105dp"
+                    android:layout_below="@+id/email" />
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="8dp">
 
                     <ImageView
                         android:id="@+id/profilePicture"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
                         app:srcCompat="@drawable/noavatar" />
 
                     <Button
                         android:id="@+id/addImageButton"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:textColor="@android:color/background_light"
                         app:layout_constraintBottom_toBottomOf="@+id/profilePicture"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintLeft_toLeftOf="@+id/profilePicture"
                         app:layout_constraintRight_toRightOf="@+id/profilePicture"
-                        app:layout_constraintTop_toTopOf="@+id/profilePicture" />
+                        app:layout_constraintTop_toTopOf="@+id/profilePicture"
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </android.support.constraint.ConstraintLayout>
 
-            </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/profileText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/constraintLayout"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:text="cccccccccc"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:visibility="invisible"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="150dp" />
+
+                <Spinner
+                    android:id="@+id/genderSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/levelSpinner"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@id/genderText"
+                    android:layout_alignStart="@+id/levelSpinner"
+                    android:layout_below="@+id/levelSpinner"
+                    android:background="@android:drawable/btn_dropdown" />
+
+                <TextView
+                    android:id="@+id/countryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Country:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:layout_below="@+id/genderSpinner"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <Spinner
+                    android:id="@+id/countrySpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/genderSpinner"
+                    android:layout_alignStart="@+id/genderSpinner"
+                    android:layout_below="@+id/genderSpinner"
+                    android:layout_weight="0.8"
+                    android:background="@android:drawable/btn_dropdown"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:layout_editor_absoluteY="491dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:id="@+id/zipCodeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/countrySpinner"
+                    android:layout_weight="1.2"
+                    android:text="Zip code:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <EditText
+                    android:id="@+id/zipEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/zipCodeText"
+                    android:layout_alignLeft="@+id/countrySpinner"
+                    android:layout_alignStart="@+id/countrySpinner"
+                    android:layout_weight="1.2"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:selectAllOnFocus="true"
+                    android:text="Enter Zip Code Here:"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageView
+                    android:id="@+id/dateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/dob"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/email"
+                    app:srcCompat="@drawable/lightcalendar" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Terms &amp; Conditions"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp" />
 
@@ -335,23 +297,23 @@
                 android:id="@+id/perm1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:text="I give permission for you to send me emails tailored to my competency assessment needs or marketing and promotions." />
+                android:text="I give permission for you to send me emails tailored to my competency assessment needs or marketing and promotions."
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <CheckBox
                 android:id="@+id/perm2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:text="You may use my anonymized data to identify aggregated trends." />
+                android:text="You may use my anonymized data to identify aggregated trends."
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <CheckBox
                 android:id="@+id/perm3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
                 android:layout_marginBottom="11dp"
-                android:text="I have read this agreement and agree to the terms and conditions" />
+                android:text="I have read this agreement and agree to the terms and conditions"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -370,8 +332,7 @@
                     android:inputType="textPersonName"
                     android:selectAllOnFocus="true"
                     android:text="Insert Team Here"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-                    android:textColor="@android:color/background_light" />
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
 
                 <Button
                     android:id="@+id/inputTeam"
@@ -432,7 +393,6 @@
 
                 <Button
                     android:id="@+id/nextButton"
-                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
@@ -446,7 +406,7 @@
             </RelativeLayout>
 
         </LinearLayout>
-    </com.example.alex.raiseyourgameapp.VerticalScrollView>
+    </com.ryg.VerticalScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alex.raiseyourgameapp.OutputActivity">
+    tools:context="com.ryg.OutputActivity">
 
-    <com.example.alex.raiseyourgameapp.NewTextView
+    <com.ryg.NewTextView
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.example.alex.raiseyourgameapp.NewTextView
+            <com.ryg.NewTextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.example.alex.raiseyourgameapp.NewTextView
+            <com.ryg.NewTextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

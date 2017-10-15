@@ -2,10 +2,22 @@
     <string name="app_name">CricketSort</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="sport_name">Cricket</string>
     <string-array name="levels_array">
         <item>Emerging Talent / New Team Member</item>
         <item>Team Member / Gaining Experience</item>
         <item>Senior Player / Leader</item>
+    </string-array>
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name = "positions">
+        <item>Fielder</item>
+        <item>Bowler</item>
+        <item>Keeper</item>
+        <item>Batter</item>
+        <item>Captaincy</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
