@@ -348,8 +348,14 @@ public class SecondSortActivity extends AppCompatActivity {
                 System.out.println(newDateString);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(startDate);
-                AthleteInfo info = new AthleteInfo(a.getEmail(), cal, a.getGender(), s, a.getTeams(), pos, strengths, mediums, workons, high, middle, low, a.getLocation(), a.getZipCode());
-                info.createInfo();
+                if (!a.getTerms1()) {
+                    AthleteInfo info = new AthleteInfo("NO MARKETING " + a.getEmail(), cal, a.getGender(), s, a.getTeams(), pos, strengths, mediums, workons, high, middle, low, a.getLocation(), a.getZipCode());
+                    info.createInfo();
+                }
+                else if(a.getTerms1()) {
+                        AthleteInfo info = new AthleteInfo(a.getEmail(), cal, a.getGender(), s, a.getTeams(), pos, strengths, mediums, workons, high, middle, low, a.getLocation(), a.getZipCode());
+                        info.createInfo();
+                    }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
