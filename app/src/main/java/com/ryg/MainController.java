@@ -95,7 +95,7 @@ public class MainController extends Activity {
         if(positions.isEmpty() || positions == null) {
             ArrayList<Position> posList = new ArrayList<>();
             for (int i = 0; i < positionNames.length; i++) {
-                posList.add(new Position(positionNames[i], "0", "", c.getResources().getString(R.string.sport_name), 0));
+                posList.add(new Position(positionNames[i], "", c.getResources().getString(R.string.sport_name), 0));
             }
             db.addPositions(posList);
         }

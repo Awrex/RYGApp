@@ -98,7 +98,7 @@ public class DBController extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("Select * FROM Position",null);
         if(c!= null) {
             while(c.moveToNext()){
-                Position tempPosition = new Position(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getInt(4));
+                Position tempPosition = new Position(c.getString(0), c.getString(2), c.getString(3), c.getInt(4));
                 positions.add(tempPosition);
             }
         }
@@ -193,18 +193,16 @@ public class DBController extends SQLiteOpenHelper {
     public void addPositions(ArrayList<Position> posList) {
         SQLiteDatabase db = this.getWritableDatabase();
         String pName = "";
-        String level = "";
         String imagePath = "";
         String sName = "";
         int picked = 0;
             for (int i = 0; i < posList.size(); i++) {
                 pName = posList.get(i).getName();
-                level = posList.get(i).getLevel();
                 imagePath = posList.get(i).getImagePath();
                 sName = posList.get(i).getSportName();
                 picked = posList.get(i).getPicked();
 
-                String sql = "INSERT INTO Position (Name, Level, imagePath, sportName, picked) VALUES ('" + pName + "', '" + level + "', '" + imagePath + "', '" + sName + "'," + picked + ")";
+                String sql = "INSERT INTO Position (Name, imagePath, sportName, picked) VALUES ('" + pName + "', '" + imagePath + "', '" + sName + "'," + picked + ")";
                 SQLiteStatement statement = db.compileStatement(sql);
                 statement.executeInsert();
 
@@ -265,7 +263,7 @@ public class DBController extends SQLiteOpenHelper {
         {
             while(c.moveToNext())
             {
-                Card tempCard = new Card(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8),c.getInt(9),c.getInt(10),c.getString(11),c.getString(12),c.getInt(13));
+                Card tempCard = new Card(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8),c.getInt(9),c.getInt(10),c.getString(11),c.getInt(13));
                 cards.add(tempCard);
             }
         }

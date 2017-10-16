@@ -30,7 +30,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class ReviewSort extends AppCompatActivity {
+public class ReviewSortActivity extends AppCompatActivity {
     private ArrayList<Card> cardList = new ArrayList<>();
     private ArrayAdapter<String> selectedAdapter;
     private ArrayAdapter<String> workOnAdapter;
@@ -148,13 +148,6 @@ public class ReviewSort extends AppCompatActivity {
                 return view;
             }
         };
-        refresh = (Button) findViewById(R.id.refreshButton);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                refresh();
-            }
-        });
         next = (Button) findViewById(R.id.toSecond);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -413,7 +406,7 @@ public class ReviewSort extends AppCompatActivity {
     }
         @Override
         public void onBackPressed() {
-            Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+            Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
                 startActivity(intent);
                 finish();
         }
@@ -430,12 +423,12 @@ public class ReviewSort extends AppCompatActivity {
                     }).setNegativeButton(android.R.string.no, null).show();;
         }
         public void back(){
-            Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+            Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
                 startActivity(intent);
                 finish();
         }
         public void sortCards(){
-            Intent intent = new Intent(getBaseContext(), SecondSort.class);
+            Intent intent = new Intent(getBaseContext(), SecondSortActivity.class);
             intent.putExtra("CARDLIST",cardList);
             startActivity(intent);
                 finish();
@@ -531,7 +524,7 @@ public class ReviewSort extends AppCompatActivity {
         }
         if(id==R.id.userIcon)
         {
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivityForResult(intent, 1);
         }
         return true;

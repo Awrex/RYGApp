@@ -22,7 +22,6 @@ public class Card implements Serializable{
     private int priority;
     private String comment = "";
     private String shortDesc;
-    private String secondComment;
     private Boolean selected;
 
     public Card() {
@@ -39,7 +38,7 @@ public class Card implements Serializable{
 
     private HashMap<String,Integer> colour = new HashMap<>();
 
-    public Card(int num, String name, String category, String description, String shortDesc, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, String secondComment, int selected) {
+    public Card(int num, String name, String category, String description, String shortDesc, int moreInfo, String infoPath, String sportName, String positionName, int rating, int priority, String comment, int selected) {
         this.num = num;
 
 
@@ -54,7 +53,6 @@ public class Card implements Serializable{
         this.rating = rating;
         this.priority = priority;
         this.comment = comment;
-        this.secondComment = secondComment;
         if (selected == 1)
             this.selected = Boolean.TRUE;
         else
@@ -97,63 +95,21 @@ public class Card implements Serializable{
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Boolean isMoreInfo() {
-        if(moreInfo == 1)
-            return true;
-        else
-            return false;
-    }
-
-    public void setMoreInfo(int moreInfo) {
-        this.moreInfo = moreInfo;
-    }
 
     public String getInfoPath() {
         return infoPath;
     }
 
-    public void setInfoPath(String infoPath) {
-        this.infoPath = infoPath;
-    }
-
-    public String getSportName() {
-        return sportName;
-    }
-
-    public void setSportName(String sportName) {
-        this.sportName = sportName;
-    }
 
     public String getPositionName() {
         return positionName;
     }
 
-    public void setPositionName(String positionName) {
-        this.positionName = positionName;
-    }
-    public String getBigName(){
-        char[] n = name.toCharArray();
-        String newName = "";
-        newName += n[0];
-        for (int j = 1; j < n.length; j++) {
-            if (Character.isUpperCase(n[j]))
-                newName += " " + n[j];
-            else
-                newName += n[j];
-        }
-        return newName;}
     public int getRating() {
         return rating;
     }
@@ -178,11 +134,4 @@ public class Card implements Serializable{
         this.comment = comment;
     }
 
-    public String getSecondComment() {
-        return secondComment;
-    }
-
-    public void setSecondComment(String secondComment) {
-        this.secondComment = secondComment;
-    }
 }

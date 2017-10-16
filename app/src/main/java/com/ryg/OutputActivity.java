@@ -61,7 +61,7 @@ public class OutputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_output2);
         Toolbar menuToolbar = (Toolbar) findViewById(R.id.menuToolbar);
-        menuToolbar.setSubtitle("Output screen");
+        menuToolbar.setSubtitle("My competencies");
         setSupportActionBar(menuToolbar);
         Menu m = menuToolbar.getMenu();
         db = new DBController(this);
@@ -111,7 +111,7 @@ public class OutputActivity extends AppCompatActivity {
         }
         if(id==R.id.userIcon)
         {
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -119,7 +119,7 @@ public class OutputActivity extends AppCompatActivity {
 
     public void toSelection(View v)
     {
-        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         startActivity(intent);
         finish();
     }
@@ -203,13 +203,13 @@ public class OutputActivity extends AppCompatActivity {
     }
     public void toSort(View v)
     {
-        Intent intent = new Intent(getBaseContext(), ReviewSort.class);
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
         finish();
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), SecondSort.class);
+        Intent intent = new Intent(getBaseContext(), SecondSortActivity.class);
         startActivity(intent);
         finish();
     }

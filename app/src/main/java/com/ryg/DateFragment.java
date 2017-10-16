@@ -27,7 +27,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DateFrag extends Activity {
+public class DateFragment extends Activity {
     private String mTag;
     private Athlete a;
     private Card card;

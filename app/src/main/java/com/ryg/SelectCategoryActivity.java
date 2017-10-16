@@ -24,7 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class SelectCategory extends AppCompatActivity {
+public class SelectCategoryActivity extends AppCompatActivity {
     private DBController db;
     private int strategycount = 0, mentalcount = 0, physicalcount = 0, wellbeingcount = 0, skillscount = 0, charactercount = 0, tacticalcount = 0;
     private MainController mc = new MainController(this);
@@ -75,11 +75,7 @@ public class SelectCategory extends AppCompatActivity {
         //mainListView = (ListView) findViewById( R.id.posList );
         Athlete a = db.getAthlete();
         for (int i = 0; i < cards.size(); i++) {
-            if (cards.get(i).getRating() != 0) {
-                cards.remove(i);
-                i--;
-            }
-            else if(cards.get(i).getName().contains("Women") && a.getGender().equals("Male"))
+            if(cards.get(i).getName().contains("Women") && a.getGender().equals("Male"))
             {
                 cards.remove(i);
                 max--;
@@ -107,6 +103,12 @@ public class SelectCategory extends AppCompatActivity {
             if (!catList.contains(cards.get(i).getCategory()))
                 if(positions.contains(cards.get(i).getPositionName()) || cards.get(i).getPositionName().equals("Global"))
                     catList.add(cards.get(i).getCategory());
+        }
+        for(int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).getRating() != 0) {
+                cards.remove(i);
+                i--;
+            }
         }
         //listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,cardList);
         //mainListView.setAdapter( listAdapter );
@@ -190,6 +192,8 @@ public class SelectCategory extends AppCompatActivity {
         });
         cardNum = (TextView) findViewById(R.id.numLeft);
         cardNum.setText(Integer.toString(cards.size()));
+        if(cards.size() == 0)
+            sortGo();
         for (int i = 0; i < cards.size(); i++)
         {
             if(cards.get(i).getCategory().equals("Mental"))
@@ -282,7 +286,7 @@ public class SelectCategory extends AppCompatActivity {
         }
         if(id==R.id.userIcon)
         {
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivityForResult(intent, 1);
         }
         return super.onOptionsItemSelected(item);
@@ -296,7 +300,7 @@ public class SelectCategory extends AppCompatActivity {
     }
 
     public void goToCard() {
-        Intent intent = new Intent(getBaseContext(), CardActivity.class);
+        Intent intent = new Intent(getBaseContext(), FirstSortActivity.class);
         db = new DBController(this);
 
         intent.putExtra("CARDLIST", cards);
@@ -305,23 +309,23 @@ public class SelectCategory extends AppCompatActivity {
         finish();
     }
     public void sortGo(){
-        Intent intent = new Intent(getBaseContext(), ReviewSort.class);
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
         finish();
     }
     public void selectPos(View v){
-        Intent intent = new Intent(getBaseContext(), SelectPositions.class);
+        Intent intent = new Intent(getBaseContext(), SelectPositionsActivity.class);
         startActivity(intent);
         finish();
     }
     public void goToSort(View v) {
-        Intent intent = new Intent(getBaseContext(), ReviewSort.class);
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
         finish();
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), TitleScreen.class);
+        Intent intent = new Intent(getBaseContext(), TitleScreenActivity.class);
         startActivity(intent);
         finish();
     }

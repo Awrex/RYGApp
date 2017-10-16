@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SecondSort extends AppCompatActivity {
+public class SecondSortActivity extends AppCompatActivity {
     private ArrayList<Card> cardList = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Card> otherList = new ArrayList<>();
@@ -130,9 +130,15 @@ public class SecondSort extends AppCompatActivity {
                 menuToolbar.setSubtitle("Click on calendar to schedule next sort.");
         } catch(Exception e)
         {
-            menuToolbar.setSubtitle("Next sort: " + "???");
+            menuToolbar.setSubtitle("Click on calendar to schedule next sort.");
         }
-
+        menuToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), DateFragment.class);
+                startActivityForResult(intent, 1);
+            }
+        });
         mc = new MainController(getBaseContext());
         low = (ListView) findViewById(R.id.lowList);
         medium = (ListView) findViewById(R.id.medList);
@@ -257,12 +263,12 @@ public class SecondSort extends AppCompatActivity {
         }
         if(id==R.id.userIcon)
         {
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivityForResult(intent, 1);
         }
         if(id==R.id.calendarInfo)
         {
-            Intent intent = new Intent(getBaseContext(), DateFrag.class);
+            Intent intent = new Intent(getBaseContext(), DateFragment.class);
             startActivityForResult(intent, 1);
         }
         return super.onOptionsItemSelected(item);
@@ -333,20 +339,21 @@ public class SecondSort extends AppCompatActivity {
                 high.add(cardList.get(i).getName());
             }
         }
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date startDate;
-        try {
-            startDate = df.parse(a.getDob());
-            String newDateString = df.format(startDate);
-            System.out.println(newDateString);
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(startDate);
-            AthleteInfo info = new AthleteInfo(a.getEmail(), cal, a.getGender(), s, a.getTeams(), pos, strengths, mediums, workons, high, middle, low, a.getLocation(), a.getZipCode());
-            info.createInfo();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if(a.getTerms2()) {
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date startDate;
+            try {
+                startDate = df.parse(a.getDob());
+                String newDateString = df.format(startDate);
+                System.out.println(newDateString);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(startDate);
+                AthleteInfo info = new AthleteInfo(a.getEmail(), cal, a.getGender(), s, a.getTeams(), pos, strengths, mediums, workons, high, middle, low, a.getLocation(), a.getZipCode());
+                info.createInfo();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
-
         startActivity(intent);
         finish();
     }
@@ -404,18 +411,18 @@ public class SecondSort extends AppCompatActivity {
         }
     }
     public void toSelection(View v){
-        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         startActivity(intent);
         finish();
     }
     public void toSort(View v){
-        Intent intent = new Intent(getBaseContext(), ReviewSort.class);
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
         finish();
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         startActivity(intent);
         finish();
     }

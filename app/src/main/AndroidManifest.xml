@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.ryg.TitleScreen"
+            android:name="com.ryg.TitleScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,31 +24,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ryg.SelectCategory"
+            android:name="com.ryg.SelectCategoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.ryg.CardActivity"
+            android:name="com.ryg.FirstSortActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         />
         <activity
-            android:name="com.ryg.SelectPositions"
+            android:name="com.ryg.SelectPositionsActivity"
             android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         />
         ]]>
         <activity
             android:name="com.ryg.cardDesc"
             android:theme="@style/AppTheme.CustomPopup" />
-        <activity android:name="com.ryg.SecondSort" />
-        <activity android:name="com.ryg.CreateUser" />
-        <activity android:name="com.ryg.introduction" />
+        <activity android:name="com.ryg.SecondSortActivity" />
+        <activity android:name="com.ryg.CreateUserActivity" />
+        <activity android:name="com.ryg.IntroActivity" />
         <activity
             android:name="com.ryg.OutputActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.ryg.ReviewSort"
+            android:name="com.ryg.ReviewSortActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.ryg.DateFrag"
+            android:name="com.ryg.DateFragment"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

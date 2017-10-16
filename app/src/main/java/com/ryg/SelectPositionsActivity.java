@@ -36,7 +36,7 @@ import java.util.Date;
  * Created by Alex on 24/08/2017.
  */
 
-public class SelectPositions extends AppCompatActivity {
+public class SelectPositionsActivity extends AppCompatActivity {
     private ArrayList<Position> posList;
     private MainController mc = new MainController(this);
     private ArrayList<Card> cardList = new ArrayList<>();
@@ -251,7 +251,7 @@ public class SelectPositions extends AppCompatActivity {
               else
                   db.updatePositions(selectedPositions);
 
-              Intent intent = new Intent(getBaseContext(),SelectCategory.class);
+              Intent intent = new Intent(getBaseContext(),SelectCategoryActivity.class);
               startActivity(intent);
               finish();
           }
@@ -276,24 +276,24 @@ public class SelectPositions extends AppCompatActivity {
         }
         if(id==R.id.userIcon)
         {
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivityForResult(intent, 1);
         }
         return super.onOptionsItemSelected(item);
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), TitleScreen.class);
+        Intent intent = new Intent(getBaseContext(), TitleScreenActivity.class);
         startActivity(intent);
         finish();
     }
     public void toReview(View v){
-        Intent intent = new Intent(getBaseContext(), ReviewSort.class);
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
         finish();
     }
     public void toSecond(View v){
-        Intent intent = new Intent(getBaseContext(), SecondSort.class);
+        Intent intent = new Intent(getBaseContext(), SecondSortActivity.class);
         startActivity(intent);
         finish();
     }

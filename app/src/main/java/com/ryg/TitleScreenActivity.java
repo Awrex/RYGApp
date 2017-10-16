@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import static com.ryg.R.layout.activity_title_screen;
 
-public class TitleScreen extends AppCompatActivity implements View.OnClickListener {
+public class TitleScreenActivity extends AppCompatActivity implements View.OnClickListener {
     DBController db;
     MainController mc;
     ImageView nextButton;
@@ -26,7 +26,7 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
         setContentView(activity_title_screen);
         nextButton = (ImageView) findViewById(R.id.nextButton);
         l = (ConstraintLayout) findViewById(R.id.titleLayout);
-        l.setOnTouchListener(new OnSwipeTouchListener(TitleScreen.this)
+        l.setOnTouchListener(new OnSwipeTouchListener(TitleScreenActivity.this)
         {
             public void onSwipeLeft()
             {
@@ -46,21 +46,21 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
             db = new DBController(this);
             Athlete athlete = db.getAthlete();
             if(athlete != null){
-                Intent intent = new Intent(TitleScreen.this, SelectPositions.class);
+                Intent intent = new Intent(TitleScreenActivity.this, SelectPositionsActivity.class);
                 startActivity(intent);
                 finish();
             }
                 else
                 {
                     firstTime();
-                    Intent intent = new Intent(TitleScreen.this, introduction.class);
+                    Intent intent = new Intent(TitleScreenActivity.this, IntroActivity.class);
                     startActivity(intent);
                     finish();
                 }
             }
             catch(RuntimeException e)
             {
-                Intent intent = new Intent(TitleScreen.this, introduction.class);
+                Intent intent = new Intent(TitleScreenActivity.this, IntroActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -105,11 +105,11 @@ public class TitleScreen extends AppCompatActivity implements View.OnClickListen
         getBaseContext().deleteDatabase("RYG.db");
         mc.createDB();
         db.deleteSkills();
-        ArrayList<Position> positions = db.getPositions();
-        if (positions.size() == 0)
-            mc.createPositions(this);
         ArrayList<Skill> skills = db.getSkills();
         if(skills.size() == 0)
             mc.createSkills(getBaseContext());
+        ArrayList<Position> positions = db.getPositions();
+        if (positions.size() == 0)
+            mc.createPositions(this);
     }
 }

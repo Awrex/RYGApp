@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class introduction extends AppCompatActivity implements View.OnClickListener {
+public class IntroActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView nextArrow;
     RelativeLayout l;
     @Override
@@ -16,7 +16,7 @@ public class introduction extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_introduction);
         nextArrow = (ImageView) findViewById(R.id.nextArrow);
         l = (RelativeLayout) findViewById(R.id.introLayout);
-        l.setOnTouchListener(new OnSwipeTouchListener(introduction.this)
+        l.setOnTouchListener(new OnSwipeTouchListener(IntroActivity.this)
         {
             public void onSwipeLeft()
             {
@@ -33,7 +33,7 @@ public class introduction extends AppCompatActivity implements View.OnClickListe
     }
 
     public void switchScreen() {
-        Intent intent = new Intent(introduction.this, CreateUser.class);
+        Intent intent = new Intent(IntroActivity.this, CreateUserActivity.class);
         startActivity(intent);
         finish();
     }

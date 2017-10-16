@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
+//Used to display the cards in a specific fashion for the output activity.
 public class outputAdapter extends BaseAdapter {
     private Card card = new Card();
     private Context context;
@@ -73,6 +74,7 @@ public class outputAdapter extends BaseAdapter {
         comment.setText(card.getComment());
         commentButton.setOnClickListener(onButtonClickListener);
 
+        //Checking
         switch (card.getCategory()) {
             case "Mental":
                 circle.setBackgroundDrawable(view.getResources().getDrawable(R.drawable.mental_button));

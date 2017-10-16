@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ryg.ReviewSort">
+    tools:context="com.ryg.ReviewSortActivity">
 
     <include
         android:id="@+id/menuToolbar"
@@ -147,7 +147,7 @@
         android:background="@color/colorBlack"
         android:orientation="horizontal"
         android:padding="2dp"
-        android:weightSum="4"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -170,22 +170,6 @@
                 android:onClick="back"
                 android:textSize="12sp" />
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/refreshButton"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/refresh"
-                android:onClick="back"
-                android:textSize="12sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -217,7 +201,7 @@
                 android:layout_height="45dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/secondsort"
+                android:background="@drawable/whitenextarrow"
                 android:onClick="toSort"
                 android:textSize="12sp" />
 

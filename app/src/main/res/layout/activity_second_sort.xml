@@ -5,7 +5,7 @@
     android:id="@+id/constraintparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ryg.SecondSort">
+    tools:context="com.ryg.SecondSortActivity">
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -84,7 +84,7 @@
                     android:layout_height="45dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/output"
+                    android:background="@drawable/whitenextarrow"
                     android:onClick="toOutput" />
             </RelativeLayout>
 
@@ -202,7 +202,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" >
+        </include>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

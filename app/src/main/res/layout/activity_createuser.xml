@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ryg.CreateUser">
+    tools:context="com.ryg.CreateUserActivity">
 
     <com.ryg.VerticalScrollView
         android:layout_width="0dp"
@@ -22,9 +22,11 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/userCreationLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="15dp"
             android:weightSum="0">
 
             <RelativeLayout
@@ -45,10 +47,9 @@
                     android:layout_toEndOf="@+id/constraintLayout"
                     android:layout_toRightOf="@+id/constraintLayout"
                     android:ems="10"
-                    android:hint="name"
+                    android:hint="Name:"
                     android:inputType="textPersonName"
                     android:selectAllOnFocus="true"
-                    android:text="Name:"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     tools:layout_editor_absoluteX="1dp"
                     tools:layout_editor_absoluteY="178dp" />
@@ -79,10 +80,9 @@
                     android:layout_toEndOf="@+id/constraintLayout"
                     android:layout_toRightOf="@+id/constraintLayout"
                     android:ems="10"
-                    android:hint="email"
+                    android:hint="Email:"
                     android:inputType="textEmailAddress"
                     android:selectAllOnFocus="true"
-                    android:text="Email:"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     tools:layout_editor_absoluteX="1dp"
                     tools:layout_editor_absoluteY="262dp" />
@@ -215,6 +215,7 @@
                     android:background="@android:drawable/btn_dropdown"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    android:focusable="false"
                     tools:layout_editor_absoluteY="491dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
@@ -240,12 +241,12 @@
                     android:layout_alignStart="@+id/countrySpinner"
                     android:layout_weight="1.2"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:hint="Zip Code:"
+                    android:inputType="textPersonName|number"
                     android:selectAllOnFocus="true"
-                    android:text="Enter Zip Code Here:"
                     android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignRight="@+id/textView"
+                    android:layout_alignEnd="@+id/textView" />
 
                 <ImageView
                     android:id="@+id/dateButton"
@@ -259,14 +260,31 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView16"
+            <LinearLayout
+                android:id="@+id/termsLinear"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Terms &amp; Conditions"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="0dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/termsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Terms &amp; Conditions"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+                <ImageView
+                    android:id="@+id/downArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/downarrow" />
+
+            </LinearLayout>
 
             <ScrollView
                 android:id="@+id/termsScroll"
@@ -274,7 +292,8 @@
                 android:layout_height="200dp"
                 android:layout_above="@+id/perm1"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -286,34 +305,68 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
-                        android:background="#333333"
+                        android:background="@drawable/terms_bg"
                         android:text="@string/terms"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="11sp" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="11sp"
+                        android:visibility="visible" />
                 </LinearLayout>
             </ScrollView>
 
-            <CheckBox
-                android:id="@+id/perm1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="I give permission for you to send me emails tailored to my competency assessment needs or marketing and promotions."
-                android:textAppearance="@style/TextAppearance.AppCompat" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <CheckBox
-                android:id="@+id/perm2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="You may use my anonymized data to identify aggregated trends."
-                android:textAppearance="@style/TextAppearance.AppCompat" />
+                <CheckBox
+                    android:id="@+id/perm1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" />
 
-            <CheckBox
-                android:id="@+id/perm3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:text="I have read this agreement and agree to the terms and conditions"
-                android:textAppearance="@style/TextAppearance.AppCompat" />
+                <TextView
+                    android:id="@+id/perm1Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/perm1"
+                    android:layout_toRightOf="@+id/perm1"
+                    android:text="I give permission for you to send me emails tailored to my competency assessment needs or marketing and promotions."
+                    android:textColor="@color/colorBlack" />
+
+                <CheckBox
+                    android:id="@+id/perm2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/perm1Text"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                <TextView
+                    android:id="@+id/perm2Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/perm1Text"
+                    android:layout_toEndOf="@+id/perm2"
+                    android:layout_toRightOf="@+id/perm2"
+                    android:text="You may use my anonymized data to identify aggregated trends."
+                    android:textColor="@color/colorBlack" />
+
+                <CheckBox
+                    android:id="@+id/perm3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/perm2Text"
+                    android:layout_marginBottom="11dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+                <TextView
+                    android:id="@+id/perm3Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/perm2Text"
+                    android:layout_alignStart="@+id/perm2Text"
+                    android:layout_below="@id/perm2Text"
+                    android:text="I have read this agreement and agree to the terms and conditions"
+                    android:textColor="@color/colorBlack" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -323,15 +376,12 @@
                     android:id="@+id/teams"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView3"
-                    android:layout_alignStart="@+id/textView3"
-                    android:layout_below="@+id/textView3"
                     android:layout_toLeftOf="@+id/inputTeam"
                     android:layout_toStartOf="@+id/inputTeam"
                     android:ems="10"
+                    android:hint="Teams I Play For:"
                     android:inputType="textPersonName"
                     android:selectAllOnFocus="true"
-                    android:text="Insert Team Here"
                     android:textAppearance="@style/TextAppearance.AppCompat" />
 
                 <Button
@@ -339,20 +389,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Team"
-                    android:layout_below="@+id/textView3"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Teams I Play For:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-                    app:layout_constraintLeft_toLeftOf="parent" />
 
                 <LinearLayout
                     android:id="@+id/teamLinearLayout"
@@ -361,7 +399,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/inputTeam"
-                    android:background="#333333">
+                    android:background="#888888">
 
                     <ListView
                         android:id="@+id/teamList"

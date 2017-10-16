@@ -25,7 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class CardActivity extends AppCompatActivity{
+public class FirstSortActivity extends AppCompatActivity{
     private static final String TAG = "CardActivity";
     private StatePagerAdapter cardAdapter;
     private ViewPager viewPager;
@@ -103,14 +103,14 @@ public class CardActivity extends AppCompatActivity{
         }
         if(id==R.id.userIcon)
         {
-            Intent intent = new Intent(getBaseContext(), CreateUser.class);
+            Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         intent.putExtra("CARDLIST", rawCards);
         intent.putExtra("FIRSTTIME", firstTime);
         for(int i = 0; i<sortedCards.size(); i++) {
@@ -201,7 +201,7 @@ public class CardActivity extends AppCompatActivity{
     }
     public void toSelection(View v)
     {
-        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);
@@ -212,13 +212,13 @@ public class CardActivity extends AppCompatActivity{
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         sortedCards.clear();
-        Intent intent = new Intent(getBaseContext(), ReviewSort.class);
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);
         finish();
     }
     public void toSelect()
     {
-        Intent intent = new Intent(getBaseContext(), SelectCategory.class);
+        Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         for(int i = 0; i<sortedCards.size(); i++) {
             db.updateRating(sortedCards.get(i)); }
         startActivity(intent);

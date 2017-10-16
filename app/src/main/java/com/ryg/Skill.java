@@ -35,8 +35,11 @@ public class Skill {
     }
     public String getShortDesc() { return shortDesc; }
     public void setShortDesc(String shortDesc) { this.shortDesc = shortDesc;}
-    public String getName() {
-        return name;
+    public String getName(){
+    if(category.equals("Skills")||category.equals("Tactical"))
+    return positionName + " - " + name;
+        else
+            return name;
     }
     public void breakName(){
         char[] n = description.toCharArray();
