@@ -130,7 +130,7 @@ public class SecondSortActivity extends AppCompatActivity {
                 menuToolbar.setSubtitle("Click on calendar to schedule next sort.");
         } catch(Exception e)
         {
-            menuToolbar.setSubtitle("Click on calendar to schedule next sort.");
+            menuToolbar.setSubtitle("Schedule next sort on calendar");
         }
         menuToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
