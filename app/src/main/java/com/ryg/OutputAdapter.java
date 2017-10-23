@@ -19,8 +19,11 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
-//Used to display the cards in a specific fashion for the output activity.
-public class outputAdapter extends BaseAdapter {
+/** OutputAdapter
+ * Created by Alex Stewart
+ * Used to display the cards in a specific fashion for the output activity.
+ */
+public class OutputAdapter extends BaseAdapter {
     private Card card = new Card();
     private Context context;
     private ArrayList<Card> cards  = new ArrayList<>();
@@ -29,12 +32,12 @@ public class outputAdapter extends BaseAdapter {
     ListView list;
     private static LayoutInflater inflater = null;
 
-    public outputAdapter(Context con, ArrayList<Card> c) {
+    public OutputAdapter(Context con, ArrayList<Card> c) {
         context = con;
         cards = c;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    public outputAdapter(Context con){
+    public OutputAdapter(Context con){
         context = con;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -74,7 +77,7 @@ public class outputAdapter extends BaseAdapter {
         comment.setText(card.getComment());
         commentButton.setOnClickListener(onButtonClickListener);
 
-        //Checking
+        //Checking what each cards category is, then changes the colour of the button based on that.
         switch (card.getCategory()) {
             case "Mental":
                 circle.setBackgroundDrawable(view.getResources().getDrawable(R.drawable.mental_button));
@@ -100,6 +103,10 @@ public class outputAdapter extends BaseAdapter {
 
         return view;
     }
+
+    /**
+     * An onClickListener for when the comment button is pressed, allows the user to enter a comment into that particular card.
+     */
     private View.OnClickListener onButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

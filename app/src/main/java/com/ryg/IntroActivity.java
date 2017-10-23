@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+/**
+ * Created by Alex Stewart
+ * Simple introduction activity, just displays an image, and text on what the app is all about.
+ */
 public class IntroActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView nextArrow;
     RelativeLayout l;
@@ -16,13 +20,6 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_introduction);
         nextArrow = (ImageView) findViewById(R.id.nextArrow);
         l = (RelativeLayout) findViewById(R.id.introLayout);
-        l.setOnTouchListener(new OnSwipeTouchListener(IntroActivity.this)
-        {
-            public void onSwipeLeft()
-            {
-                switchScreen();
-            }
-        });
         nextArrow.setOnClickListener(this);
     }
 

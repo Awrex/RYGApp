@@ -14,6 +14,12 @@ import java.util.ArrayList;
 
 import static com.ryg.R.layout.activity_title_screen;
 
+/** TitleScreenActivity
+ * Created By Alex Stewart
+ * The title screen.
+ * Allows the user to reset everything aside from their user data.
+ * Allows the user to continue on to either the SelectPositionActivity class or start from the introduction.
+ */
 public class TitleScreenActivity extends AppCompatActivity implements View.OnClickListener {
     DBController db;
     MainController mc;
@@ -25,22 +31,24 @@ public class TitleScreenActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(activity_title_screen);
         nextButton = (ImageView) findViewById(R.id.nextButton);
-        l = (ConstraintLayout) findViewById(R.id.titleLayout);
-        l.setOnTouchListener(new OnSwipeTouchListener(TitleScreenActivity.this)
-        {
-            public void onSwipeLeft()
-            {
-                switchScreen();
-            }
-        });
         nextButton.setOnClickListener(this);
     }
+
+    /**
+     * onClick override, checks what buttons have been pressed and acts on them accordingly.
+     * @param v
+     */
     @Override
     public void onClick(View v) {
+        //launches the switchScreen method.
         if(v.getId() == R.id.nextButton)
             switchScreen();
     }
 
+    /** switchScreen
+     * Checks whether the athlete already exists, if it doesn't it creates the database and sends the user to the introduction.
+     * If it does exist it sends the user to the SelectPositionsActivity class.
+     */
     public void switchScreen() {
         try {
             db = new DBController(this);
@@ -65,6 +73,13 @@ public class TitleScreenActivity extends AppCompatActivity implements View.OnCli
                 finish();
             }
     }
+
+    /** reset
+     * When the reset button is pressed, it saves the current athlete saved in the database.
+     * Then it deletes the database and recreates it.
+     * Then it inserts the athlete back into the database.
+     * @param v (Button)
+     */
     public void reset(View v){
         db = new DBController(getBaseContext());
         mc = new MainController(getBaseContext());
@@ -99,6 +114,12 @@ public class TitleScreenActivity extends AppCompatActivity implements View.OnCli
                     }
                 }).setNegativeButton(android.R.string.no, null).show();
     }
+
+    /**
+     * firstTime
+     * Is run when an Athlete does not already exist in the database.
+     * It just creates a new database.
+     */
     public void firstTime(){
         db = new DBController(this);
         mc = new MainController(this);

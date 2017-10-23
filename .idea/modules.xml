@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RYGApp.iml" filepath="$PROJECT_DIR$/RYGApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RaiseYourGameApp.iml" filepath="$PROJECT_DIR$/RaiseYourGameApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RYG.iml" filepath="$PROJECT_DIR$/RYG.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

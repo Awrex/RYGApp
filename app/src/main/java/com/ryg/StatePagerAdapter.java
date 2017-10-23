@@ -8,8 +8,11 @@ import android.support.v4.view.PagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alex on 23/08/2017.
+/** StatePagerAdapter
+ * Created by Alex Stewart
+ * A custom StatePagerAdapter which extended a FragmentStatePagerAdapter.
+ * This is created just to allow a few more options when it came to using it for the FirstSortActivity.
+ * Such as storing the title of each card within the Adapter to be able to access it easier.
  */
 
 public class StatePagerAdapter extends FragmentStatePagerAdapter {

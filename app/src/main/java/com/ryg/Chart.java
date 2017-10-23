@@ -1,14 +1,7 @@
 package com.ryg;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.RadarData;
-import com.github.mikephil.charting.data.RadarDataSet;
-
-import java.util.ArrayList;
+/*
 
 public class Chart extends AppCompatActivity {
     DBController db;
@@ -71,3 +64,4 @@ public class Chart extends AppCompatActivity {
         chart.animate();
     }
 }
+*/

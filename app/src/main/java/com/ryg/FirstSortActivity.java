@@ -25,6 +25,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Created by Alex Stewart
+ * FirstSortActivity uses a ViewPager and a StatePagerAdapter to store an array of Fragments
+ * These fragments are displayed in the layout and can be scrolled through.
+ */
 public class FirstSortActivity extends AppCompatActivity{
     private static final String TAG = "CardActivity";
     private StatePagerAdapter cardAdapter;
@@ -36,6 +41,11 @@ public class FirstSortActivity extends AppCompatActivity{
     private ArrayList<Card> undoCards = new ArrayList<>();
     private String category;
     private Boolean firstTime;
+    /**
+     * Creates the menu toolbar.
+     * Also checks if the user has a profile picture and displays it as an icon.
+     * @param menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.infotoolbar,menu);
@@ -68,9 +78,17 @@ public class FirstSortActivity extends AppCompatActivity{
         category = getIntent().getStringExtra("CATEGORY");
         cardAdapter = new StatePagerAdapter(getSupportFragmentManager());
         rawCards = (ArrayList<Card>)getIntent().getSerializableExtra("CARDLIST");
+        /**
+         * Runs through the list of cards given to the activity from SelectPosition
+         * it then creates the ArrayList of cards displayed in the ViewPager.
+         */
         for(int i = 0; i<rawCards.size();i++)
         {
-            if(category.equals("Skills") && !rawCards.get(i).getCategory().equals("Mental") && !rawCards.get(i).getCategory().equals("Physical")&& !rawCards.get(i).getCategory().equals("Wellbeing")&& !rawCards.get(i).getCategory().equals("Skills")&& !rawCards.get(i).getCategory().equals("Character/Team"))
+            if(category.equals("Skills") && !rawCards.get(i).getCategory().equals("Mental") &&
+                    !rawCards.get(i).getCategory().equals("Physical")&&
+                    !rawCards.get(i).getCategory().equals("Wellbeing")&&
+                    !rawCards.get(i).getCategory().equals("Skills")&&
+                    !rawCards.get(i).getCategory().equals("Character/Team"))
                 cards.add(rawCards.get(i));
             else if (rawCards.get(i).getCategory().equals(category))
             {
@@ -84,13 +102,21 @@ public class FirstSortActivity extends AppCompatActivity{
         viewPager = (ViewPager) findViewById(R.id.cardPager);
         setupViewPager(viewPager, cards);
     }
+
+    /** onOptionsItemSelected
+     * Checks what item is pressed and acts on it
+     * @param item (MenuItem) - An item in the top toolbar is pressed, this is what item it is.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        //Displays the information on the activity(what to do)
         if(id==R.id.info)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("The cards will appear in front of you in the middle of the screen.\nYou can sort them by using the buttons at the top, and can undo with the arrow button on the bottom.\nYou can also leave comments and swipe left to go to the next card at any time.")
+            builder.setMessage("The cards will appear in front of you in the middle of the screen." +
+                    "\nYou can sort them by using the buttons at the top, and can undo with the arrow button on the bottom." +
+                    "\nYou can also leave comments and swipe left to go to the next card at any time.")
                     .setCancelable(false)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -101,6 +127,7 @@ public class FirstSortActivity extends AppCompatActivity{
             AlertDialog alert = builder.create();
             alert.show();
         }
+        //sends the user to the user creation/update screen.
         if(id==R.id.userIcon)
         {
             Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
@@ -108,6 +135,10 @@ public class FirstSortActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * When back is pressed, it goes back to the SelectCategoryActivity activity class.
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
@@ -125,6 +156,12 @@ public class FirstSortActivity extends AppCompatActivity{
     public void med(View v){setRating(v,2);}
     public void strength(View v){setRating(v,3);}
 
+    /** setRating
+     * Checks what the current item(card) is displayed on the screen.
+     * It then changes the value of that card to what the value of the button pressed is.
+     * @param v (View)
+     * @param rate (What the value of the button pressed is)
+     */
     public void setRating(View v,int rate){
         int pos = viewPager.getCurrentItem();
         if(cards.size()!=0 && cards != null) {
@@ -146,6 +183,11 @@ public class FirstSortActivity extends AppCompatActivity{
             }
         }
     }
+
+    /** undoSort
+     * An undo button, has an internal list of cards that were sorted, simply places the last card on that list back into the ViewPager.
+     * @param v (View)
+     */
     public void undoSort(View v)
     {
             int currentPos = 0;
@@ -159,6 +201,13 @@ public class FirstSortActivity extends AppCompatActivity{
             viewPager.setCurrentItem(currentPos);
         }
     }
+
+    /** setupViewPager
+     * Sets up the ViewPager, creates CardFragments based on each card in a category.
+     * It then Places each fragment into a StatePagerAdapter, and displays the adapter in the ViewPager.
+     * @param viewPager (ViewPager)
+     * @param cList (ArrayList<Card>)
+     */
     private void setupViewPager(ViewPager viewPager, ArrayList<Card> cList){
         cardAdapter = new StatePagerAdapter(getSupportFragmentManager());
         for (int i = 0; i<cList.size(); i++) {
@@ -168,18 +217,19 @@ public class FirstSortActivity extends AppCompatActivity{
         }
         viewPager.setAdapter(cardAdapter);
     }
+
+    /** leaveComment
+     * Leaves a comment on the currently displayed card.
+     * @param v (View)
+     */
     public void leaveComment(View v)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Title");
-
-// Set up the input
         final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
         builder.setTitle("Enter your comment");
-// Set up the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -199,6 +249,11 @@ public class FirstSortActivity extends AppCompatActivity{
 
         builder.show();
     }
+
+    /**
+     * Goes to its designated activity after the button is pressed
+     * @param v (View)
+     */
     public void toSelection(View v)
     {
         Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);

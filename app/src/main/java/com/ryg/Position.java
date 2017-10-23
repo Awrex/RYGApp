@@ -1,7 +1,9 @@
 package com.ryg;
 
 /**
- * Created by Alex on 15/08/2017.
+ * Created by Alex Stewart
+ * Position, Data Class
+ * Uses getters and setters, picked is an int rather than a boolean for ease of storing in a database.
  */
 
 public class Position {

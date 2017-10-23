@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Alex Stewart
+ * A fragment used in the FirstSortActivity, displays each card separately with its description and title.
+ * The background of the title is coloured according to the category or position it's in.
  */
 public class CardFragment extends Fragment {
     private String mTag;
@@ -20,7 +22,7 @@ public class CardFragment extends Fragment {
     private TextView content;
     private ImageView moreInfo;
 
-
+    //Simply some setter code.
     public void addCard(Card c,String t){
         card = c;
         mTag = t;
@@ -41,14 +43,16 @@ public class CardFragment extends Fragment {
         String name = card.getName();
         title.setText(name);
         int id = 0;
-        try{
+        /**This try catch is checking if there's any image that exists with the name specified in the card.
+        * If it does not then the id will be 0 and the if statement to change the blank ImageView, stays blank.
+        * If it does, the id will be associated to that particular image and is displayed in the ImageView.
+        */
+        try {
             id = R.drawable.class.getField(card.getInfoPath().toLowerCase()).getInt(null);
-        }catch (Exception e)
-        {
-            id = 0;
-        }
-        if(id != 0)
-        {
+            } catch (Exception e) {
+                id = 0;
+            }
+        if (id != 0) {
             moreInfo.setBackgroundDrawable(getResources().getDrawable(id));
         }
         content.setText(card.getDescription());

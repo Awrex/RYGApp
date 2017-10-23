@@ -30,6 +30,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Created by Alex Stewart
+ * ReviewSortActivity
+ *
+ * Displays all the cards currently sorted in the FirstSortActivity, omits skipped cards.
+ * The cards are displayed as items in a list.
+ * Allows the user to clear the sort
+ * Allows the user to select a card in the list to send it to the SecondSortActivity class.
+ * Allows the user to move the card to another list to change the rating given.
+ */
 public class ReviewSortActivity extends AppCompatActivity {
     private ArrayList<Card> cardList = new ArrayList<>();
     private ArrayAdapter<String> selectedAdapter;
@@ -49,6 +59,11 @@ public class ReviewSortActivity extends AppCompatActivity {
     private DBController db;
     private String name;
 
+    /**
+     * Creates the menu toolbar.
+     * Also checks if the user has a profile picture and displays it as an icon.
+     * @param menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.infotoolbar,menu);
@@ -81,6 +96,9 @@ public class ReviewSortActivity extends AppCompatActivity {
         Toolbar menuToolbar = (Toolbar) findViewById(R.id.menuToolbar);
         setSupportActionBar(menuToolbar);
         Menu m = menuToolbar.getMenu();
+
+        //Creating the adapters for each list, creating conditions to change an items colour based on its value.
+
         workOnAdapter = new ArrayAdapter<String>(this, R.layout.mytextview){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -148,6 +166,7 @@ public class ReviewSortActivity extends AppCompatActivity {
                 return view;
             }
         };
+
         next = (Button) findViewById(R.id.toSecond);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +192,9 @@ public class ReviewSortActivity extends AppCompatActivity {
         workon = 0;
         med = 0;
         high = 0;
+
+        //Setting up each adapter with items.
+
         for (int i = 0; i < cardList.size(); i++) {
             if(cardList.get(i).getRating() == 0){
                 cardList.get(i).setSelected(Boolean.FALSE);
@@ -203,6 +225,10 @@ public class ReviewSortActivity extends AppCompatActivity {
         workonList.setOnDragListener(new listListener(1,"workon"));
         mediumList.setOnDragListener(new listListener(2,"medium"));
         strengthList.setOnDragListener(new listListener(3,"strength"));
+
+        /*
+         * This allows the user to drag and drop the item selected into another list, if it is not dragged into another list the item is not changed or moved.
+         */
         workonList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -272,6 +298,9 @@ public class ReviewSortActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        //OnItemClickListener which sets the item to selected or unselected, changes colour based on whether it's selected or not.
+
         workonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -296,26 +325,6 @@ public class ReviewSortActivity extends AppCompatActivity {
                 updateTextViews();
             }
         });
-/*
-        workonList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                selected = (String) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getBaseContext(), cardDesc.class);
-                intent.putExtra("TITLE",selected);
-                for(int i = 0; i<cardList.size();i++)
-                {
-                    if(cardList.get(i).getName().equals(selected))
-                    {
-                        intent.putExtra("SHORT",cardList.get(i).getShortDesc());
-                        intent.putExtra("COMMENT",cardList.get(i).getComment());
-                    }
-                }
-                startActivity(intent);
-                return true;
-            }
-        });
-       */
         mediumList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -341,24 +350,6 @@ public class ReviewSortActivity extends AppCompatActivity {
                 updateTextViews();
             }
         });
-        /*mediumList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                selected = (String) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getBaseContext(), cardDesc.class);
-                intent.putExtra("TITLE",selected);
-                for(int i = 0; i<cardList.size();i++)
-                {
-                    if(cardList.get(i).getName().equals(selected))
-                    {
-                        intent.putExtra("SHORT",cardList.get(i).getShortDesc());
-                        intent.putExtra("COMMENT",cardList.get(i).getComment());
-                    }
-                }
-                startActivity(intent);
-                return true;
-            }
-        });*/
         strengthList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -383,7 +374,11 @@ public class ReviewSortActivity extends AppCompatActivity {
                 updateTextViews();
             }
         });
-        /*strengthList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        updateTextViews();
+
+/*Obsoleted long click listener which displays the cardDesc popup activity.
+
+        workonList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 selected = (String) parent.getItemAtPosition(position);
@@ -400,9 +395,9 @@ public class ReviewSortActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             }
-        });*/
-        updateTextViews();
+        });
 
+       */
     }
         @Override
         public void onBackPressed() {
@@ -410,7 +405,12 @@ public class ReviewSortActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
         }
-        public void reset(View v){
+
+    /** reset
+     * Reset method, runs the updateAll method from DBController which resets all the cards.
+     * @param v (View) - button
+     */
+    public void reset(View v){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Are you sure you want to clear your sort and start again?")
                     .setCancelable(true)
@@ -433,11 +433,11 @@ public class ReviewSortActivity extends AppCompatActivity {
             startActivity(intent);
                 finish();
         }
-    public void refresh()
-    {
-        finish();
-        startActivity(getIntent());
-    }
+
+    /** updateTextViews
+     * Whenever a item is selected, the number of items selected in a certain pile is accounted for, and vice versa with deselecting an item.
+     * The TextViews above the list show the number of items selected in each card, and is updated each time an item is interacted with.
+     */
     public void updateTextViews()
     {
         workOns.setText("Selected: " + workon);
@@ -445,6 +445,9 @@ public class ReviewSortActivity extends AppCompatActivity {
         strengths.setText("Selected: " + high);
     }
 
+    /** listListener
+     * Createa a listener that when a item is dragged, it saves the name and rating of that item/card.
+     */
     class listListener implements View.OnDragListener {
         int rating;
         String name;
@@ -454,7 +457,14 @@ public class ReviewSortActivity extends AppCompatActivity {
             name = tag;
         }
 
-
+        /**
+         * The onDrag method which is run when an item is dragged.
+         * It gets the current ListView interacted(dropped) on and places the item into the list.
+         * Also checks what ListView that was and if it was the work on list, it automatically selects that item.
+         * It finally removes the item from the list the item originally came from.
+         * @param v (View)
+         * @param event (DragEvent)
+         */
         @Override
         public boolean onDrag(View v, DragEvent event) {
             Boolean b = Boolean.FALSE;
@@ -505,9 +515,15 @@ public class ReviewSortActivity extends AppCompatActivity {
             return true;
         }
     }
+
+    /** onOptionsItemSelected
+     * Checks what item is pressed and acts on it
+     * @param item (MenuItem) - An item in the top toolbar is pressed, this is what item it is.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        //Displays the information on the activity(What to do)
         if(id==R.id.info)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -522,6 +538,7 @@ public class ReviewSortActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+        //sends the user to the user creation/update activity.
         if(id==R.id.userIcon)
         {
             Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);

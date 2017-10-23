@@ -2,8 +2,12 @@ package com.ryg;
 
 import java.util.Calendar;
 
-/**
- * Created by Alex on 15/08/2017.
+/** Created by Alex Stewart
+ *  Simple data class, Athlete
+ *  Filled with getters and setters and a constructor.
+ *  Contains the users name, email, date of birth, gender, skill level, teams they play for,
+ *  country, zip code, if they agree to terms 1, 2 and 3, the date of the next sort,
+ *  and how many weeks until the next sort.
  */
 
 public class Athlete {
@@ -136,6 +140,12 @@ public class Athlete {
     public String getEmail() {
         return email;
     }
+
+    /**
+     * Calculates the users age from a calendar date.
+     * @param dob (Calendar)
+     * @return age (Their age)
+     */
     public int getAge(Calendar dob) {
         int age = 0;
         Calendar now = Calendar.getInstance();

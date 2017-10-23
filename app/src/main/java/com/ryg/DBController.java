@@ -7,26 +7,23 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-import java.sql.Blob;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
 /**
- * Created by Alex on 14/08/2017.
+ * Created by Alex Stewart
+ * DBController
+ * Pulls data such as a list of positions, cards, skills and the athlete data
+ * Updates each table
+ * Fills data into the card table from the skill table based on skill level
+ * At this stage, Sport is included but not used due to possibly having one database for all sports.
  */
-
 public class DBController extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "RYG.db";
 
     private static final String TABLE_SPORT = "Sport";
     private static final String TABLE_POSITION = "Position";
-
-    private static final String TABLE_SKILL = "Skill";
-    private static final String TABLE_CARD = "Card";
-
-
 
     private static final String SPORT_name = "Name";
     private static final String SPORT_imagePath = "imagePath";
@@ -46,21 +43,23 @@ public class DBController extends SQLiteOpenHelper {
         super(con, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    //Left variables uninitialized due to them being intended for preparedStatements which at this stage are not working.
+    //
+
+    /** onCreate
+     * Creates the database.
+     * Left some variables uninitialized due to them being intended for preparedStatements which at this stage are not working.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createSport = "CREATE TABLE " + TABLE_SPORT + "(" + SPORT_name + " TEXT PRIMARY KEY, " + SPORT_imagePath+ " TEXT)";
         String createPos = "CREATE TABLE "+ TABLE_POSITION + "(" + POSITION_name + " TEXT PRIMARY KEY, "+ POSITION_level + " INT, "+ POSITION_imagePath + " TEXT, " + POSITION_sportName + " TEXT, " + POSITION_picked + " BOOLEAN)";
-        String createAthlete = "CREATE TABLE ? ( ? TEXT PRIMARY KEY, ? TEXT, ? TEXT)";
-        String createSkill = "CREATE TABLE ? ( ? TEXT PRIMARY KEY, ? TEXT, ? TEXT, ? INT, ? INT, ? BOOLEAN, ? TEXT, ? TEXT, ? TEXT)";
-        String createCard = "CREATE TABLE ? ( ? TEXT PRIMARY KEY, ? TEXT, ? TEXT, ? BOOLEAN, ? TEXT, ? TEXT, ? TEXT, ? INT, ? INT, ? TEXT, ? TEXT)";
 
         SQLiteStatement stmt = db.compileStatement(createSport);
         stmt.execute();
 
         stmt = db.compileStatement(createPos);
         stmt.execute();
-
+        //changed to directly inserting text due to complications with preparedStatements
         stmt = db.compileStatement("Create Table Athlete (Name TEXT PRIMARY KEY, Gender TEXT, Email TEXT, DOB TEXT, LEVEL int, Teams TEXT, Country TEXT, Zipcode TEXT, Terms1 int, Terms2 int, Terms3 int, sortTime TEXT, weeksFreq int)");
         stmt.execute();
         /*
@@ -92,6 +91,9 @@ public class DBController extends SQLiteOpenHelper {
         stmt = db.compileStatement("CREATE TABLE Card (num INT PRIMARY KEY, cardName TEXT, Category TEXT, Description TEXT, shortDescription TEXT, moreInfo BOOLEAN, infoPath TEXT, sportName TEXT, positionName TEXT, Rating INT, Priority INT, Comment TEXT, secondComment TEXT, Selected INT)");
         stmt.execute();
     }
+    /** getPositions()
+       gets a list of all the positions in the database.
+     */
     public ArrayList getPositions() {
         ArrayList<Position> positions = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -105,6 +107,10 @@ public class DBController extends SQLiteOpenHelper {
         c.close();
         return positions;
     }
+    /** updatePosition()
+    When a position is selected or unselected, changes that value in the app.
+     @param pos (Position)
+    */
     public void updatePosition(Position pos){
         SQLiteDatabase db = this.getWritableDatabase();
             ContentValues dataToInsert = new ContentValues();
@@ -116,6 +122,12 @@ public class DBController extends SQLiteOpenHelper {
                 String error = e.getMessage();
             }
         }
+    /** updatePositions
+    When a sort has already been started and the user wants to add positions to their sort -
+     This sets every position selected to 1.
+     A fail-safe to make sure nothing goes wrong.
+     @param positions (ArrayList<String>)
+     */
     public void updatePositions(ArrayList<String> positions) {
         SQLiteDatabase db = this.getWritableDatabase();
         for(int i = 0; i<positions.size(); i++) {
@@ -129,10 +141,13 @@ public class DBController extends SQLiteOpenHelper {
             }
         }
     }
+    /** newAthlete
+        When the user resets their app/database, this allows them to keep their athlete data.
+     @param a (Athlete)
+     */
     public void newAthlete(Athlete a)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         ContentValues values = new ContentValues();
         values.put("Name", a.getName());
         values.put("Gender", a.getGender());
@@ -147,11 +162,14 @@ public class DBController extends SQLiteOpenHelper {
         values.put("Terms3", a.isTerms3());
         db.insert("Athlete",null,values);
     }
+    /** newAthlete
+        Creates a new athlete from scratch, from the CreateUserActivity
+     @param a (Athlete)
+     */
     public void addAthlete(Athlete a)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         deleteAthlete();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         ContentValues values = new ContentValues();
         values.put("Name", a.getName());
         values.put("Gender", a.getGender());
@@ -166,6 +184,10 @@ public class DBController extends SQLiteOpenHelper {
         values.put("Terms3", a.isTerms3());
         db.insert("Athlete",null,values);
     }
+    /**addWeeks
+        Is run instead of addDate when the user sets their weeks for the next sort to be done.
+     @param a (Athlete)
+     */
     public void addWeeks(Athlete a)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -175,9 +197,13 @@ public class DBController extends SQLiteOpenHelper {
         try{
             db.update("Athlete",dataToInsert,where,null);
         }catch (Exception e){
-            String error =  e.getMessage().toString();
+            String error =  e.getMessage();
         }
     }
+    /**addDate
+     @param a (Athlete)
+      Is run instead of addWeeks when the user sets the date for the next sort to be done.
+   */
     public void addDate(Athlete a)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -187,9 +213,13 @@ public class DBController extends SQLiteOpenHelper {
         try{
             db.update("Athlete",dataToInsert,where,null);
         }catch (Exception e){
-            String error =  e.getMessage().toString();
+            String error =  e.getMessage();
         }
     }
+    /** addPositions
+     Inserts the position table using an already created ArrayList of positions.
+     @param posList (ArrayList<Position>)
+     */
     public void addPositions(ArrayList<Position> posList) {
         SQLiteDatabase db = this.getWritableDatabase();
         String pName = "";
@@ -208,6 +238,10 @@ public class DBController extends SQLiteOpenHelper {
 
             }
         }
+    /** getSkills
+        Is used to check if the table of skills has items or not.
+         Can be used to get a list of all the skills in a table.
+     */
     public ArrayList getSkills()
     {
         ArrayList<Skill> skills = new ArrayList<>();
@@ -220,9 +254,15 @@ public class DBController extends SQLiteOpenHelper {
                 Skill tempSkill = new Skill(c.getString(0),c.getString(1),c.getString(2),c.getInt(3),c.getString(4),c.getInt(5),c.getString(6),c.getString(7),c.getString(8));
                 skills.add(tempSkill);
             }
+            c.close();
         }
         return skills;
     }
+
+    /** addSkills
+     * Inserts all the skills from the cards xml file into the skill table.
+     * @param skillList (ArrayList)
+     */
     public void addSkills(ArrayList<Skill> skillList)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -254,6 +294,9 @@ public class DBController extends SQLiteOpenHelper {
 
         }
     }
+    /** getCards
+        Gets an ArrayList of all the cards in the Card table.
+     */
     public ArrayList getCards()
     {
         ArrayList<Card> cards = new ArrayList<>();
@@ -269,6 +312,11 @@ public class DBController extends SQLiteOpenHelper {
         }
         return cards;
     }
+    /** getCard
+        Not currently needed, is used to check the number of cards in a particular category
+        This is to create a radar chart.
+     */
+    /*
     public int getCard(String s)
     {
         ArrayList<Card> cards = new ArrayList<>();
@@ -281,16 +329,11 @@ public class DBController extends SQLiteOpenHelper {
         else
             return 0;
     }
-    public void closeDB() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        if (db != null && db.isOpen())
-            db.close();
-    }
-    public void deletePositions()
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from Position");
-    }
+    */
+
+    /**
+     * Delete methods, just deletes everything inside a table.
+     */
     public void deleteSkills()
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -301,11 +344,11 @@ public class DBController extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from Athlete");
     }
-    public void deleteCards()
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from Card");
-    }
+
+    /**Update methods
+     * Updates a particular attribute of card
+     * @Param Card
+     */
     public void updateRating(Card card)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -332,6 +375,57 @@ public class DBController extends SQLiteOpenHelper {
         }
         dataToInsert.clear();
     }
+    public void updateSelected(Card card) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        int num;
+        if(card.getSelected())
+            num = 1;
+        else
+            num = 0;
+        dataToInsert.put("Selected", num);
+        String where = "cardName='" + card.getName() + "'";
+        try{
+            db.update("Card",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
+    }
+    public void updatePriority(Card card) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues dataToInsert = new ContentValues();
+        dataToInsert.put("Priority", card.getPriority());
+        String where = "cardName='" + card.getName() + "'";
+        try{
+            db.update("Card",dataToInsert,where,null);
+        }catch (Exception e){
+            String error =  e.getMessage().toString();
+        }
+    }
+
+    /** updateAll
+     * Used when the clear method on the ReviewSortActivity is run.
+     * Changes everything the user can change to the default value.
+     * @param cards (ArrayList)
+     */
+    public void updateAll(ArrayList<Card> cards)
+    {
+        for(int i = 0; i < cards.size(); i++)
+        {
+            cards.get(i).setRating(0);
+            cards.get(i).setSelected(Boolean.FALSE);
+            cards.get(i).setPriority(0);
+            cards.get(i).setComment("");
+            updateRating(cards.get(i));
+            updatePriority(cards.get(i));
+            updateComment(cards.get(i));
+            updateSelected(cards.get(i));
+        };
+    }
+
+    /**
+     * Inserts every record in the Skill table into the Card table, if conditions are met.
+     */
     public void createCards(){
         int num = 0;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -361,6 +455,9 @@ public class DBController extends SQLiteOpenHelper {
                     infoPath = c.getString(7);
                     sportName = c.getString(8);
                     positionName = c.getString(9);
+                    /*Checks if the skill level of the user is high enough to add it to the table.
+                      If it is not it loops to the next skills
+                      If it is, it adds it to the table. */
                     if (a.getSkillLevel() >= levelReq) {
                         String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES (" + num + ", '" + sName + "', '" + category + "', '" + desc + "', '" + sDesc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
                         SQLiteStatement statement = db.compileStatement(sql);
@@ -369,73 +466,17 @@ public class DBController extends SQLiteOpenHelper {
                 } while (c.moveToNext());
             }
         }
-    public void createCards(int sLev, String gender, ArrayList<String> posList)
-    {
-        int num = 0;
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sName = "";
-        String category = "";
-        String desc = "";
-        int levelReq = 0;
-        String genderReq = "";
-        int moreInfo = 0;
-        String infoPath = "";
-        String sportName = "";
-        String positionName = "";
-        String sDesc = "";
-        Cursor cur = db.rawQuery("Select * FROM Skill Where positionName = 'Global'",null);
-        if(cur != null)
-        {
-            while(cur.moveToNext())
-            {
-                num++;
-                sName = cur.getString(0);
-                category = cur.getString(1);
-                desc = cur.getString(2);
-                sDesc = cur.getString(3);
-                moreInfo = cur.getInt(6);
-                infoPath = cur.getString(7);
-                sportName = cur.getString(8);
-                positionName = cur.getString(9);
-                String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES ("+num+", '" + sName + "', '" + category + "', '"+ desc + "', '"+sDesc+"', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
-                SQLiteStatement statement = db.compileStatement(sql);
-                statement.executeInsert();
-            }
-        }
 
-        for (int i = 0; i < posList.size(); i++)
-        {
-            Cursor c = db.rawQuery("Select * FROM Skill Where positionName = '"+posList.get(i)+"'", null);
-            if(!(c.getCount() < 1)) {
-                c.moveToFirst();
-                do {
-                    num++;
-                    sName = c.getString(0);
-                    category = c.getString(1);
-                    desc = c.getString(2);
-                    sDesc = c.getString(3);
-                    levelReq = c.getInt(4);
-                    genderReq = c.getString(5);
-                    moreInfo = c.getInt(6);
-                    infoPath = c.getString(7);
-                    sportName = c.getString(8);
-                    positionName = c.getString(9);
-                    if (sLev >= levelReq) {
-                                String sql = "INSERT INTO Card (num, cardName, Category, Description, shortDescription, moreInfo, infoPath, sportName, positionName) VALUES (" + num + ", '" + sName + "', '" + category + "', '" + desc + "', '" + sDesc + "', " + moreInfo + ", '" + infoPath + "', '" + sportName + "', '" + positionName + "')";
-                                SQLiteStatement statement = db.compileStatement(sql);
-                                statement.executeInsert();
-                        }
-                } while (c.moveToNext());
-            }
-        }
-        cur.close();
-    }
+    /**
+     * Gets every record in the athlete table which there should only be 1, however does allow for more.
+     * Returns the first record of the table as there should only be 1.
+     * @return Athlete
+     */
     public Athlete getAthlete()
     {
         ArrayList<Athlete> aList = new ArrayList<>();
         String name = "", gender = "", email = "", DOB = "", teams = "", loc = "", zip = "", dateOf = "";
         int sLevel = 0, terms1 = 0, terms2 = 0, terms3 = 0, weeks = 0;
-        Blob image = null;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("Select * FROM Athlete", null);
             if(c != null)
@@ -468,6 +509,13 @@ public class DBController extends SQLiteOpenHelper {
         else
             return null;
     }
+
+    /**
+     * Required onUpgrade method, is not yet used but may need to be used in the future.
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS Sport");
@@ -477,48 +525,5 @@ public class DBController extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Card");
 
         onCreate(db);
-    }
-
-    public void updatePriority(Card card) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues dataToInsert = new ContentValues();
-        dataToInsert.put("Priority", card.getPriority());
-        String where = "cardName='" + card.getName() + "'";
-        try{
-            db.update("Card",dataToInsert,where,null);
-        }catch (Exception e){
-            String error =  e.getMessage().toString();
-        }
-    }
-
-    public void updateAll(ArrayList<Card> cards)
-    {
-        for(int i = 0; i < cards.size(); i++)
-        {
-            cards.get(i).setRating(0);
-            cards.get(i).setSelected(Boolean.FALSE);
-            cards.get(i).setPriority(0);
-            cards.get(i).setComment("");
-            updateRating(cards.get(i));
-            updatePriority(cards.get(i));
-            updateComment(cards.get(i));
-            updateSelected(cards.get(i));
-        };
-    }
-    public void updateSelected(Card card) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues dataToInsert = new ContentValues();
-        int num;
-        if(card.getSelected())
-            num = 1;
-        else
-            num = 0;
-        dataToInsert.put("Selected", num);
-        String where = "cardName='" + card.getName() + "'";
-        try{
-            db.update("Card",dataToInsert,where,null);
-        }catch (Exception e){
-            String error =  e.getMessage().toString();
-        }
     }
 }

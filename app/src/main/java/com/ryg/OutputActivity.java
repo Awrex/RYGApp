@@ -22,15 +22,27 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * OutputActivity
+ * Created by Alex Stewart
+ *
+ * The activity combined with the OutputAdapter for a ListView.
+ * It shows the cards the user has set priorities as High and Medium, it also allows for Low functionality.
+ */
 public class OutputActivity extends AppCompatActivity {
     private ArrayList<Card> cardList = new ArrayList<>();
     private ArrayList<Card> sortedList = new ArrayList<>();
     private DBController db;
     private ListView highList, medList, lowList;
-    private outputAdapter highAdapter;
-    private outputAdapter medAdapter;
-    private outputAdapter lowAdapter;
+    private OutputAdapter highAdapter;
+    private OutputAdapter medAdapter;
+    private OutputAdapter lowAdapter;
 
+    /**
+     * Creates the menu toolbar.
+     * Also checks if the user has a profile picture and displays it as an icon.
+     * @param menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -68,9 +80,10 @@ public class OutputActivity extends AppCompatActivity {
         highList = (ListView) findViewById(R.id.highList);
         medList = (ListView) findViewById(R.id.medList);
         cardList = db.getCards();
-        lowAdapter = new outputAdapter(this);
-        medAdapter = new outputAdapter(this);
-        highAdapter = new outputAdapter(this);
+        lowAdapter = new OutputAdapter(this);
+        medAdapter = new OutputAdapter(this);
+        highAdapter = new OutputAdapter(this);
+        //Adding the items to each adapter.
         for(int i = 0; i < cardList.size(); i++)
         {
             if(cardList.get(i).getPriority() != 0&& cardList.get(i).getSelected())
@@ -93,9 +106,14 @@ public class OutputActivity extends AppCompatActivity {
         medList.setAdapter(medAdapter);
     }
 
+    /** onOptionsItemSelected
+     * Checks what item is pressed and acts on it
+     * @param item (MenuItem) - An item in the top toolbar is pressed, this is what item it is.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        //gives information on the activity(what to do)
         if(id==R.id.info)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -109,6 +127,7 @@ public class OutputActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+        //sends the user to the user creation/update activity.
         if(id==R.id.userIcon)
         {
             Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
@@ -117,12 +136,38 @@ public class OutputActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Goes to its designated activity after the button is pressed
+     * @param v (View)
+     */
     public void toSelection(View v)
     {
         Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         startActivity(intent);
         finish();
     }
+    public void toSort(View v)
+    {
+        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * Goes to its designated activity after the back button on the phone is pressed
+     */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getBaseContext(), SecondSortActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    /** toPlan
+     * Currently not included, as the action plan app has not been completed/has implementation for the app.
+     * Will be included
+     * @param v
+     */
     public void toPlan(View v)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -137,6 +182,11 @@ public class OutputActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    /** toEmail
+     * Gets the user to specify their email client of choice, then sends an email to whoever they want(their own email as default).
+     * @param v
+     */
     public void toEmail(View v)
     {
         Athlete a = new Athlete();
@@ -201,16 +251,5 @@ public class OutputActivity extends AppCompatActivity {
 
         startActivity(Intent.createChooser(email, "Choose an Email client :"));
     }
-    public void toSort(View v)
-    {
-        Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(getBaseContext(), SecondSortActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }

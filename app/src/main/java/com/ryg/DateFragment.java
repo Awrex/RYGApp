@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +24,10 @@ import java.util.Date;
 import static android.content.ContentValues.TAG;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Alex Stewart
+ * The DateFragment is used when the user is setting the date for their next sort.
+ * They can either set the amount of weeks left until the date, or set the date itself.
+ * This is then saved into the Athlete table in the database.
  */
 public class DateFragment extends Activity {
     private String mTag;
@@ -67,6 +69,7 @@ public class DateFragment extends Activity {
             dateOf.setText(c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR));
             e.printStackTrace();
         }
+        //Creates a date picker dialog, and the user selects the date they want to do the next sort on.
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
@@ -84,6 +87,8 @@ public class DateFragment extends Activity {
                 dateOf.setText(date);
             }
         };
+        //Sets the date of the next sort to the next day after the amount of weeks have passed.
+        //Also adds the date and weeks to the Athlete Table.
         setWeek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +112,7 @@ public class DateFragment extends Activity {
                 }
             }
         });
+        //When the calendar button is pressed, it creates the DatePickerDialog for the user to choose.
         calClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

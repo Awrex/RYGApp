@@ -8,6 +8,10 @@ import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
+/**
+ * Currently not used, displays the card title, the short description and comment
+ * May need to be added in a later version
+ */
 public class cardDesc extends Activity {
     private Card card;
     private TextView title;

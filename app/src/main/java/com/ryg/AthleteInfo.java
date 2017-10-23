@@ -9,7 +9,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
- * Created by fgmind on 28/09/2017.
+ * Created by Francois Mindiel
+ * Modified by Alex Stewart
+ *
+ * Somewhat of a data class, is mostly used in conjunction with an Athlete.
+ * Is used to create the Httpconnection with google forms in order to send data to the form
+ * Where it will be used for analytical purposes
  */
 
 public class AthleteInfo extends Athlete{
@@ -54,6 +59,10 @@ public class AthleteInfo extends Athlete{
         this.zipCode = zip;
     }
 
+    /** createInfo
+     * Turns the arrayLists of strings into a single string, which is displayed in the spreadsheet
+     * Then sends all the info to the HttpConnection class where that is sent to the form.
+     */
     public void createInfo() {
         for(int i = 0; i < strengthSkills.size(); i++)
         {

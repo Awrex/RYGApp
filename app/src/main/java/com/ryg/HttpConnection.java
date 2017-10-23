@@ -5,7 +5,11 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
-
+/**
+ * Created by Francois Mindiel
+ * Modified by Alex Stewart
+ * An interface that is called within the AthleteInfo and sends all the data into a Google Form.
+ */
 public interface HttpConnection {
 
     @POST("1FAIpQLSc-bfM9FxZ806H7ngJgekEj1hiyCQ1sUsOwVWAWwgk7mmROqw/formResponse")

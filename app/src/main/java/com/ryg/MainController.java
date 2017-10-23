@@ -18,7 +18,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
- * Created by Alex on 14/08/2017.
+ * Created by Alex Stewart
+ * MainController
+ *
+ * Similar to DBController, serves as a sort of middle man of sorts between the DBcontroller and the Activity.
+ * Has mostly been ignored in favor of direct db access but still contains methods that are required.
+ * Should be used more in future versions.
  */
 
 public class MainController extends Activity {
@@ -33,6 +38,12 @@ public class MainController extends Activity {
    db = new DBController(con);
        this.con = con;
     }
+
+    /** createSkills
+     * Getting the list of skills from the cards xml file, and placing them into an ArrayList of skills
+     * Then sending it over to the database where it is stored.
+     * @param c (Context)
+     */
     public void createSkills(Context c)
     {
         dbFactory = DocumentBuilderFactory.newInstance();
@@ -68,7 +79,7 @@ public class MainController extends Activity {
                     else
                         s.setMoreInfo(1);
                     s.setSportName(con.getResources().getString(R.string.sport_name));
-                    s.breakName();
+                    s.breakDesc();
                     sk.add(s);
 
                 }
@@ -82,12 +93,18 @@ public class MainController extends Activity {
         }
         db.addSkills(sk);
     }
-    public ArrayList getCards() {
-        return db.getCards();
-    }
+
+    /** createDB
+     * Creates the database.
+     */
     public void createDB() {
         db.getWritableDatabase();
     }
+
+    /** createPositions
+     * Creates the positions after the user has created their account for the first time.
+     * @param c
+     */
     public void createPositions(Context c){
         ArrayList<Position> positions = new ArrayList<>();
         positions = db.getPositions();
@@ -100,6 +117,12 @@ public class MainController extends Activity {
             db.addPositions(posList);
         }
     }
+
+    /** addAthlete
+     * After the athlete table was deleted in the reset, recreates the users profile.
+     * @param c (Context)
+     * @param athlete (Athlete)
+     */
     public void addAthlete(Context c, Athlete athlete){
         db.newAthlete(athlete);
     }

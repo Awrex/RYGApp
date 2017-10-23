@@ -33,7 +33,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Alex on 24/08/2017.
+ * SelectPositionsActivity
+ * Created By Alex Stewart
+ *
+ * Brings up a ListView for the user to select what positions they play,
+ * If they select an item it will get a green background to signify it's selected.
+ * The positions selected are saved into the database and then the user is sent to the SelectCategoryActivity class.
  */
 
 public class SelectPositionsActivity extends AppCompatActivity {
@@ -54,6 +59,11 @@ public class SelectPositionsActivity extends AppCompatActivity {
     TextView userText;
     ImageView profile;
     @Override
+    /**
+     * Creates the menu toolbar.
+     * Also checks if the user has a profile picture and displays it as an icon.
+     * @param menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.infotoolbar,menu);
@@ -76,12 +86,20 @@ public class SelectPositionsActivity extends AppCompatActivity {
         }
         return super.onCreateOptionsMenu(menu);
     }
+
+    /**
+     * Is run when the profile picture icon is clicked.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         finish();
         startActivity(getIntent());
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,12 +112,15 @@ public class SelectPositionsActivity extends AppCompatActivity {
         reviewButton = (Button)findViewById(R.id.reviewMenu);
         secondButton = (Button)findViewById(R.id.secondMenu);
         outputButton = (Button)findViewById(R.id.outputMenu);
+        //The buttons start out invisible.
         reviewButton.setEnabled(false);
         reviewButton.setVisibility(View.INVISIBLE);
         secondButton.setEnabled(false);
         secondButton.setVisibility(View.INVISIBLE);
         outputButton.setEnabled(false);
         outputButton.setVisibility(View.INVISIBLE);
+
+        //Setting up the adapter to change colours if the item has been or has already been selected.
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -118,11 +139,12 @@ public class SelectPositionsActivity extends AppCompatActivity {
                     }
                 }
                 return view;
-        }
+            }
         };
         selectionList = (ListView) findViewById(R.id.posListView);
         selectionList.setBackgroundColor(Color.LTGRAY);
         selectionList.setAlpha((float)0.5);
+        //Checks if cards already exist and if they have a rating or priority, if they do, the second sort, output and review sort button is made visible.
         try{
             ArrayList<Card> cardList = db.getCards();
             for(int i = 0; i < cardList.size(); i++)
@@ -146,6 +168,7 @@ public class SelectPositionsActivity extends AppCompatActivity {
         }
         oldPositions = selectedPositions;
         selectionList.setAdapter(adapter);
+        //Setting up the on click listener to select or deselect the item and change its colour.
         selectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -181,6 +204,8 @@ public class SelectPositionsActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         Calendar cal = Calendar.getInstance();
         Boolean isOverDue = Boolean.FALSE;
+
+        //Also displays the date for the next sort, will instead display the default message for the activity.
         try {
             if (a.getDateOf() != null) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -217,7 +242,15 @@ public class SelectPositionsActivity extends AppCompatActivity {
         setSupportActionBar(menuToolbar);
         Menu m = menuToolbar.getMenu();
         }
-        public void goMain(View view)
+
+    /** goMain
+     * When the user has selected their positions they press on the button that sends them to the SelectCategoryActivity class.
+     * It then gets all the positions selected and what used to be selected, and the database to deselect it if it is no longer selected.
+     * It also gets all the newly selected positions and selects it.
+     * This allows the user to remove and add positions at a whim and the app will accommodate for that.
+     * @param view - Button
+     */
+    public void goMain(View view)
         {
             String text = "";
             for (int i = 0; i < selectedPositions.size(); i++)
@@ -242,6 +275,7 @@ public class SelectPositionsActivity extends AppCompatActivity {
                           deletedPositions.add(positionList.get(i).getName());
                   }
               }
+              //Will be false if positions have not yet been selected once before, other wise it will always be loaded.
               if(!loaded) {
                   db.deleteSkills();
                   mc.createSkills(getBaseContext());
@@ -258,6 +292,10 @@ public class SelectPositionsActivity extends AppCompatActivity {
         }).setNegativeButton(android.R.string.no, null).show();
 
         }
+    /** onOptionsItemSelected
+     * Checks what item is pressed and acts on it
+     * @param item (MenuItem) - An item in the top toolbar is pressed, this is what item it is.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -281,12 +319,20 @@ public class SelectPositionsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    /** onBackPressed
+     * When back is pressed, goes to the SelectCategoryActivity
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getBaseContext(), TitleScreenActivity.class);
         startActivity(intent);
         finish();
     }
+
+    /**
+     * Goes to the corresponding activity for that button.
+     * @param v (View) - button
+     */
     public void toReview(View v){
         Intent intent = new Intent(getBaseContext(), ReviewSortActivity.class);
         startActivity(intent);

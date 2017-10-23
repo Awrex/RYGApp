@@ -44,9 +44,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Alex on 15/09/2017.
+ * Created by Alex Stewart
+ * An activity that runs the user creation layout.
+ * Allows the user to look at, update, and create their own user profile.
+ * As well as upload a profile picture of themselves.
  */
-
 public class CreateUserActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
     private static final String TAG = "CreateUser";
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -97,6 +99,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         ArrayAdapter<CharSequence>  countryAdapter = ArrayAdapter.createFromResource(this,R.array.countries, android.R.layout.simple_spinner_item);
         countrySpin.setAdapter(countryAdapter);
         imageToUpload = (Button) findViewById(R.id.addImageButton);
+        //Tries to load the profile image, if it can't it doesn't try to.
         try {
             ContextWrapper cw = new ContextWrapper(getApplicationContext());
             File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -126,6 +129,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         teams = (EditText) findViewById(R.id.teams);
         teams.setOnFocusChangeListener(this);
 
+        //Creating an ArrayAdapter to display text in a spinner.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.levels_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
@@ -148,11 +152,6 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
 
         });
         spin.setFocusable(Boolean.FALSE);
-        imageText = (TextView) findViewById(R.id.profileText);
-        if (bmp != null)
-        {
-            imageText.setText("");
-        }
         gender = (Spinner) findViewById(R.id.genderSpinner);
         ArrayAdapter<CharSequence>  genderAdapter = ArrayAdapter.createFromResource(this,R.array.genders, android.R.layout.simple_spinner_item);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -163,18 +162,17 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         nextButton.setOnClickListener(this);
         dateButton.setOnClickListener(this);
         teamList.setAdapter(listAdapter);
+        //Pressing on a name in the list of teams removes it.
         teamList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = listAdapter.getItem(position);
-
                 listAdapter.remove(selected);
                 listAdapter.notifyDataSetChanged();
                 for(int i = 0; i < teamNames.size();i++){
                     if(teamNames.get(i).equals(selected))
                         teamNames.remove(i);
                 }
-
             }
         });
         inputButton.setOnClickListener(new View.OnClickListener() {
@@ -201,6 +199,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                 DOB.set(y,m,d);
             }
         };
+        //Loads the athletes data into the activity, then places it into the layout.
         if (imageToUpload.getBackground() != null)
         {
             try{
@@ -215,6 +214,11 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                 else
                     gender.setSelection(1);
                 dateOfBirth.setText(athlete.getDob());
+
+                /*
+                The team list is stored in the database as a string with commas,
+                This breaks the Team List into separate strings and places then into the adapter.
+                 */
                 char[] n = athlete.getTeams().toCharArray();
                 String newName = "";
                 newName += n[0];
@@ -230,6 +234,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     }
                     listAdapter.notifyDataSetChanged();
                 }
+
                 for(int i = 0; i < countrySpin.getCount(); i++)
                 {
                     if(countrySpin.getItemAtPosition(i).toString().equals(athlete.getLocation()))
@@ -246,6 +251,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
             }
             catch(RuntimeException e)
             {
+                //this will determine whether the activity goes straight to another activity, or closes outright.
                 firstTime = Boolean.TRUE;
             }
 
@@ -256,12 +262,13 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         downArrow.setOnClickListener(this);
         termsTitle.setOnClickListener(this);
     }
-
+    //A method to hide the keyboard.
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    //Is run when the user selects an image for their profile.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -285,6 +292,10 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         setResult(RESULT_CANCELED, null);
     }
 
+    /**
+     * Is run when the user updates their data, saves the picture uploaded into a file that's saved on the device.
+     * @param bmp (Bitmap)
+     */
     public void saveFile(Bitmap bmp)
     {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
@@ -307,6 +318,11 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Is run when something else takes focus from a editText, then closes the keyboard.
+     * @param v
+     * @param hasFocus
+     */
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if(!v.hasFocus())
@@ -326,13 +342,18 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-
+    /**
+     * onClick method that is run whenever something is clicked that has a listener.
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            //hides the keyboard.
             case R.id.userCreationLayout:
                 hideKeyboard(v);
                 break;
+            //hides the terms and conditions when pressed.
             case R.id.termsTitle:
                 if(terms)
                 {
@@ -346,6 +367,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     termsScroll.setVisibility(View.VISIBLE);
                 }
                 break;
+            //hides the terms and conditions when pressed.
             case R.id.downArrow:
                 if(terms)
                 {
@@ -359,29 +381,38 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     termsScroll.setVisibility(View.VISIBLE);
                 }
                 break;
+            //changes the first permissions variable true or false.
             case R.id.perm1Text:
                 if(!perm1.isChecked())
                     perm1.setChecked(true);
                 else
                     perm1.setChecked(false);
                 break;
+            //changes the second permissions variable true or false.
             case R.id.perm2Text:
                 if(!perm2.isChecked())
                     perm2.setChecked(true);
                 else
                     perm2.setChecked(false);
                 break;
+            //changes the third permissions variable true or false.
             case R.id.perm3Text:
                 if(!perm3.isChecked())
                     perm3.setChecked(true);
                 else
                     perm3.setChecked(false);
                 break;
+            //sends the user to their gallery to select an image to upload.
             case R.id.addImageButton:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                 imageText.setText("");
                 break;
+            /**
+             * Saves the data into the database of the app.
+             * Contains a lot of conditions to check whether the required fields are entered in.
+             * When they are met it sets the data to an Athlete class, then saves that to the database.
+             */
             case R.id.nextButton:
                 Boolean checked = true;
                 String missed = "";
@@ -389,15 +420,15 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     checked = false;
                     missed += "Terms and conditions have not been ticked.\n";
                 }
-                if(name.getText().toString().equals("Name:") || name.getText().toString().equals("")) {
+                if(name.getText().toString().equals("") || name.getText().toString().equals("")) {
                     checked = false;
                     missed += "You have not entered a name.\n";
                 }
-                if(dateOfBirth.getText().toString().equals("Date Of Birth:") || dateOfBirth.getText().toString().equals("")) {
+                if(dateOfBirth.getText().toString().equals("") || dateOfBirth.getText().toString().equals("")) {
                     checked = false;
                     missed += "You have not entered a DOB.\n";
                 }
-                if(email.getText().toString().equals("Email:") || email.getText().toString().equals(""))
+                if(email.getText().toString().equals("") || email.getText().toString().equals(""))
                 {
                     checked = false;
                     missed += "You have not entered an Email.\n";
@@ -405,13 +436,10 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                 if(checked) {
                     athlete.setName(name.getText().toString());
                     athlete.setEmail(email.getText().toString());
-                    String gen;
                     if (gender.getSelectedItem().toString().equals("Male")) {
                         athlete.setGender("Male");
-                        gen = "Male";
                     } else {
                         athlete.setGender("Female");
-                        gen = "Female";
                     }
                     if(perm1.isChecked())
                         athlete.setTerms1(Boolean.TRUE);
@@ -439,6 +467,11 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     db.addAthlete(athlete);
                     saveFile(bmp);
                     setResult(RESULT_OK, null);
+                    /*When the database is checked to see if an athlete exists, this value is changed to true as in yes it exists or false if it doesn't.
+                    * This is done to simulate checking if it is the users first time setting up their profile.
+                    * Because they are coming from the introduction because the don't have a profile set up, it will instead go straight to the SelectPositionsActivity
+                    * Instead of just finishing and going back to the activity it was on before.
+                    */
                     if(firstTime)
                     {
                         Intent intent = new Intent(this,SelectPositionsActivity.class);
@@ -448,6 +481,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     }
                     finish();
                 }
+                //Shows when the required fields have not been entered in.
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage("You have not filled in everything. Please read and check the following:\n" + missed)
@@ -461,6 +495,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                     alert.show();
                 }
                 break;
+            //Cancels out of the user activity screen.
             case R.id.cancelButton:
                 finish();
                 setResult(RESULT_CANCELED, null);

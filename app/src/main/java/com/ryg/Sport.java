@@ -1,7 +1,10 @@
 package com.ryg;
 
 /**
- * Created by Alex on 14/08/2017.
+ * Sport
+ * Created by Alex Stewart
+ * Currently not utilized, will be in the future.
+ * Will only contain getters and setters for the values.
  */
 import java.util.ArrayList;
 

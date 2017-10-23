@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * Created by Alex on 15/08/2017.
+ * Created by Alex Stewart
+ * Data Class filled with purely getters and setters of each card in the system.
  */
-
 public class Card implements Serializable{
     public int num;
     private String name;
@@ -23,6 +23,14 @@ public class Card implements Serializable{
     private String comment = "";
     private String shortDesc;
     private Boolean selected;
+
+    public int getMoreInfo() {
+        return moreInfo;
+    }
+
+    public void setMoreInfo(int moreInfo) {
+        this.moreInfo = moreInfo;
+    }
 
     public Card() {
 
@@ -68,6 +76,10 @@ public class Card implements Serializable{
         colour.put("Keeper", Color.LTGRAY);
         colour.put("Batter", Color.BLUE);
     }
+
+    /**
+     * @return colour - based on what the position name of the card is.
+     */
     public int getColour()
     {
         if(category.equals("Skills")|| category.equals("Tactical"))

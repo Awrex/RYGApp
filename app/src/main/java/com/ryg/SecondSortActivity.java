@@ -18,13 +18,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.File;
@@ -37,6 +35,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * SecondSortActivity
+ * Created by Alex Stewart
+ *
+ * Uses drag and drop functionality very similarly to ReviewSortActivity in order to set what priority you have set for that card.
+ * Also includes the calendar button to select when your next sort will be.
+ * Displays when your next sort is.
+ */
 public class SecondSortActivity extends AppCompatActivity {
     private ArrayList<Card> cardList = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
@@ -49,49 +55,12 @@ public class SecondSortActivity extends AppCompatActivity {
     private MainController mc;
     private String selected;
 
-    class ImageListener implements View.OnDragListener {
-        private RelativeLayout r;
-        public ImageListener(RelativeLayout rel){r = rel;}
-        @Override
-        public boolean onDrag(View v, DragEvent event) {
-            int action = event.getAction();
-            switch (action) {
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    v.setBackgroundColor(Color.DKGRAY);
-                    v.getBackground().setAlpha(40);
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    v.setBackgroundColor(Color.TRANSPARENT);
-                    break;
-                case DragEvent.ACTION_DROP:
-                    v.setBackgroundColor(Color.TRANSPARENT);
-                    TextView target = new TextView(getBaseContext());
-                    TextView drag = (TextView) event.getLocalState();
-                    target.setText(drag.getText());
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(300, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.leftMargin = (int)event.getX() -80;
-                    params.topMargin = (int)event.getY()- 70;
-                    target.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View v) {
-                            ClipData data = ClipData.newPlainText("", "");
-                            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-                            selected = "";
-                            v.startDrag(data, shadowBuilder, v, 0);
-                            v.setVisibility(View.INVISIBLE);
-                            return true;
-                        }
-                    });
-                    r.addView(target,params);
-                    arrayAdapter.remove(selected);
-                    v.setVisibility(View.VISIBLE);
-                    break;
-                default:
-                    break;
-            }
-            return true;
-        }
-    }
+
+    /**
+     * Creates the menu toolbar.
+     * Also checks if the user has a profile picture and displays it as an icon.
+     * @param menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.cardtoolbar,menu);
@@ -122,6 +91,7 @@ public class SecondSortActivity extends AppCompatActivity {
         Toolbar menuToolbar = (Toolbar) findViewById(R.id.menuToolbar);
         setSupportActionBar(menuToolbar);
         Menu m = menuToolbar.getMenu();
+        //Displays what time the next sort is, otherwise prompts the user to click the calendar to set a time.
         try{
             Athlete a = db.getAthlete();
             if(!a.getDateOf().equals(null))
@@ -149,6 +119,8 @@ public class SecondSortActivity extends AppCompatActivity {
         lowAdapter = new ArrayAdapter<String>(this, R.layout.mytextview);
         medAdapter = new ArrayAdapter<String>(this, R.layout.mytextview);
         highAdapter = new ArrayAdapter<String>(this, R.layout.mytextview);
+
+        //Setting up each ArrayAdapter.
         for(int i = 0; i<otherList.size(); i++)
         {
             if(otherList.get(i).getRating() != 4) {
@@ -182,6 +154,10 @@ public class SecondSortActivity extends AppCompatActivity {
         low.setOnDragListener(new listListener("low"));
         medium.setOnDragListener(new listListener("medium"));
         high.setOnDragListener(new listListener("high"));
+
+        /*
+         * This allows the user to drag and drop the item selected into another list, if it is not dragged into another list the item is not changed or moved.
+         */
         list.setOnItemLongClickListener(new OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -244,9 +220,14 @@ public class SecondSortActivity extends AppCompatActivity {
         });
     }
 
+    /** onOptionsItemSelected
+     * Checks what item is pressed and acts on it
+     * @param item (MenuItem) - An item in the top toolbar is pressed, this is what item it is.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        //Displays the information on the activity(What to do)
         if(id==R.id.info)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -261,11 +242,13 @@ public class SecondSortActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+        //sends the user to the user creation/update activity.
         if(id==R.id.userIcon)
         {
             Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);
             startActivityForResult(intent, 1);
         }
+        //makes the DateFragment activity pop up.
         if(id==R.id.calendarInfo)
         {
             Intent intent = new Intent(getBaseContext(), DateFragment.class);
@@ -274,6 +257,12 @@ public class SecondSortActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Is run when the profile picture icon and calendar is clicked.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -281,6 +270,12 @@ public class SecondSortActivity extends AppCompatActivity {
         startActivity(getIntent());
     }
 
+    /** toOutput
+     * On pressing the button that leads to the output, it creates an AthleteInfo object.
+     * That object then gets added to the Google Form spread sheet unless the second term hasn't been agreed on.
+     * Then goes to the OutputActivity class.
+     * @param v
+     */
     public void toOutput(View v)
 
     {
@@ -348,6 +343,7 @@ public class SecondSortActivity extends AppCompatActivity {
                 System.out.println(newDateString);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(startDate);
+                //If the user has not agreed to the first terms it adds that there should be no marketing sent to this email.
                 if (!a.getTerms1()) {
                     AthleteInfo info = new AthleteInfo("NO MARKETING " + a.getEmail(), cal, a.getGender(), s, a.getTeams(), pos, strengths, mediums, workons, high, middle, low, a.getLocation(), a.getZipCode());
                     info.createInfo();
@@ -363,11 +359,23 @@ public class SecondSortActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    /**
+     * Another listListener much like the one from the ReviewSortActivity class, however only stores the name of the item.
+     */
     class listListener implements View.OnDragListener{
         String name;
         listListener(String tag){
             name = tag;
         }
+        /**
+         * The onDrag method which is run when an item is dragged.
+         * It gets the current ListView interacted(dropped) on and places the item into the list.
+         * It sets the priority of that item to what the list corresponds to and updates that in the database.
+         * It finally removes the item from the list the item originally came from.
+         * @param v (View)
+         * @param event (DragEvent)
+         */
         @Override
         public boolean onDrag(View v, DragEvent event) {
             Boolean b = Boolean.FALSE;
@@ -416,6 +424,11 @@ public class SecondSortActivity extends AppCompatActivity {
             return true;
         }
     }
+
+    /**
+     * Goes to the corresponding activity for that button.
+     * @param v (View) - button
+     */
     public void toSelection(View v){
         Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);
         startActivity(intent);
@@ -426,6 +439,10 @@ public class SecondSortActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    /** onBackPressed
+     * When back is pressed, goes to the SelectCategoryActivity
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getBaseContext(), SelectCategoryActivity.class);

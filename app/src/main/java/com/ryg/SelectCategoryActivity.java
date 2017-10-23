@@ -36,7 +36,12 @@ public class SelectCategoryActivity extends AppCompatActivity {
     private String category;
     private Boolean firstTime = false;
     private TextView cardNum;
-    /** Called when the activity is first created. */
+
+    /**
+     * Creates the menu toolbar.
+     * Also checks if the user has a profile picture and displays it as an icon.
+     * @param menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.infotoolbar,menu);
@@ -72,7 +77,6 @@ public class SelectCategoryActivity extends AppCompatActivity {
         db = new DBController(this);
         cards = db.getCards();
         max = cards.size();
-        //mainListView = (ListView) findViewById( R.id.posList );
         Athlete a = db.getAthlete();
         for (int i = 0; i < cards.size(); i++) {
             if(cards.get(i).getName().contains("Women") && a.getGender().equals("Male"))
@@ -110,20 +114,6 @@ public class SelectCategoryActivity extends AppCompatActivity {
                 i--;
             }
         }
-        //listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,cardList);
-        //mainListView.setAdapter( listAdapter );
-        //mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           // @Override
-            //public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //    category = (String) parent.getItemAtPosition(position);
-           //     goToCard();
-           // }
-     //   });
-        /*if(listAdapter.getCount()==0)
-        {
-            sortGo();
-        }
-        */
         ArrayList<Card> rawCards = new ArrayList<>();
         for(int i = 0; i < cards.size(); i++)
         {
@@ -267,9 +257,15 @@ public class SelectCategoryActivity extends AppCompatActivity {
             reviewButton.setVisibility(View.VISIBLE);
         }
     }
+
+    /** onOptionsItemSelected
+     * Checks what item is pressed and acts on it
+     * @param item (MenuItem) - An item in the top toolbar is pressed, this is what item it is.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        //Displays the information on the activity(What to do)
         if(id==R.id.info)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -284,6 +280,7 @@ public class SelectCategoryActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
+        //sends the user to the user creation/update activity.
         if(id==R.id.userIcon)
         {
             Intent intent = new Intent(getBaseContext(), CreateUserActivity.class);

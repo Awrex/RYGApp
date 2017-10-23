@@ -2,8 +2,11 @@ package com.ryg;
 
 import android.util.Log;
 
-/**
- * Created by Alex on 15/08/2017.
+/** Skill
+ * Created by Alex Stewart
+ *
+ * A data class that mostly contains getters and setters.
+ * Includes a few additional conditions to check for and methods to make displaying the eventual card easier.
  */
 
 public class Skill {
@@ -35,13 +38,25 @@ public class Skill {
     }
     public String getShortDesc() { return shortDesc; }
     public void setShortDesc(String shortDesc) { this.shortDesc = shortDesc;}
+
+    /** getName
+     * If the category of the skill is "Skills" or "Tactical" which involves multiple different positions
+     * The name of the skil then also includes the name of the position and then the original name.
+     * @return name
+     */
     public String getName(){
     if(category.equals("Skills")||category.equals("Tactical"))
     return positionName + " - " + name;
         else
             return name;
     }
-    public void breakName(){
+
+    /**
+     * Gets the description of the skill, then makes sure the next character after each new line is an actual letter.
+     * XML formats the descriptions to where it inserts tabs into each new line on the description.
+     * This method is run each time from the MainController when a new skill is created.
+     */
+    public void breakDesc(){
         char[] n = description.toCharArray();
         String newName = "";
         newName += n[0];
